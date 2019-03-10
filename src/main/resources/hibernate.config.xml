@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<mapping class="com.entities.Agendamento" />
+		<mapping class="com.entities.Alimento" />
+		<mapping class="com.entities.Cardapio" />
+		<mapping class="com.entities.CardapioAlimento" />
+		<mapping class="com.entities.CardapioVenda" />
+		<mapping class="com.entities.Categoria" />
+		<mapping class="com.entities.Cliente" />
+		<mapping class="com.entities.Status" />
+		<mapping class="com.entities.Usuario" />
+		<mapping class="com.entities.Venda" />
+		<mapping class="com.entities.TipoCardapio" />
+
+		<!-- Spring Security -->
+		<mapping class="com.entities.PersistentLogin" />
+		<mapping class="com.entities.User" />
+		<mapping class="com.entities.UserProfile" />
+		<mapping class="com.entities.UserProfileType" />
+		
+	</session-factory>
+</hibernate-configuration>
