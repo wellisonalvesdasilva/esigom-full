@@ -2,12 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>[e-SIGDR] Sistema Informatizado Gerenciador de
-	Restaurantes</title>
+<title>[e-SIGOM] Sistema Informatizado Gerenciador de Oficina
+	Mecânica</title>
 
 <link
 	href="${pageContext.request.contextPath}/resources/css/login/bootstrap.min.css"
@@ -26,8 +25,10 @@
 
 		<div id="loginbox" style="margin-top: 50px;"
 			class="col-lg-5 col-lg-offset-4 col-xs-6  col-xs-offset-2 col-sm-6  col-sm-offset-2 col-md-6  col-md-offset-2">
-			<h2 class="text-center">[e-SIGDR] Sistema Informatizado
-				Gerenciador de Restaurantes</h2>
+			<h2 class="text-center">[e-SIGOM] Sistema Informatizado
+				Gerenciador de Oficina Mecânica</h2>
+			<h4 class="text-center">Acesso Administrativo - Mecânica
+				Automotiva Plus.</h4>
 			<br />
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -81,7 +82,7 @@
 							<div class="row">
 								<div class="col-md-12 control">
 									<div class="text-right">
-										<strong>Versão 1.0.0.0 de 22/01/2019</strong>
+										<strong>Versão 1.0.0.0 de 09/03/2019</strong>
 									</div>
 								</div>
 							</div>

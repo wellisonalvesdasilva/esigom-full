@@ -1,65 +1,60 @@
 <body>
 	<div class="wrapper">
-	
 		<div class="sidebar"
 			data-image="${pageContext.request.contextPath}/resources/img/sidebar-5.jpg">
 			<div class="sidebar-wrapper">
 				<div class="logo">
-					<a href="http://www.creative-tim.com" class="simple-text">
-						e-SIGDR (RESTAURANTE)</a>
+					<a href="#" class="simple-text"> e-SIGOM (MECÂNICA PLUS)</a>
 				</div>
 				<ul class="nav">
-					<li><a class="nav-link" href="/e-SIGDR/home/dashboard/">
-							<i class="nc-icon nc-chart-pie-35"></i>
+					<li><a class="nav-link" href="/e-SIGOM/home/dashboard/"> <i
+							class="nc-icon nc-chart-pie-35"></i>
 							<p>Dashboard</p>
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGDR/home/cardapio/montar"> <i
+						href="/e-SIGOM/home/agendamento/consultar"> <i
+							class="nc-icon nc-bullet-list-67"></i>
+							<p>Tabela de Serviços</p>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/e-SIGOM/home/cardapio/montar"> <i
 							class="nc-icon nc-notes"></i>
-							<p>Montar Cardápio</p>
+							<p>Orçamento e Venda</p>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/e-SIGOM/home/venda/consultar"> <i
+							class="nc-icon nc-settings-tool-66"></i>
+							<p>Peças e Serviços</p>
 					</a></li>
 
 					<li><a class="nav-link"
-						href="/e-SIGDR/home/cardapio/consultar"> <i
-							class="nc-icon nc-single-copy-04"></i>
-							<p>Lista de Cardápios</p>
+						href="/e-SIGOM/home/alimento/consultar"> <i
+							class="nc-icon nc-layers-3	"></i>
+							<p>Estoque e Compras</p>
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGDR/home/venda/consultar"> <i
-							class="nc-icon nc-cart-simple"></i>
-							<p>Gerenciar Vendas</p>
-					</a></li>
-
-					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGDR/home/agendamento/consultar"> <i
-							class="nc-icon nc-delivery-fast"></i>
-							<p>Pedidos à Entregar</p>
-					</a></li>
-
-					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGDR/home/cliente/consultar"> <i
+						href="/e-SIGOM/home/usuario/consultar"> <i
 							class="nc-icon nc-single-02"></i>
-							<p>Gerenciar Clientes</p>
+							<p>Cadastro de Clientes</p>
 					</a></li>
 
 					<li><a class="nav-link"
-						href="/e-SIGDR/home/alimento/consultar"> <i
-							class="nc-icon nc-apple"></i>
-							<p>Gerenciar Alimentos</p>
+						href="/e-SIGOM/home/cardapio/consultar"> <i
+							class="nc-icon nc-money-coins"></i>
+							<p>Extrato Pagseguro</p>
 					</a></li>
 
 					<li class="nav-item <%--active --%>"><a class="nav-link"
-						href="/e-SIGDR/home/usuario/consultar"> <i
-							class="nc-icon nc-circle-09"></i>
-							<p>Gerenciar Usuários</p>
+						href="#"> <i class="nc-icon nc-chart-bar-32"></i>
+							<p>Relatórios</p>
 					</a></li>
 
 					<li class="nav-item active active-pro"><a
 						class="nav-link active" href="#"> <i
-							class="nc-icon nc-chart-bar-32"></i>
-							<p>Visualizar Relatórios</p>
+							class="nc-icon nc-circle-09"></i>
+							<p>Controle de Acesso</p>
 					</a></li>
 				</ul>
 			</div>
@@ -89,7 +84,7 @@
 										class="dropdown-item" href="#">Alterar Dados</a>
 								</div></li>
 							<li class="nav-item"><a class="nav-link"
-								href="/e-SIGDR/logout"> <span class="no-icon">Sair</span>
+								href="/e-SIGOM/logout"> <span class="no-icon">Sair</span>
 							</a></li>
 						</ul>
 					</div>

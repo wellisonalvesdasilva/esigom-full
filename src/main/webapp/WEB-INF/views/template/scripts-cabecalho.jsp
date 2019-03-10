@@ -1,8 +1,14 @@
 <!-- Inicio Cabeçalho -->
-<title>eSIGDR - Sistema Informatizado Gerenciador de
-	Restaurantes</title>
+<title>[e-SIGOM] Sistema Informatizado Gerenciador de Oficina
+	Mecânica</title>
+
 <link href="${pageContext.request.contextPath}/resources/css/css.css"
 	rel="stylesheet" />
+	
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+	rel="stylesheet">
+
 
 <script type="text/javascript" charset="utf8"
 	src="${pageContext.request.contextPath}/resources/datatables/jquery-3.3.1.js"></script>

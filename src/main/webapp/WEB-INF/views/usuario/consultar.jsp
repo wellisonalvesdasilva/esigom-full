@@ -18,7 +18,7 @@
 			<div class="col-md-12">
 				<div class="card strpied-tabled-with-hover">
 					<div class="card-header ">
-						<h4 class="card-title">Gerenciamento de Usuários</h4>
+						<h4 class="card-title">Gerenciamento de Clientes</h4>
 					</div>
 					<div class="card-body">
 						<form>
@@ -84,14 +84,14 @@
 									<button name="exportToPdf" id="exportToPdf" type="button"
 										rel="tooltip" data-original-title="Exportar para PDF"
 										class="btn btn-danger btn-fill">
-										<i class="nc-icon nc-cloud-download-93"></i> Exportar para PDF
+										<i class="fa fa-file-pdf-o" aria-hidden="true"></i> Exportar para PDF
 									</button>
 
 									<a name="btnSubmit" rel="tooltip"
 										data-original-title="Cadastrar Novo Usuário" id="btnSubmit"
-										href='/e-SIGDR/home/usuario/cadastrar' type="submit"
+										href='/e-SIGOM/home/usuario/cadastrar' type="submit"
 										class="btn btn-success btn-fill"> <i
-										class="nc-icon nc-single-02"></i> Novo Usuário
+										class="nc-icon nc-single-02"></i> Novo Cliente
 									</a>
 								</div>
 							</div>
@@ -131,7 +131,7 @@
 												</c:choose></td>
 											<td class="text-center"><a rel="tooltip"
 												data-original-title="Editar" name="btnSubmit" id="btnSubmit"
-												href='/e-SIGDR/home/usuario/editar/${it.id}' type="button"
+												href='/e-SIGOM/home/usuario/editar/${it.id}' type="button"
 												class="btn btn-success btn-fill"> <i
 													class="nc-icon nc-settings-tool-66"></i>
 											</a>
@@ -413,7 +413,7 @@
 		// Chamadando Ajax
 		$
 				.ajax({
-					url : '/e-SIGDR/home/usuario/listar/' + pagina,
+					url : '/e-SIGOM/home/usuario/listar/' + pagina,
 					type : 'POST',
 					data : JSON.stringify(dto),
 					dataType : "json",
