@@ -65,9 +65,11 @@ public class ClienteController {
 
 	@RequestMapping(value = "/cadastrar", method = { RequestMethod.POST })
 	public String enviar(@ModelAttribute("obj") Cliente obj, RedirectAttributes ra, ModelMap model) throws Exception {
-		// _clienteService.saveOrUpdate(obj);
+		
+		_clienteService.salvar(obj);
+
 		ra.addFlashAttribute("message", "Registro cadastrado com sucesso!");
-		return "redirect:/home/cliente/cadastrar";
+		return "redirect:/home/cliente/consultar";
 	}
 
 	@RequestMapping(value = "/editar/{cod}", method = { RequestMethod.GET })

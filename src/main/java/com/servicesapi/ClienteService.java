@@ -1,4 +1,5 @@
 package com.servicesapi;
+
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import com.dtos.DtoRetornoPaginado;
@@ -13,11 +14,8 @@ public interface ClienteService {
 
 	public DtoRetornoPaginado<Cliente> list(Integer pagina, DtoClientePesquisa dto);
 
-	/*
-	 * public boolean saveOrUpdate(Cliente users) throws
-	 * NoSuchAlgorithmException, IllegalAccessException,
-	 * InvocationTargetException;
-	 */
+	public void salvar(Cliente cliente);
+
 	Boolean deletar(Integer cod);
 
 	Object getObj(Integer id, String login, String senha) throws NoSuchAlgorithmException;

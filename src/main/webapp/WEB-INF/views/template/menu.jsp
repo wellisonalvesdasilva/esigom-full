@@ -69,7 +69,6 @@
 							<li class="dropdown nav-item">
 							<li class="nav-item"><span class="no-icon">Versão
 									1.0.0.0</span> </a></li>
-
 						</ul>
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item dropdown"><a
@@ -83,6 +82,7 @@
 									<a class="dropdown-item" href="#">Alterar Senha</a> <a
 										class="dropdown-item" href="#">Alterar Dados</a>
 								</div></li>
+
 							<li class="nav-item"><a class="nav-link"
 								href="/e-SIGOM/logout"> <span class="no-icon">Sair</span>
 							</a></li>

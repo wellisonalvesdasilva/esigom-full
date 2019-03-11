@@ -173,8 +173,8 @@ public class ClienteDaoImpl implements ClienteDao {
 		session.getCurrentSession().update(clientes);
 	}
 
-	public void persist(Cliente clientes) {
-		session.getCurrentSession().save(clientes);
+	public void persist(Cliente cliente) {
+		session.getCurrentSession().save(cliente);
 	}
 
 }

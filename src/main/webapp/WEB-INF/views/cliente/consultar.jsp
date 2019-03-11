@@ -57,7 +57,7 @@
 									<button id="reset" name="reset" rel="tooltip"
 										data-original-title="Limpar Campos" id="btnLimpar"
 										type="button" class="btn btn-default btn-fill">
-										<i class="fa fa-eraser"></i> Limpar
+										<i class="fa fa-remove"></i> Limpar
 									</button>
 									<button name="exportToPdf" id="exportToPdf" type="button"
 										rel="tooltip" data-original-title="Exportar para PDF"
@@ -298,6 +298,7 @@
 		return $('#example').DataTable({
 			
 			retrieve: true,
+			processing: true,
 			 
 			columnDefs : [ {
 				"width" : "15%",
@@ -390,16 +391,18 @@
 															+ valor.email
 															+ '</div>',
 													'<div class="text-center">'
-														+'<a rel="tooltip" data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
-														+'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-settings-tool-66"></i>'
-														+'</a> '
-								/* 				 +'<button rel="tooltip" name="btnSubmit"'
+													 +'<button rel="tooltip" name="btnSubmit"'
 													+'data-original-title="Trocar Senha"'
 													+'onclick="resetarSenha(${it.id})" type="button"'
-													+'class="btn btn-default btn-fill">'
-													+'<i class="nc-icon nc-refresh-02"></i>'
-												+'</button> ' */
-												+'<button rel="tooltip" name="btnSubmit"'
+													+'class="btn btn-info btn-fill">'
+													+'<i class="nc-icon nc-zoom-split"></i>'
+													+'</button> '
+												
+													+'<a rel="tooltip" data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
+													+'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-settings-tool-66"></i>'
+													+'</a> '
+												
+													+'<button rel="tooltip" name="btnSubmit"'
 													+'data-original-title="Excluir" id="btnSubmit"'
 													+'onclick="excluirFuncionario('
 													+ valor.id

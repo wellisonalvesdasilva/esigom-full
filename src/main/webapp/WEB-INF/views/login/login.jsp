@@ -26,10 +26,7 @@
 		<div id="loginbox" style="margin-top: 50px;"
 			class="col-lg-5 col-lg-offset-4 col-xs-6  col-xs-offset-2 col-sm-6  col-sm-offset-2 col-md-6  col-md-offset-2">
 			<h2 class="text-center">[e-SIGOM] Sistema Informatizado
-				Gerenciador de Oficina Mecânica</h2>
-			<h4 class="text-center">Acesso Administrativo - Mecânica
-				Automotiva Plus.</h4>
-			<br />
+				Gerenciador de Oficina Mecânica</h2><br>
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="panel-title">Formulário de Autenticação</div>

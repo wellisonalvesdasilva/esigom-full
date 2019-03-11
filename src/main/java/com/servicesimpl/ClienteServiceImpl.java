@@ -1,5 +1,7 @@
 package com.servicesimpl;
+
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,20 +30,10 @@ public class ClienteServiceImpl implements ClienteService {
 		return retorno;
 	}
 
-	/*
-	 * public boolean saveOrUpdate(Cliente users) throws
-	 * NoSuchAlgorithmException, IllegalAccessException,
-	 * InvocationTargetException {
-	 * users.setDataDeCadastro(Calendar.getInstance().getTime());
-	 * 
-	 * if (users.getId() != null) { _clienteDao.merge(users); } else {
-	 * 
-	 * String s = users.getSenha(); MessageDigest m =
-	 * MessageDigest.getInstance("MD5"); m.update(s.getBytes(), 0, s.length());
-	 * 
-	 * users.setSenha(new BigInteger(1, m.digest()).toString(16));
-	 * _clienteDao.persist(users); } return true; }
-	 */
+	public void salvar(Cliente cliente) {
+		cliente.setDth_cadastro(new Date());
+		_clienteDao.persist(cliente);
+	}
 
 	public Boolean deletar(Integer cod) {
 		return _clienteDao.deletar(cod);
