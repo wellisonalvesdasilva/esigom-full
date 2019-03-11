@@ -35,7 +35,7 @@
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGOM/home/usuario/consultar"> <i
+						href="/e-SIGOM/home/cliente/consultar"> <i
 							class="nc-icon nc-single-02"></i>
 							<p>Cadastro de Clientes</p>
 					</a></li>

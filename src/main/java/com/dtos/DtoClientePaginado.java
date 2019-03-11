@@ -1,6 +1,6 @@
 package com.dtos;
 
-public class DtoUsuarioPaginado extends DtoPaginacao {
+public class DtoClientePaginado extends DtoPaginacao {
 	private int paginaAtual;
 
 	public int getPaginaAtual() {

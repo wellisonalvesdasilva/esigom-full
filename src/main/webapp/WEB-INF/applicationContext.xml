@@ -26,9 +26,11 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
 	<mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" />
 
+
+	<!-- / CONEXÃO COM O BANCO DE DADOS / -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/test" />
+		<property name="url" value="jdbc:mysql://localhost:3306/e-sigom" />
 		<property name="username" value="root" />
 		<property name="password" value="" />
 	</bean>

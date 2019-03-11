@@ -2,18 +2,18 @@ package com.daoapi;
 
 import java.util.List;
 
-import com.entities.User;
+import com.entities.Usuario;
 
 public interface UserDao {
 
-	User findById(int id);
+	Usuario findById(int id);
 
-	User findBySSO(String sso);
+	Usuario findBySSO(String sso);
 
-	void save(User user);
+	void save(Usuario user);
 
 	void deleteBySSO(String sso);
 
-	List<User> findAllUsers();
+	List<Usuario> findAllUsers();
 
 }

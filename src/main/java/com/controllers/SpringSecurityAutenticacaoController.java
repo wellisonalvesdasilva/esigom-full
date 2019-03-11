@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.converter.RoleToUserProfileConverter;
-import com.entities.User;
 import com.entities.UserProfile;
+import com.entities.Usuario;
 import com.servicesapi.UserProfileService;
 import com.servicesapi.UserService;
 
@@ -63,7 +63,7 @@ public class SpringSecurityAutenticacaoController {
 	@RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
 	public String listUsers(ModelMap model) {
 
-		List<User> users = userService.findAllUsers();
+		List<Usuario> users = userService.findAllUsers();
 		model.addAttribute("users", users);
 		model.addAttribute("loggedinuser", getPrincipal());
 		return "login/userslist";
@@ -74,7 +74,7 @@ public class SpringSecurityAutenticacaoController {
 	 */
 	@RequestMapping(value = { "/newuser" }, method = RequestMethod.GET)
 	public String newUser(ModelMap model) {
-		User user = new User();
+		Usuario user = new Usuario();
 		model.addAttribute("user", user);
 		model.addAttribute("edit", false);
 		model.addAttribute("loggedinuser", getPrincipal());
@@ -86,7 +86,7 @@ public class SpringSecurityAutenticacaoController {
 	 * saving user in database. It also validates the user input
 	 */
 	@RequestMapping(value = { "/newuser" }, method = RequestMethod.POST)
-	public String saveUser(@Valid User user, BindingResult result, ModelMap model) {
+	public String saveUser(@Valid Usuario user, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
 			return "login/registration";
@@ -123,7 +123,7 @@ public class SpringSecurityAutenticacaoController {
 	 */
 	@RequestMapping(value = { "/edit-user-{ssoId}" }, method = RequestMethod.GET)
 	public String editUser(@PathVariable String ssoId, ModelMap model) {
-		User user = userService.findBySSO(ssoId);
+		Usuario user = userService.findBySSO(ssoId);
 		model.addAttribute("user", user);
 		model.addAttribute("edit", true);
 		model.addAttribute("loggedinuser", getPrincipal());
@@ -135,7 +135,7 @@ public class SpringSecurityAutenticacaoController {
 	 * updating user in database. It also validates the user input
 	 */
 	@RequestMapping(value = { "/edit-user-{ssoId}" }, method = RequestMethod.POST)
-	public String updateUser(@Valid User user, BindingResult result, ModelMap model, @PathVariable String ssoId) {
+	public String updateUser(@Valid Usuario user, BindingResult result, ModelMap model, @PathVariable String ssoId) {
 
 		if (result.hasErrors()) {
 			return "login/registration";

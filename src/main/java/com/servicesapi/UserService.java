@@ -2,23 +2,23 @@ package com.servicesapi;
 
 import java.util.List;
 
-import com.entities.User;
+import com.entities.Usuario;
 
 
 
 public interface UserService {
 	
-	User findById(int id);
+	Usuario findById(int id);
 	
-	User findBySSO(String sso);
+	Usuario findBySSO(String sso);
 	
-	void saveUser(User user);
+	void saveUser(Usuario user);
 	
-	void updateUser(User user);
+	void updateUser(Usuario user);
 	
 	void deleteUserBySSO(String sso);
 
-	List<User> findAllUsers(); 
+	List<Usuario> findAllUsers(); 
 	
 	boolean isUserSSOUnique(Integer id, String sso);
 

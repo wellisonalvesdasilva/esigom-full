@@ -1,6 +1,6 @@
 package com.dtos;
 
-public class DtoUsuarioPesquisa {
+public class DtoClientePesquisa {
 
 	public Integer cod;
 	public String nome;

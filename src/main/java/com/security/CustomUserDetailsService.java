@@ -14,8 +14,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.entities.User;
 import com.entities.UserProfile;
+import com.entities.Usuario;
 import com.servicesapi.UserService;
 
 @Service("customUserDetailsService")
@@ -28,7 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String ssoId) throws UsernameNotFoundException {
-		User user = userService.findBySSO(ssoId);
+		Usuario user = userService.findBySSO(ssoId);
 		logger.info("User : {}", user);
 		if (user == null) {
 			logger.info("User not found");
@@ -38,7 +38,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 				true, true, getGrantedAuthorities(user));
 	}
 
-	private List<GrantedAuthority> getGrantedAuthorities(User user) {
+	private List<GrantedAuthority> getGrantedAuthorities(Usuario user) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
 		for (UserProfile userProfile : user.getUserProfiles()) {

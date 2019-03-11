@@ -1,15 +1,20 @@
 package com.daoapi;
 
-import java.util.List;
-import java.util.Map;
+import java.security.NoSuchAlgorithmException;
 
+import java.util.List;
+
+import com.dtos.DtoRetornoPaginado;
 import com.entities.Cliente;
+import com.dtos.DtoClientePesquisa;
 
 public interface ClienteDao {
 
-	public List<Cliente> list(Map<String, String> objPesquisa);
+	public DtoRetornoPaginado<Cliente> list(Integer pagina, DtoClientePesquisa dto);
 
-	Cliente getObj(Integer id);
+	public List<Cliente> lista();
+
+	Cliente getObj(Integer id, String login, String senha) throws NoSuchAlgorithmException;
 
 	boolean deletar(Integer id);
 

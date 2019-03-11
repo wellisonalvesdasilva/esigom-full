@@ -9,14 +9,14 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import java.util.List;
 
-import com.entities.Usuario;
+import com.entities.Cliente;
 
-public class UsuarioREL {
+public class ClienteREL {
 
-	public void imprimir(List<Usuario> usuarios) throws Exception {
+	public void imprimir(List<Cliente> clientes) throws Exception {
 
 		JasperReport report = JasperCompileManager.compileReport("c:/rpt_users.jrxml");
-		JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(usuarios));
+		JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(clientes));
 		JasperExportManager.exportReportToPdfFile(print, "c:/relatorio_usuario.pdf");
 
 	}

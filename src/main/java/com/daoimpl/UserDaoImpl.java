@@ -13,29 +13,29 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.daoapi.AbstractDao;
 import com.daoapi.UserDao;
-import com.entities.User;
+import com.entities.Usuario;
 
 
 
 @Transactional
 @Repository("userDao")
-public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
+public class UserDaoImpl extends AbstractDao<Integer, Usuario> implements UserDao {
 
 	static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
 
-	public User findById(int id) {
-		User user = getByKey(id);
+	public Usuario findById(int id) {
+		Usuario user = getByKey(id);
 		if (user != null) {
 			Hibernate.initialize(user.getUserProfiles());
 		}
 		return user;
 	}
 
-	public User findBySSO(String sso) {
+	public Usuario findBySSO(String sso) {
 		logger.info("SSO : {}", sso);
 		Criteria crit = createEntityCriteria();
 		crit.add(Restrictions.eq("ssoId", sso));
-		User user = (User) crit.uniqueResult();
+		Usuario user = (Usuario) crit.uniqueResult();
 		if (user != null) {
 			Hibernate.initialize(user.getUserProfiles());
 		}
@@ -43,11 +43,11 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<User> findAllUsers() {
+	public List<Usuario> findAllUsers() {
 		Criteria criteria = createEntityCriteria().addOrder(Order.asc("firstName"));
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);// To avoid
 																		// duplicates.
-		List<User> users = (List<User>) criteria.list();
+		List<Usuario> users = (List<Usuario>) criteria.list();
 
 		// No need to fetch userProfiles since we are not showing them on list
 		// page. Let them lazy load.
@@ -60,14 +60,14 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		return users;
 	}
 
-	public void save(User user) {
+	public void save(Usuario user) {
 		persist(user);
 	}
 
 	public void deleteBySSO(String sso) {
 		Criteria crit = createEntityCriteria();
 		crit.add(Restrictions.eq("ssoId", sso));
-		User user = (User) crit.uniqueResult();
+		Usuario user = (Usuario) crit.uniqueResult();
 		delete(user);
 	}
 

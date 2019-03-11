@@ -1,14 +1,17 @@
 package com.daoimpl;
 
+import java.math.BigInteger;
 import java.util.List;
-import java.util.Map;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import org.hibernate.SessionFactory;
 import com.daoapi.ClienteDao;
+import com.dtos.DtoRetornoPaginado;
 import com.entities.Cliente;
+import com.dtos.DtoClientePesquisa;
 
 @Repository
 @Transactional
@@ -18,63 +21,109 @@ public class ClienteDaoImpl implements ClienteDao {
 	SessionFactory session;
 
 	@SuppressWarnings("unchecked")
-	public List<Cliente> list(Map<String, String> objPesquisa) {
+	public List<Cliente> lista() {
+		return session.getCurrentSession().createQuery("from Cliente").list();
+	}
 
-		String sql = "";
+	@SuppressWarnings({ "unchecked", "unused" })
+	public DtoRetornoPaginado<Cliente> list(Integer pagina, DtoClientePesquisa dto) {
 
-		if (objPesquisa.get("id") != "" && objPesquisa.get("id") != null) {
-			if (sql.contains("where")) {
-				sql = sql + "and u.id='" + objPesquisa.get("id") + "'";
+		// Quantidade á ser pulada
+		Integer offset = 10;
+
+		@SuppressWarnings("rawtypes")
+		DtoRetornoPaginado inst = new DtoRetornoPaginado();
+
+		// # Preparar dados para retorno
+		String parametrosAdicionais = "";
+		String filtros = "";
+		String ordenacao = "";
+
+		// Prepara Filtros
+		if (dto.getCod() != null) {
+			filtros = "as u where u.id='" + dto.getCod() + "'";
+		}
+
+		if (dto.getNome() != "" && dto.getNome() != null) {
+			if (filtros != "") {
+				filtros = filtros + " and u.nome='" + dto.getNome() + "'";
 			} else {
-				sql = "where u.id='" + objPesquisa.get("id") + "'";
+				filtros = "as u where u.nome='" + dto.getNome() + "'";
 			}
 		}
 
-		if (objPesquisa.get("nome") != "" && objPesquisa.get("nome") != null) {
-			if (sql.contains("where")) {
-				sql = sql + "and u.nome='" + objPesquisa.get("nome") + "'";
+		if (dto.getLogin() != "" && dto.getLogin() != null) {
+			if (filtros != "") {
+				filtros = filtros + " and u.login='" + dto.getLogin() + "'";
 			} else {
-				sql = "where u.nome='" + objPesquisa.get("nome") + "'";
+				filtros = "as u where u.login='" + dto.getLogin() + "'";
 			}
 		}
 
-		if (objPesquisa.get("email") != "" && objPesquisa.get("email") != null) {
-			if (sql.contains("where")) {
-				sql = sql + "and u.email='" + objPesquisa.get("email") + "'";
+		if (dto.getAtivo() != null) {
+			if (filtros != "") {
+				filtros = filtros + " and u.ativo='" + dto.getAtivo() + "'";
 			} else {
-				sql = "where u.email='" + objPesquisa.get("email") + "'";
+				filtros = "as u where u.ativo='" + dto.getAtivo() + "'";
 			}
 		}
 
-		if (objPesquisa.get("cpf") != "" && objPesquisa.get("cpf") != null) {
-			if (sql.contains("where")) {
-				sql = sql + "and u.cpf='" + objPesquisa.get("cpf") + "'";
+		if (dto.getEmail() != "" && dto.getEmail() != null) {
+			if (filtros != "") {
+				filtros = filtros + " and u.email='" + dto.getEmail() + "'";
 			} else {
-				sql = "where u.cpf='" + objPesquisa.get("cpf") + "'";
+				filtros = "as u where u.email='" + dto.getEmail() + "'";
 			}
 		}
 
-		if (objPesquisa.get("telefone") != "" && objPesquisa.get("telefone") != null) {
-			if (sql.contains("where")) {
-				sql = sql + "and u.telefone='" + objPesquisa.get("telefone") + "'";
+		// Incluir filtros aos parâmetros caso há algum preenchido
+		if (filtros != null || filtros != "") {
+			parametrosAdicionais = filtros;
+		}
+
+		// Ordenação
+		if (dto.getColunaParaOrdenar() != null && dto.getColunaParaOrdenar() != "") {
+			if (parametrosAdicionais != "") {
+				parametrosAdicionais = parametrosAdicionais + "order by u." + dto.getColunaParaOrdenar() + " desc";
 			} else {
-				sql = "where u.telefone='" + objPesquisa.get("telefone") + "'";
+				parametrosAdicionais = "as u order by u." + dto.getColunaParaOrdenar() + " desc";
 			}
 		}
 
-		if (objPesquisa.get("telefoneRecado") != "" && objPesquisa.get("telefoneRecado") != null) {
-			if (sql.contains("where")) {
-				sql = sql + "and u.telefoneRecado='" + objPesquisa.get("telefoneRecado") + "'";
-			} else {
-				sql = "where u.telefoneRecado='" + objPesquisa.get("telefoneRecado") + "'";
-			}
+		// Consulta sem filtro
+		Integer quantidade = 0;
+		if (filtros == "") {
+			// Quantidade Total de Registros
+			quantidade = session.getCurrentSession().createQuery("from Cliente as u").list().size();
+			inst.setQtdTotalDeRegistros(quantidade);
+
+			// Quantidade de Registros Encontrados na Página
+			inst.setQtdRegistroPagina(session.getCurrentSession().createQuery("from Cliente").setMaxResults(offset)
+					.setFirstResult(pagina * offset).list().size());
 		}
 
-		if (sql != "") {
-			return session.getCurrentSession().createQuery("from Cliente as u" + " " + sql).list();
+		if (parametrosAdicionais != "") {
+			inst.setLista(session.getCurrentSession().createQuery("from Cliente " + parametrosAdicionais)
+					.setMaxResults(offset).setFirstResult(pagina * offset).list());
+
+			if (filtros != "") {
+				inst.setQtdRegistroPagina(
+						session.getCurrentSession().createQuery("from Cliente " + parametrosAdicionais)
+								.setMaxResults(offset).setFirstResult(pagina * offset).list().size());
+				quantidade = session.getCurrentSession().createQuery("from Cliente " + parametrosAdicionais).list()
+						.size();
+				inst.setQtdTotalDeRegistros(quantidade);
+			}
 		} else {
-			return session.getCurrentSession().createQuery("from Cliente").list();
+			inst.setLista(session.getCurrentSession().createQuery("from Cliente as u order by u.id asc")
+					.setMaxResults(offset).setFirstResult(pagina * offset).list());
 		}
+		if (quantidade > 0) {
+			Double quantidadeFormatada = quantidade.doubleValue() / offset;
+			inst.setNumeroPaginas((int) Math.ceil(quantidadeFormatada));
+		}
+
+		return inst;
 	}
 
 	public boolean deletar(Integer id) {
@@ -87,21 +136,45 @@ public class ClienteDaoImpl implements ClienteDao {
 		return false;
 	}
 
-	public Cliente getObj(Integer id) {
-		Cliente ObjLocalizado = (Cliente) session.getCurrentSession()
-				.createQuery("from Cliente as u where u.id = " + id).list().get(0);
-		if (ObjLocalizado != null) {
-			return ObjLocalizado;
+	public Cliente getObj(Integer id, String login, String senha) throws NoSuchAlgorithmException {
+
+		Cliente ObjLocalizado = null;
+
+		try {
+			if (login != null && senha != null) {
+
+				String s = senha;
+				MessageDigest m = MessageDigest.getInstance("MD5");
+				m.update(s.getBytes(), 0, s.length());
+				String sMd5 = new BigInteger(1, m.digest()).toString(16);
+
+				m.update(senha.toString().getBytes(), 0, senha.toString().length());
+				ObjLocalizado = (Cliente) session.getCurrentSession()
+						.createQuery("from Cliente as u where u.login = '" + login + "' and u.senha ='" + sMd5 + "'")
+						.list().get(0);
+
+			} else {
+				ObjLocalizado = (Cliente) session.getCurrentSession()
+						.createQuery("from Cliente as u where u.id = " + id).list().get(0);
+			}
+
+			if (ObjLocalizado != null) {
+				return ObjLocalizado;
+			}
+
+		} catch (Exception e) {
+			return null;
 		}
+
 		return null;
 	}
 
-	public void merge(Cliente users) {
-		session.getCurrentSession().update(users);
+	public void merge(Cliente clientes) {
+		session.getCurrentSession().update(clientes);
 	}
 
-	public void persist(Cliente users) {
-		session.getCurrentSession().save(users);
+	public void persist(Cliente clientes) {
+		session.getCurrentSession().save(clientes);
 	}
 
 }

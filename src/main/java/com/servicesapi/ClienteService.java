@@ -1,21 +1,27 @@
 package com.servicesapi;
-
-import java.lang.reflect.InvocationTargetException;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
-import java.util.Map;
-
+import com.dtos.DtoRetornoPaginado;
 import com.entities.Cliente;
-import com.entities.Usuario;
+import com.dtos.DtoClientePesquisa;
+
+import net.sf.jasperreports.engine.JRException;
 
 public interface ClienteService {
-	public List<Cliente> list(Map<String, String> objPesquisa);
 
-	public boolean saveOrUpdate(Cliente cliente, Integer cod)
-			throws NoSuchAlgorithmException, IllegalAccessException, InvocationTargetException;
+	public void exportPdfFile() throws JRException, IOException, Exception;
 
+	public DtoRetornoPaginado<Cliente> list(Integer pagina, DtoClientePesquisa dto);
+
+	/*
+	 * public boolean saveOrUpdate(Cliente users) throws
+	 * NoSuchAlgorithmException, IllegalAccessException,
+	 * InvocationTargetException;
+	 */
 	Boolean deletar(Integer cod);
 
-	Object getObj(Integer id);
+	Object getObj(Integer id, String login, String senha) throws NoSuchAlgorithmException;
+
+	/* void alterarSenha(Integer cod, String novaSenha) throws Exception; */
 
 }
