@@ -1,15 +1,12 @@
 package com.daoapi;
-
-import java.util.List;
-
 import com.dtos.DtoRetornoPaginado;
-import com.entities.Cliente;
-import com.dtos.DtoClientePesquisa;
+import com.dtos.DtoServicoPesquisa;
+import com.entities.Servico;
 
-public interface ClienteDao {
+public interface ServicoDao {
 
-	public DtoRetornoPaginado<Cliente> list(Integer pagina, DtoClientePesquisa dto);
-
+	public DtoRetornoPaginado<Servico> list(Integer pagina, DtoServicoPesquisa dto);
+/*
 	public List<Cliente> lista();
 
 	Cliente getObj(Integer id);
@@ -19,4 +16,4 @@ public interface ClienteDao {
 	void merge(Cliente users);
 
 	void persist(Cliente users);
-}
+*/}

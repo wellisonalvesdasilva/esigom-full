@@ -4,10 +4,6 @@
 
 <link href="${pageContext.request.contextPath}/resources/css/css.css"
 	rel="stylesheet" />
-	
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
-	rel="stylesheet">
 
 
 <script type="text/javascript" charset="utf8"
@@ -34,6 +30,11 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet" />
+
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
+
 <link
 	href="${pageContext.request.contextPath}/resources/css/light-bootstrap-dashboard.css?v=2.0.1"
 	rel="stylesheet" />
@@ -64,4 +65,7 @@
 <script
 	src="${pageContext.request.contextPath}/resources/datepicker/jquery.mask.min.js"></script>
 
+<script
+	src="${pageContext.request.contextPath}/resources/js/core/bootstrap.min.js"
+	type="text/javascript"></script>
 </head>

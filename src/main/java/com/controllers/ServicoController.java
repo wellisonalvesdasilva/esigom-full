@@ -15,60 +15,60 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.dtos.DtoClientePesquisa;
 import com.dtos.DtoRetornoPaginado;
-import com.entities.Cliente;
-import com.servicesapi.ClienteService;
+import com.dtos.DtoServicoPesquisa;
+import com.entities.Servico;
+import com.servicesapi.ServicoService;
 
 @Controller
-@RequestMapping("/home/clientes")
+@RequestMapping("/home/servicos")
 @SessionAttributes("roles")
 
-public class ClienteController {
+public class ServicoController {
 
 	@Autowired
-	ClienteService _clienteService;
+	ServicoService _servicoService;
 
 	@RequestMapping(method = { RequestMethod.GET })
 	public ModelAndView listarTodos() {
-		return new ModelAndView("cliente/consultar");
+		return new ModelAndView("servico/consultar");
 	}
 
 	@RequestMapping(value = "/pagination/{pagina}", method = { RequestMethod.POST })
-	public @ResponseBody DtoRetornoPaginado<Cliente> paginated(@PathVariable("pagina") Integer pagina,
-			@RequestBody DtoClientePesquisa dto) {
-		return _clienteService.listAll(pagina, dto);
-	}
+	public @ResponseBody DtoRetornoPaginado<Servico> paginated(@PathVariable("pagina") Integer pagina,
+			@RequestBody DtoServicoPesquisa dto) {
+		return _servicoService.listAll(pagina, dto);
+	}/*
 
 	@RequestMapping(value = "/cadastrar", method = { RequestMethod.GET })
 	public ModelAndView insert(ModelMap model) {
-		model.addAttribute("obj", new Cliente());
-		return new ModelAndView("cliente/cadastrar");
+		model.addAttribute("obj", new servico());
+		return new ModelAndView("servico/cadastrar");
 	}
 
 	@RequestMapping(value = "/cadastrar", method = { RequestMethod.POST })
-	public String insert(@ModelAttribute("obj") Cliente obj, RedirectAttributes ra, ModelMap model) throws Exception {
-		_clienteService.salvar(obj);
+	public String insert(@ModelAttribute("obj") servico obj, RedirectAttributes ra, ModelMap model) throws Exception {
+		_servicoService.salvar(obj);
 		ra.addFlashAttribute("message", "Registro cadastrado com sucesso!");
-		return "redirect:/home/clientes";
+		return "redirect:/home/servicos";
 	}
 
 	@RequestMapping(value = "/{cod}", method = { RequestMethod.GET })
 	public ModelAndView editar(@PathVariable("cod") Integer cod, ModelMap model)
 			throws NoSuchAlgorithmException, IllegalAccessException, InvocationTargetException {
-		model.addAttribute("obj", _clienteService.getObj(cod));
-		return new ModelAndView("cliente/editar");
+		model.addAttribute("obj", _servicoService.getObj(cod));
+		return new ModelAndView("servico/editar");
 	}
 
 	@RequestMapping(value = "/{cod}", method = { RequestMethod.POST })
-	public String editar(@PathVariable("cod") Integer cod, @ModelAttribute("obj") Cliente objMerge,
+	public String editar(@PathVariable("cod") Integer cod, @ModelAttribute("obj") servico objMerge,
 			RedirectAttributes ra) throws Exception {
 		objMerge.setId(cod);
-		Boolean retorno = _clienteService.editar(objMerge);
+		Boolean retorno = _servicoService.editar(objMerge);
 
 		if (retorno) {
 			ra.addFlashAttribute("message", "Registro editado com sucesso!");
-			return "redirect:/home/clientes";
+			return "redirect:/home/servicos";
 		}
 		return null;
 	}
@@ -76,31 +76,24 @@ public class ClienteController {
 	@RequestMapping(value = "/excluir/{cod}", method = { RequestMethod.POST })
 	public @ResponseBody void excluir(@PathVariable("cod") Integer cod) {
 		try {
-			_clienteService.deletar(cod);
+			_servicoService.deletar(cod);
 		} catch (Exception e) {
 			return;
 		}
 	}
 
-	@RequestMapping(value = "/export", method = RequestMethod.POST)
-	public void export(ModelAndView model, HttpServletResponse response, RedirectAttributes ra) throws Exception {
-		try {
-			_clienteService.exportPdfFile();
-		} catch (Exception e) {
-			System.out.println("Erro ao Exportar PDF!");
-		}
-	}
+
 
 	@RequestMapping(value = "/detail/{cod}", method = { RequestMethod.GET })
 	public @ResponseBody Object detalhes(@PathVariable("cod") Integer cod)
 			throws IllegalAccessException, InvocationTargetException {
 
-		Cliente cliente = (Cliente) _clienteService.getObj(cod);
-		if (cliente != null) {
-			return cliente;
+		Servico servico = (servico) _servicoService.getObj(cod);
+		if (servico != null) {
+			return servico;
 		}
-		System.out.println("Erro ao recuperar dados do cliente!");
+		System.out.println("Erro ao recuperar dados do servico!");
 		return null;
 
-	}
+	}*/
 }

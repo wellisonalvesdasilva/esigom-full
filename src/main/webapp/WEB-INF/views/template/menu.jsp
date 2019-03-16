@@ -13,7 +13,7 @@
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGOM/home/agendamento/consultar"> <i
+						href="/e-SIGOM/home/servicos"> <i
 							class="nc-icon nc-bullet-list-67"></i>
 							<p>Tabela de Serviços</p>
 					</a></li>
@@ -35,7 +35,7 @@
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGOM/home/cliente/consultar"> <i
+						href="/e-SIGOM/home/clientes"> <i
 							class="nc-icon nc-single-02"></i>
 							<p>Cadastro de Clientes</p>
 					</a></li>

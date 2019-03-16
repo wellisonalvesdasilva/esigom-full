@@ -1,8 +1,11 @@
 package com.servicesimpl;
 
-import java.security.NoSuchAlgorithmException;
+import java.lang.reflect.InvocationTargetException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.daoapi.ClienteDao;
@@ -10,6 +13,7 @@ import com.dtoREL.ClienteREL;
 import com.dtos.DtoRetornoPaginado;
 import com.entities.Cliente;
 import com.dtos.DtoClientePesquisa;
+import com.dtos.DtoEditarCliente;
 import com.servicesapi.ClienteService;
 
 @Service
@@ -25,8 +29,10 @@ public class ClienteServiceImpl implements ClienteService {
 		novo.imprimir((List<Cliente>) retornoBanco);
 	}
 
-	public DtoRetornoPaginado<Cliente> list(Integer pagina, DtoClientePesquisa dto) {
+	public DtoRetornoPaginado<Cliente> listAll(Integer pagina, DtoClientePesquisa dto) {
+
 		DtoRetornoPaginado<Cliente> retorno = _clienteDao.list(pagina, dto);
+
 		return retorno;
 	}
 
@@ -35,32 +41,38 @@ public class ClienteServiceImpl implements ClienteService {
 		_clienteDao.persist(cliente);
 	}
 
+	public boolean editar(Cliente cliente) {
+
+		Cliente instPesquisa = _clienteDao.getObj(cliente.getId());
+
+		if (instPesquisa != null) {
+			_clienteDao.merge(cliente);
+			return true;
+		}
+		return false;
+	}
+
 	public Boolean deletar(Integer cod) {
 		return _clienteDao.deletar(cod);
 	}
 
-	public Object getObj(Integer id, String login, String senha) throws NoSuchAlgorithmException {
-		return _clienteDao.getObj(id, login, senha);
-	}
+	public DtoEditarCliente getObj(Integer id) throws IllegalAccessException, InvocationTargetException {
 
-	/*
-	 * public void alterarSenha(Integer cod, String novaSenha) throws Exception
-	 * {
-	 * 
-	 * Cliente objLocalizado = _clienteDao.getObj(cod, null, null);
-	 * 
-	 * if (objLocalizado != null) {
-	 * 
-	 * // Senha padrão de 1 a 6 - quando nada for informado if
-	 * (novaSenha.equals("0")) { novaSenha = "123456"; } // Converter a senha em
-	 * MD5 String s = novaSenha; MessageDigest m =
-	 * MessageDigest.getInstance("MD5"); m.update(s.getBytes(), 0, s.length());
-	 * 
-	 * objLocalizado.setSenha(new BigInteger(1, m.digest()).toString(16));
-	 * 
-	 * _clienteDao.merge(objLocalizado);
-	 * 
-	 * } }
-	 */
+		Cliente objLocalizado = _clienteDao.getObj(id);
+
+		if (objLocalizado != null) {
+			DtoEditarCliente cliente = new DtoEditarCliente();
+			BeanUtils.copyProperties(cliente, objLocalizado);
+
+			Date data = cliente.getDt_nascimento();
+			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+			String dataFormatada = formato.format(data);
+			cliente.setDataFormatada(dataFormatada);
+
+			return cliente;
+		}
+
+		return null;
+	}
 
 }

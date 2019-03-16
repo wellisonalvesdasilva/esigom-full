@@ -18,64 +18,26 @@
 			<div class="col-md-12">
 				<div class="card strpied-tabled-with-hover">
 					<div class="card-header ">
-						<h4 class="card-title">Gerenciamento de Clientes</h4>
+						<h4 class="card-title">Tabela de Serviços</h4>
 					</div>
 					<div class="card-body">
 						<form>
 							<div class="row">
 								<div class="col-md-2">
 									<div class="form-group">
-										<label>Código</label> <input id="cod" maxlength="10000"
-											name="cod" type="text" class="form-control filtro"
+										<label>Código</label> <input id="id" maxlength="10000"
+											name="id" type="text" class="form-control filtro"
 											placeholder="Código">
 									</div>
 								</div>
-								<div class="col-md-3">
+								<div class="col-md-5">
 									<div class="form-group">
-										<label>Nome</label> <input type="text" maxlength="40"
-											minlength="1" id="nome" name="nome"
-											class="form-control filtro" placeholder="Nome">
+										<label>Descrição</label> <input type="text" maxlength="40"
+											minlength="1" id="descricao" name="descricao"
+											class="form-control filtro" placeholder="Descrição">
 									</div>
 								</div>
-								<div class="col-md-2">
-									<div class="form-group">
-										<label>CPF</label> <input id="cpf" maxlength="14" name="cpf"
-											type="text" class="form-control filtro" placeholder="CPF">
-									</div>
-								</div>
-								<div class="col-md-2">
-									<div class="form-group">
-										<label>RG</label> <input type="text" maxlength="7" id="rg"
-											name="rg" class="form-control filtro" placeholder="Nome">
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="form-group">
-										<label>Email</label> <input id="email" maxlength="40"
-											name="email" type="text" class="form-control filtro"
-											placeholder="E-mail">
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-2">
-									<div class="form-group">
-										<label>CNPJ</label> <input id="tipoPessoa" maxlength="30"
-											name="cnpj" type="text" class="form-control filtro"
-											placeholder="CNPJ">
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="form-group">
-										<label>Tipo Pessoa</label> <select name="tp_pessoa" required
-											id="tp_pessoa" class="form-control">
-											<option value="">Selecione</option>
-											<option value="1">Física</option>
-<!-- 											<option value="2">Jurídica</option> -->
-										</select>
-									</div>
-								</div>
-								<div class="col-md-7 text-right">
+								<div class="col-md-5 text-right">
 									<button name="btnSubmit" id="btnSubmit" onclick="pesquisar()"
 										type="button" rel="tooltip" data-original-title="Pesquisar"
 										class="btn btn-primary btn-fill btn-pesquisa">
@@ -86,21 +48,14 @@
 										type="button" class="btn btn-default btn-fill btn-pesquisa">
 										<i class="nc-icon nc-refresh-02"></i> Limpar
 									</button>
-									<!-- <button name="exportToPdf" id="exportToPdf" type="button"
-										rel="tooltip" data-original-title="Exportar para PDF"
-										class="btn btn-danger btn-fill btn-pesquisa">
-										<i class="nc-icon nc-cloud-download-93" aria-hidden="true"></i>
-										Exportar para PDF
-									</button> -->
 									<a name="btnSubmit" rel="tooltip"
 										data-original-title="Cadastrar Novo Usuário" id="btnSubmit"
-										href='/e-SIGOM/home/clientes/cadastrar' type="submit"
+										href='/e-SIGOM/home/servicos/cadastrar' type="submit"
 										class="btn btn-success btn-fill btn-pesquisa"> <i
 										class="nc-icon nc-simple-add"></i> Novo Cadastro
 									</a>
 								</div>
 							</div>
-
 							<div class="clearfix"></div>
 						</form>
 					</div>
@@ -110,13 +65,8 @@
 								<thead>
 									<tr>
 										<th class="text-center" onclick="ordenarColuna('id')">ID</th>
-										<th onclick="ordenarColuna('nome')" class="text-center">NOME</th>
-										<th onclick="ordenarColuna('email')" class="text-center">EMAIL</th>
-										<th onclick="ordenarColuna('tp_pessoa')" class="text-center">TIPO
-											PESSOA</th>
-										<th onclick="ordenarColuna('celular')" class="text-center">
-											CELULAR</th>
-										<th onclick="ordenarColuna('telefone')" class="text-center">TELEFONE</th>
+										<th onclick="ordenarColuna('descricao')" class="text-center">DESCRIÇÃO</th>
+										<th onclick="ordenarColuna('valor')" class="text-center">VALOR</th>
 										<th class="text-center">AÇÕES</th>
 									</tr>
 								</thead>
@@ -140,37 +90,15 @@
 								</div>
 							</div>
 						</form:form>
-						<form:form id="detalhesCliente" class="modal fade" role="dialog">
-							<div class="modal-dialog modal-lg">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h4 class="modal-title">Detalhes Cliente</h4>
-									</div>
-									<div class="modal-body" id="modal-body"></div>
-									<div class="modal-footer">
-										<div class="col-md-9"></div>
-										<div class="col-md-3 text-right">
-											<button type="button" class="btn btn-default btn-fill"
-												data-dismiss="modal">
-												<i class="nc-icon nc-simple-remove"></i>&nbsp;Fechar
-											</button>
-
-										</div>
-									</div>
-								</div>
-							</div>
-						</form:form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-</div>
 <jsp:include page="../template/rodape.jsp" />
 </body>
 <script>
-
 $(document).ready(function() {
 	var $seuCampoCpf = $("#cpf");
 	$seuCampoCpf.mask('000.000.000-00', {
@@ -187,110 +115,6 @@ function excluirFuncionario(cod) {
 	$('#myModal').modal();
 	codCliente = cod;
 }
-
-/* // Iniciar a lista sempre vazia
-function visualizarDetalhesDoCliente(cod)
-	{
-	$.ajax({
-		url:'clientes/detail/'+cod,
-		type:'GET',
-		data: cod
-	}).done(function(retorno){
-			$('#modal-body').append(
-						'<div class="row">'
-						+'<label class="col-sm-4 control-label"><strong>'
-							+retorno.nome+'</strong>'
-						+'</label>'
-						+'<div class="col-lg-8">'
-							+'<div>'+retorno.nome+'</div>'
-						+'</div>'
-						+'</div>'
-				
-						+'<div class="row">'
-						+'<label class="col-sm-4 control-label"><strong>'
-							+retorno.nome+'</strong>'
-						+'</label>'
-						+'<div class="col-lg-8">'
-							+'<div>'+retorno.nome+'</div>'
-						+'</div>'
-						+'</div>'
-				
-						+'<div class="row">'
-						+'<label class="col-sm-4 control-label"><strong>'
-							+retorno.nome+'</strong>'
-						+'</label>'
-						+'<div class="col-lg-8">'
-							+'<div>'+retorno.nome+'</div>'
-						+'</div>'
-						+'</div>'
-
-						
-						+'<div class="row">'
-						+'<label class="col-sm-4 control-label"><strong>'
-							+retorno.nome+'</strong>'
-						+'</label>'
-						+'<div class="col-lg-8">'
-							+'<div>'+retorno.nome+'</div>'
-						+'</div>'
-						+'</div>'
-
-			
-						+'<div class="row">'
-						+'<label class="col-sm-4 control-label"><strong>'
-							+retorno.nome+'</strong>'
-						+'</label>'
-						+'<div class="col-lg-8">'
-							+'<div>'+retorno.nome+'</div>'
-						+'</div>'
-						+'</div>');
-	
-
-		// Abrir Modal
-		$('#detalhesCliente').modal({
-			backdrop : 'static',
-			keyboard : false
-		});
-	});
-} */
-
-
-function showNotification(from, align, msg) {
-	color = Math.floor((Math.random() * 5));
-
-	$.notify({
-		icon : "nc-icon nc-tap-01",
-		message : msg
-
-	}, {
-		type : type[color],
-		timer : 2500,
-		placement : {
-			from : from,
-			align : align
-		}
-	});
-}
-
-var sucessoMessage = "${message}";
-if (sucessoMessage != "") {
-	showNotification('top', 'right', sucessoMessage);
-}
-
-// Limpar
-$("#reset").click(function() {
-	$(":text").each(function() {
-		$(this).val("");
-	});
-	$("select").each(function() {
-		$(this).val("0");
-	});
-});
-
-// Enter
-$(document).keypress(function(e) {
-	if (e.which == 13)
-		$('#btnSubmit').click();
-});
 
 
 // Evento Excluir Funcionário
@@ -316,26 +140,6 @@ $('#btnConfirmar').click(function() {
 		$('#btnCancelar').removeAttr("disabled");
 	});
 });
-
-// Evento Exportar para PDF
-$('#exportToPdf')
-		.click(
-				function() {
-					$('#exportToPdf').attr("disabled", "disabled");
-					$
-							.ajax({
-								url : 'clientes/export',
-								type : 'POST'
-
-							})
-							.done(
-									function(data) {
-										showNotification('top', 'right',
-												"PDF Exportado com sucesso! Verifique a pasta C://!");
-									});
-
-					$('#exportToPdf').removeAttr("disabled");
-				});
 
 // Preparar Datatable
 function dataTable() {
@@ -369,20 +173,19 @@ function dataTable() {
 			"targets" : 0,
 			className : 'dt-body-center'
 		}, {
-			"width" : "30%",
+			"width" : "35%",
 			"targets" : 1,
 			className : 'mdl-data-table__cell--non-numeric'
 
 		}, {
-			"width" : "30%",
+			"width" : "25%",
 			"targets" : 2,
 			className : 'mdl-data-table__cell--non-numeric'
-		}, {
+		},{
 			"width" : "25%",
 			"targets" : 3,
 			className : 'mdl-data-table__cell--non-numeric'
-
-		}, ],
+		},],
 	});
 };
 
@@ -403,13 +206,10 @@ function ordenarColuna(coluna) {
 // Pesquisar
 var dto = new Object();
 function pesquisar() {
-	dto.cod = $('#cod').val();
-	dto.nome = $('#nome').val();
-	dto.cpf = $('#cpf').val();
-	dto.rg = $('#rg').val();
-	dto.email = $('#email').val();
-	dto.cnpj = $('#cnpj').val();
-	dto.tp_pessoa = $('#tp_pessoa').val();
+	dto.id = $('#id').val();
+	dto.descricao = $('#descricao').val();
+	dto.valor = $('#valor').val();
+	
 
 	carregarDataTables();
 }
@@ -436,7 +236,7 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 	// Chamadando Ajax
 	$
 			.ajax({
-				url : '/e-SIGOM/home/clientes/pagination/' + pagina,
+				url : '/e-SIGOM/home/servicos/pagination/' + pagina,
 				type : 'POST',
 				data : JSON.stringify(dto),
 				dataType : "json",
@@ -455,36 +255,15 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 												.add(
 														[
 																'<div class="text-center">'
-																		+ valor.cod
+																		+ valor.id
 																		+ '</div>',
 																'<div class="text-left">'
-																		+ valor.nome
+																		+ valor.descricao
 																		+ '</div>',
-
-																'<div class="text-left">'
-																		+ valor.email
-																		+ '</div>',
-
-																'<div class="text-left">'
-																		+ valor.tp_pessoa
-																		+ '</div>',
-
-																'<div class="text-left">'
-																		+ valor.celular
-																		+ '</div>',
-
-																'<div class="text-left">'
-																		+ valor.telefone
-																		+ '</div>',
-
 																'<div class="text-center">'
-															/* 			+ '<button rel="tooltip" name="btnSubmit"'
-																		+ 'data-original-title="Visualizar Detalhes"'
-																		+ 'onclick="visualizarDetalhesDoCliente('+valor.cod+')" type="button"'
-																		+ 'class="btn btn-info btn-fill">'
-																		+ '<i class="nc-icon nc-zoom-split"></i>'
-																		+ '</button>' */
-
+																		+ valor.valorFormatado
+																		+ '</div>',
+																'<div class="text-center">'
 																		+ '<a rel="tooltip" href="/e-SIGOM/home/clientes/'
 																		+valor.cod
 																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'

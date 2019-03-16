@@ -26,7 +26,6 @@ public class Cliente {
 	private String email;
 
 	@Column(name = "dt_nascimento")
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date dt_nascimento;
 
 	@Column(name = "dth_cadastro")

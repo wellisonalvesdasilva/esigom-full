@@ -8,6 +8,7 @@
 
 		<!-- Funcionalidades -->
 		<mapping class="com.entities.Cliente" />
+		<mapping class="com.entities.Servico" />
 
 		<!-- Spring Security -->
 		<mapping class="com.entities.PersistentLogin" />

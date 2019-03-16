@@ -4,26 +4,14 @@ public class DtoClientePesquisa {
 
 	public Integer cod;
 	public String nome;
-	public String login;
-	public String email;
+	private String cpf;
+	private String rg;
+	private String email;
+	private String cnpj;
+	private String tp_pessoa;
+	private String celular;
+	private String telefone;
 	public String colunaParaOrdenar;
-	public Integer ativo;
-
-	public Integer getAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(Integer ativo) {
-		this.ativo = ativo;
-	}
-
-	public String getColunaParaOrdenar() {
-		return colunaParaOrdenar;
-	}
-
-	public void setColunaParaOrdenar(String colunaParaOrdenar) {
-		this.colunaParaOrdenar = colunaParaOrdenar;
-	}
 
 	public Integer getCod() {
 		return cod;
@@ -41,12 +29,20 @@ public class DtoClientePesquisa {
 		this.nome = nome;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
 	}
 
 	public String getEmail() {
@@ -55,6 +51,46 @@ public class DtoClientePesquisa {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public String getTp_pessoa() {
+		return tp_pessoa;
+	}
+
+	public void setTp_pessoa(String tp_pessoa) {
+		this.tp_pessoa = tp_pessoa;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getColunaParaOrdenar() {
+		return colunaParaOrdenar;
+	}
+
+	public void setColunaParaOrdenar(String colunaParaOrdenar) {
+		this.colunaParaOrdenar = colunaParaOrdenar;
 	}
 
 }

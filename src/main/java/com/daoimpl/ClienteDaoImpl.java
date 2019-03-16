@@ -1,12 +1,10 @@
 package com.daoimpl;
 
-import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import org.hibernate.SessionFactory;
 import com.daoapi.ClienteDao;
 import com.dtos.DtoRetornoPaginado;
@@ -52,19 +50,19 @@ public class ClienteDaoImpl implements ClienteDao {
 			}
 		}
 
-		if (dto.getLogin() != "" && dto.getLogin() != null) {
+		if (dto.getCpf() != "" && dto.getCpf() != null) {
 			if (filtros != "") {
-				filtros = filtros + " and u.login='" + dto.getLogin() + "'";
+				filtros = filtros + " and u.cpf='" + dto.getCpf() + "'";
 			} else {
-				filtros = "as u where u.login='" + dto.getLogin() + "'";
+				filtros = "as u where u.cpf='" + dto.getCpf() + "'";
 			}
 		}
 
-		if (dto.getAtivo() != null) {
+		if (dto.getRg() != "" && dto.getRg() != null) {
 			if (filtros != "") {
-				filtros = filtros + " and u.ativo='" + dto.getAtivo() + "'";
+				filtros = filtros + " and u.rg='" + dto.getRg() + "'";
 			} else {
-				filtros = "as u where u.ativo='" + dto.getAtivo() + "'";
+				filtros = "as u where u.rg='" + dto.getRg() + "'";
 			}
 		}
 
@@ -73,6 +71,22 @@ public class ClienteDaoImpl implements ClienteDao {
 				filtros = filtros + " and u.email='" + dto.getEmail() + "'";
 			} else {
 				filtros = "as u where u.email='" + dto.getEmail() + "'";
+			}
+		}
+
+		if (dto.getCnpj() != "" && dto.getCnpj() != null) {
+			if (filtros != "") {
+				filtros = filtros + " and u.cnpj='" + dto.getCnpj() + "'";
+			} else {
+				filtros = "as u where u.cnpj='" + dto.getCnpj() + "'";
+			}
+		}
+
+		if (dto.getTp_pessoa() != null && dto.getTp_pessoa() != "") {
+			if (filtros != "") {
+				filtros = filtros + " and u.tp_pessoa='" + dto.getTp_pessoa() + "'";
+			} else {
+				filtros = "as u where u.tp_pessoa='" + dto.getTp_pessoa() + "'";
 			}
 		}
 
@@ -102,9 +116,13 @@ public class ClienteDaoImpl implements ClienteDao {
 					.setFirstResult(pagina * offset).list().size());
 		}
 
+		// Lista
+		List<Cliente> listaParaFormatar = new ArrayList<Cliente>();
+
 		if (parametrosAdicionais != "") {
-			inst.setLista(session.getCurrentSession().createQuery("from Cliente " + parametrosAdicionais)
-					.setMaxResults(offset).setFirstResult(pagina * offset).list());
+			listaParaFormatar = (List<Cliente>) session.getCurrentSession()
+					.createQuery("from Cliente " + parametrosAdicionais).setMaxResults(offset)
+					.setFirstResult(pagina * offset).list();
 
 			if (filtros != "") {
 				inst.setQtdRegistroPagina(
@@ -115,14 +133,38 @@ public class ClienteDaoImpl implements ClienteDao {
 				inst.setQtdTotalDeRegistros(quantidade);
 			}
 		} else {
-			inst.setLista(session.getCurrentSession().createQuery("from Cliente as u order by u.id asc")
-					.setMaxResults(offset).setFirstResult(pagina * offset).list());
+			listaParaFormatar = (List<Cliente>) session.getCurrentSession()
+					.createQuery("from Cliente as u order by u.id asc").setMaxResults(offset)
+					.setFirstResult(pagina * offset).list();
 		}
 		if (quantidade > 0) {
 			Double quantidadeFormatada = quantidade.doubleValue() / offset;
 			inst.setNumeroPaginas((int) Math.ceil(quantidadeFormatada));
 		}
 
+		List<DtoClientePesquisa> listaDto = new ArrayList<DtoClientePesquisa>();
+
+		for (Cliente item : listaParaFormatar) {
+			DtoClientePesquisa obj = new DtoClientePesquisa();
+
+			obj.setCod(item.getId());
+			obj.setNome(item.getNome());
+			obj.setEmail(item.getEmail());
+
+			String tipoDePessoa = "";
+			if (item.getTp_pessoa() == 1) {
+				tipoDePessoa = "Pessoa Física";
+			} else if (item.getTp_pessoa() == 2) {
+				tipoDePessoa = "Pessoa Jurídica";
+			}
+			obj.setTp_pessoa(tipoDePessoa);
+			obj.setCelular(item.getCelular());
+			obj.setTelefone(item.getTelefone());
+
+			listaDto.add(obj);
+		}
+
+		inst.setLista(listaDto);
 		return inst;
 	}
 
@@ -136,34 +178,14 @@ public class ClienteDaoImpl implements ClienteDao {
 		return false;
 	}
 
-	public Cliente getObj(Integer id, String login, String senha) throws NoSuchAlgorithmException {
+	public Cliente getObj(Integer id) {
 
 		Cliente ObjLocalizado = null;
+		ObjLocalizado = (Cliente) session.getCurrentSession().createQuery("from Cliente as u where u.id = " + id).list()
+				.get(0);
 
-		try {
-			if (login != null && senha != null) {
-
-				String s = senha;
-				MessageDigest m = MessageDigest.getInstance("MD5");
-				m.update(s.getBytes(), 0, s.length());
-				String sMd5 = new BigInteger(1, m.digest()).toString(16);
-
-				m.update(senha.toString().getBytes(), 0, senha.toString().length());
-				ObjLocalizado = (Cliente) session.getCurrentSession()
-						.createQuery("from Cliente as u where u.login = '" + login + "' and u.senha ='" + sMd5 + "'")
-						.list().get(0);
-
-			} else {
-				ObjLocalizado = (Cliente) session.getCurrentSession()
-						.createQuery("from Cliente as u where u.id = " + id).list().get(0);
-			}
-
-			if (ObjLocalizado != null) {
-				return ObjLocalizado;
-			}
-
-		} catch (Exception e) {
-			return null;
+		if (ObjLocalizado != null) {
+			return ObjLocalizado;
 		}
 
 		return null;

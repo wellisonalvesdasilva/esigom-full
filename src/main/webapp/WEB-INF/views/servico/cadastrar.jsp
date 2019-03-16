@@ -28,7 +28,7 @@
 										<label>Tipo de Pessoa</label> <select name="tp_pessoa"
 											required id="tp_pessoa" class="form-control">
 											<option value="1">Física</option>
-											<!-- <option value="2">Jurídica</option> -->
+											<option value="2">Jurídica</option>
 										</select>
 									</div>
 								</div>
