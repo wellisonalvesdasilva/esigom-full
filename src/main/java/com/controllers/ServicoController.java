@@ -38,16 +38,16 @@ public class ServicoController {
 	public @ResponseBody DtoRetornoPaginado<Servico> paginated(@PathVariable("pagina") Integer pagina,
 			@RequestBody DtoServicoPesquisa dto) {
 		return _servicoService.listAll(pagina, dto);
-	}/*
+	}
 
 	@RequestMapping(value = "/cadastrar", method = { RequestMethod.GET })
 	public ModelAndView insert(ModelMap model) {
-		model.addAttribute("obj", new servico());
+		model.addAttribute("obj", new Servico());
 		return new ModelAndView("servico/cadastrar");
 	}
 
 	@RequestMapping(value = "/cadastrar", method = { RequestMethod.POST })
-	public String insert(@ModelAttribute("obj") servico obj, RedirectAttributes ra, ModelMap model) throws Exception {
+	public String insert(@ModelAttribute("obj") Servico obj, RedirectAttributes ra, ModelMap model) throws Exception {
 		_servicoService.salvar(obj);
 		ra.addFlashAttribute("message", "Registro cadastrado com sucesso!");
 		return "redirect:/home/servicos";
@@ -61,7 +61,7 @@ public class ServicoController {
 	}
 
 	@RequestMapping(value = "/{cod}", method = { RequestMethod.POST })
-	public String editar(@PathVariable("cod") Integer cod, @ModelAttribute("obj") servico objMerge,
+	public String editar(@PathVariable("cod") Integer cod, @ModelAttribute("obj") Servico objMerge,
 			RedirectAttributes ra) throws Exception {
 		objMerge.setId(cod);
 		Boolean retorno = _servicoService.editar(objMerge);
@@ -82,18 +82,4 @@ public class ServicoController {
 		}
 	}
 
-
-
-	@RequestMapping(value = "/detail/{cod}", method = { RequestMethod.GET })
-	public @ResponseBody Object detalhes(@PathVariable("cod") Integer cod)
-			throws IllegalAccessException, InvocationTargetException {
-
-		Servico servico = (servico) _servicoService.getObj(cod);
-		if (servico != null) {
-			return servico;
-		}
-		System.out.println("Erro ao recuperar dados do servico!");
-		return null;
-
-	}*/
 }

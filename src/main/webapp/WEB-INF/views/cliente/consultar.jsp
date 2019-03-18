@@ -71,7 +71,7 @@
 											id="tp_pessoa" class="form-control">
 											<option value="">Selecione</option>
 											<option value="1">Física</option>
-<!-- 											<option value="2">Jurídica</option> -->
+											<!-- 											<option value="2">Jurídica</option> -->
 										</select>
 									</div>
 								</div>
@@ -253,44 +253,6 @@ function visualizarDetalhesDoCliente(cod)
 	});
 } */
 
-
-function showNotification(from, align, msg) {
-	color = Math.floor((Math.random() * 5));
-
-	$.notify({
-		icon : "nc-icon nc-tap-01",
-		message : msg
-
-	}, {
-		type : type[color],
-		timer : 2500,
-		placement : {
-			from : from,
-			align : align
-		}
-	});
-}
-
-var sucessoMessage = "${message}";
-if (sucessoMessage != "") {
-	showNotification('top', 'right', sucessoMessage);
-}
-
-// Limpar
-$("#reset").click(function() {
-	$(":text").each(function() {
-		$(this).val("");
-	});
-	$("select").each(function() {
-		$(this).val("0");
-	});
-});
-
-// Enter
-$(document).keypress(function(e) {
-	if (e.which == 13)
-		$('#btnSubmit').click();
-});
 
 
 // Evento Excluir Funcionário

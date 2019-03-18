@@ -21,7 +21,7 @@ public class ServicoDaoImpl implements ServicoDao {
 	SessionFactory session;
 
 	@SuppressWarnings({ "unchecked", "unused" })
-	public DtoRetornoPaginado<Servico> list(Integer pagina, DtoServicoPesquisa dto) {
+	public DtoRetornoPaginado<Servico> listAll(Integer pagina, DtoServicoPesquisa dto) {
 
 		// Quantidade á ser pulada
 		Integer offset = 10;
@@ -60,7 +60,7 @@ public class ServicoDaoImpl implements ServicoDao {
 				parametrosAdicionais = "as u order by u." + dto.getColunaParaOrdenar() + " desc";
 			}
 		}
-		
+
 		// Consulta sem filtro
 		Integer quantidade = 0;
 		if (filtros == "") {
@@ -107,7 +107,7 @@ public class ServicoDaoImpl implements ServicoDao {
 			obj.setDescricao(item.getDescricao());
 			obj.setId(item.getId());
 
-			Double d = item.getValor();
+			Double d = Double.parseDouble(item.getValor());
 			Locale ptBr = new Locale("pt", "BR");
 			String valorEmReal = NumberFormat.getCurrencyInstance(ptBr).format(d);
 			obj.setValorFormatado((valorEmReal));
@@ -118,29 +118,36 @@ public class ServicoDaoImpl implements ServicoDao {
 		inst.setLista(listaDto);
 		return inst;
 	}
-	/*
-	 * public boolean deletar(Integer id) { Servico ObjLocalizado = (Servico)
-	 * session.getCurrentSession()
-	 * .createQuery("from Servico as u where u.id = " + id).list().get(0); if
-	 * (ObjLocalizado != null) {
-	 * session.getCurrentSession().delete(ObjLocalizado); return true; } return
-	 * false; }
-	 * 
-	 * public Servico getObj(Integer id) {
-	 * 
-	 * Servico ObjLocalizado = null; ObjLocalizado = (Servico)
-	 * session.getCurrentSession().createQuery("from Servico as u where u.id = "
-	 * + id).list() .get(0);
-	 * 
-	 * if (ObjLocalizado != null) { return ObjLocalizado; }
-	 * 
-	 * return null; }
-	 * 
-	 * public void merge(Servico Servicos) {
-	 * session.getCurrentSession().update(Servicos); }
-	 * 
-	 * public void persist(Servico Servico) {
-	 * session.getCurrentSession().save(Servico); }
-	 */
+
+	public boolean deletar(Integer id) {
+		Servico ObjLocalizado = (Servico) session.getCurrentSession()
+				.createQuery("from Servico as u where u.id = " + id).list().get(0);
+		if (ObjLocalizado != null) {
+			session.getCurrentSession().delete(ObjLocalizado);
+			return true;
+		}
+		return false;
+	}
+
+	public Servico getObj(Integer id) {
+
+		Servico ObjLocalizado = null;
+		ObjLocalizado = (Servico) session.getCurrentSession().createQuery("from Servico as u where u.id = " + id).list()
+				.get(0);
+
+		if (ObjLocalizado != null) {
+			return ObjLocalizado;
+		}
+
+		return null;
+	}
+
+	public void persist(Servico servico) {
+		session.getCurrentSession().save(servico);
+	}
+
+	public void merge(Servico servico) {
+		session.getCurrentSession().update(servico);
+	}
 
 }

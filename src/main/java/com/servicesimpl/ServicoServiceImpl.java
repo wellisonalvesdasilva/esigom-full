@@ -1,9 +1,8 @@
 package com.servicesimpl;
-import java.lang.reflect.InvocationTargetException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import org.apache.commons.beanutils.BeanUtils;
+
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,47 +19,53 @@ public class ServicoServiceImpl implements ServicoService {
 	ServicoDao _servicoDao;
 
 	public DtoRetornoPaginado<Servico> listAll(Integer pagina, DtoServicoPesquisa dto) {
-		DtoRetornoPaginado<Servico> retorno = _servicoDao.list(pagina, dto);
+		DtoRetornoPaginado<Servico> retorno = _servicoDao.listAll(pagina, dto);
 		return retorno;
 	}
-/*
+
 	public void salvar(Servico servico) {
-		servico.setDth_cadastro(new Date());
-		_ServicoDao.persist(Servico);
+
+		String valor = servico.getValor().replace("R$", "");
+		servico.setValor(valor);
+
+		_servicoDao.persist(servico);
 	}
 
-	public boolean editar(Servico Servico) {
+	public Boolean deletar(Integer cod) {
+		return _servicoDao.deletar(cod);
+	}
 
-		Servico instPesquisa = _ServicoDao.getObj(Servico.getId());
+	public boolean editar(Servico servico) {
 
-		if (instPesquisa != null) {
-			_ServicoDao.merge(Servico);
+		Servico getServicoDatabase = _servicoDao.getObj(servico.getId());
+
+		if (getServicoDatabase != null) {
+
+			String valor = servico.getValor().replace("R$", "");
+			servico.setValor(valor);
+
+			_servicoDao.merge(servico);
 			return true;
 		}
 		return false;
 	}
 
-	public Boolean deletar(Integer cod) {
-		return _ServicoDao.deletar(cod);
-	}
-
-	public DtoEditarServico getObj(Integer id) throws IllegalAccessException, InvocationTargetException {
+	public Servico getObj(Integer id) {
 
 		Servico objLocalizado = _servicoDao.getObj(id);
 
 		if (objLocalizado != null) {
-			DtoEditarServico Servico = new DtoEditarServico();
-			BeanUtils.copyProperties(Servico, objLocalizado);
 
-			Date data = Servico.getDt_nascimento();
-			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-			String dataFormatada = formato.format(data);
-			Servico.setDataFormatada(dataFormatada);
+			Double d = Double.parseDouble(objLocalizado.getValor());
+			Locale ptBr = new Locale("pt", "BR");
+			String valorEmReal = NumberFormat.getCurrencyInstance(ptBr).format(d);
 
-			return Servico;
+			objLocalizado.setValor(valorEmReal.replace(",", "."));
+
+			return objLocalizado;
 		}
 
 		return null;
-	}*/
+	}
 
 }

@@ -1,19 +1,19 @@
 package com.daoapi;
+
 import com.dtos.DtoRetornoPaginado;
 import com.dtos.DtoServicoPesquisa;
 import com.entities.Servico;
 
 public interface ServicoDao {
 
-	public DtoRetornoPaginado<Servico> list(Integer pagina, DtoServicoPesquisa dto);
-/*
-	public List<Cliente> lista();
+	public DtoRetornoPaginado<Servico> listAll(Integer pagina, DtoServicoPesquisa dto);
 
-	Cliente getObj(Integer id);
+	void persist(Servico servico);
 
 	boolean deletar(Integer id);
 
-	void merge(Cliente users);
+	Servico getObj(Integer id);
 
-	void persist(Cliente users);
-*/}
+	void merge(Servico users);
+
+}

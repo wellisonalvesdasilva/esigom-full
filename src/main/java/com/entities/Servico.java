@@ -19,7 +19,7 @@ public class Servico {
 	private String descricao;
 
 	@Column(name = "valor")
-	private Double valor;
+	private String valor;
 
 	public Integer getId() {
 		return id;
@@ -37,11 +37,11 @@ public class Servico {
 		this.descricao = descricao;
 	}
 
-	public Double getValor() {
+	public String getValor() {
 		return valor;
 	}
 
-	public void setValor(Double valor) {
+	public void setValor(String valor) {
 		this.valor = valor;
 	}
 

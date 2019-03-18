@@ -79,7 +79,7 @@
 										<h4 class="modal-title">Atenção</h4>
 									</div>
 									<div class="modal-body">
-										<p>Deseja realmente excluir este Cliente?</p>
+										<p>Deseja realmente excluir este Serviço?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" name="btnCancelar" id="btnCancelar"
@@ -99,6 +99,7 @@
 <jsp:include page="../template/rodape.jsp" />
 </body>
 <script>
+
 $(document).ready(function() {
 	var $seuCampoCpf = $("#cpf");
 	$seuCampoCpf.mask('000.000.000-00', {
@@ -109,20 +110,19 @@ $(document).ready(function() {
 	carregarDataTables();
 });
 
-// Abrir Modal "Excluir Funcionário"
-var codCliente = 0;
-function excluirFuncionario(cod) {
-	$('#myModal').modal();
-	codCliente = cod;
-}
 
+var codServico = 0;
+function excluir(cod) {
+	$('#myModal').modal();
+	codServico = cod;
+}
 
 // Evento Excluir Funcionário
 $('#btnConfirmar').click(function() {
 	$('#btnConfirmar').attr('disabled', 'disabled');
 	$('#btnCancelar').attr('disabled', 'disabled');
 	$.ajax({
-		url : 'clientes/excluir/' + codCliente,
+		url : 'servicos/excluir/' + codServico,
 		type : 'POST',
 		contentType : "application/json"
 	}).done(function(data) {
@@ -173,19 +173,20 @@ function dataTable() {
 			"targets" : 0,
 			className : 'dt-body-center'
 		}, {
-			"width" : "35%",
+			"width" : "30%",
 			"targets" : 1,
 			className : 'mdl-data-table__cell--non-numeric'
 
 		}, {
-			"width" : "25%",
+			"width" : "30%",
 			"targets" : 2,
 			className : 'mdl-data-table__cell--non-numeric'
-		},{
+		}, {
 			"width" : "25%",
 			"targets" : 3,
 			className : 'mdl-data-table__cell--non-numeric'
-		},],
+
+		}, ],
 	});
 };
 
@@ -209,17 +210,11 @@ function pesquisar() {
 	dto.id = $('#id').val();
 	dto.descricao = $('#descricao').val();
 	dto.valor = $('#valor').val();
-	
-
 	carregarDataTables();
 }
 
 // Construção das linhas da grid
 function carregarDataTables(pagina, colunaParaOrdenar) {
-
-	// Construir datatable
-
-
 	// Definindo tamanho esperado pelo Front
 	var offset = 10;
 
@@ -260,20 +255,21 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 																'<div class="text-left">'
 																		+ valor.descricao
 																		+ '</div>',
+																'<div class="text-left">'
+																	+ valor.valorFormatado
+																	+ '</div>',
+
 																'<div class="text-center">'
-																		+ valor.valorFormatado
-																		+ '</div>',
-																'<div class="text-center">'
-																		+ '<a rel="tooltip" href="/e-SIGOM/home/clientes/'
-																		+valor.cod
+																		+ '<a rel="tooltip" href="/e-SIGOM/home/servicos/'
+																		+valor.id
 																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
 																		+ 'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-settings-tool-66"></i>'
 																		+ '</a> '
 
 																		+ '<button rel="tooltip" name="btnSubmit"'
 																		+ 'data-original-title="Excluir" id="btnSubmit"'
-																		+ 'onclick="excluirFuncionario('
-																		+ valor.cod
+																		+ 'onclick="excluir('
+																		+ valor.id
 																		+ ')" type="button"'
 																		+ 'class="btn btn-danger btn-fill">'
 																		+ '<i class="nc-icon nc-simple-remove"></i>'

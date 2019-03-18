@@ -17,27 +17,30 @@
 							class="nc-icon nc-bullet-list-67"></i>
 							<p>Tabela de Serviços</p>
 					</a></li>
+
+					<li class="nav-item"><a class="nav-link"
+						href="/e-SIGOM/home/venda/consultar"> <i
+							class="nc-icon nc-settings-tool-66"></i>
+							<p>Cadastro de Peças</p>
+					</a></li>
+
 					<li class="nav-item"><a class="nav-link"
 						href="/e-SIGOM/home/cardapio/montar"> <i
 							class="nc-icon nc-notes"></i>
 							<p>Orçamento e Venda</p>
 					</a></li>
+
+
+
 					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGOM/home/venda/consultar"> <i
-							class="nc-icon nc-settings-tool-66"></i>
-							<p>Peças e Serviços</p>
+						href="/e-SIGOM/home/clientes"> <i class="nc-icon nc-single-02"></i>
+							<p>Cadastro de Clientes</p>
 					</a></li>
 
 					<li><a class="nav-link"
 						href="/e-SIGOM/home/alimento/consultar"> <i
 							class="nc-icon nc-layers-3	"></i>
 							<p>Estoque e Compras</p>
-					</a></li>
-
-					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGOM/home/clientes"> <i
-							class="nc-icon nc-single-02"></i>
-							<p>Cadastro de Clientes</p>
 					</a></li>
 
 					<li><a class="nav-link"
