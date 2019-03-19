@@ -9,6 +9,7 @@
 		<!-- Funcionalidades -->
 		<mapping class="com.entities.Cliente" />
 		<mapping class="com.entities.Servico" />
+		<mapping class="com.entities.Peca" />
 
 		<!-- Spring Security -->
 		<mapping class="com.entities.PersistentLogin" />

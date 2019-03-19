@@ -302,6 +302,8 @@ $('#exportToPdf')
 // Preparar Datatable
 function dataTable() {
 	return $('#example').DataTable({
+		
+		processing: true,
 		retrieve : true,
 		language : {
 			"sEmptyTable" : "Nenhum registro encontrado",

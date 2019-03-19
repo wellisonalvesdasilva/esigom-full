@@ -19,7 +19,7 @@
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGOM/home/venda/consultar"> <i
+						href="/e-SIGOM/home/pecas"> <i
 							class="nc-icon nc-settings-tool-66"></i>
 							<p>Cadastro de Peças</p>
 					</a></li>
@@ -29,8 +29,6 @@
 							class="nc-icon nc-notes"></i>
 							<p>Orçamento e Venda</p>
 					</a></li>
-
-
 
 					<li class="nav-item"><a class="nav-link"
 						href="/e-SIGOM/home/clientes"> <i class="nc-icon nc-single-02"></i>

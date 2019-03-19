@@ -18,7 +18,7 @@
 			<div class="col-md-12">
 				<div class="card strpied-tabled-with-hover">
 					<div class="card-header ">
-						<h4 class="card-title">Tabela de Serviços</h4>
+						<h4 class="card-title">Consulta de Peças</h4>
 					</div>
 					<div class="card-body">
 						<form>
@@ -50,7 +50,7 @@
 									</button>
 									<a name="btnSubmit" rel="tooltip"
 										data-original-title="Cadastrar Novo Usuário" id="btnSubmit"
-										href='/e-SIGOM/home/servicos/cadastrar' type="submit"
+										href='/e-SIGOM/home/pecas/cadastrar' type="submit"
 										class="btn btn-success btn-fill btn-pesquisa"> <i
 										class="nc-icon nc-simple-add"></i> Novo Cadastro
 									</a>
@@ -67,6 +67,7 @@
 										<th class="text-center" onclick="ordenarColuna('id')">ID</th>
 										<th onclick="ordenarColuna('descricao')" class="text-center">DESCRIÇÃO</th>
 										<th onclick="ordenarColuna('valor')" class="text-center">VALOR</th>
+										<th onclick="ordenarColuna('valor')" class="text-center">ESTOQUE</th>
 										<th class="text-center">AÇÕES</th>
 									</tr>
 								</thead>
@@ -111,10 +112,10 @@ $(document).ready(function() {
 });
 
 
-var codServico = 0;
+var codpeca = 0;
 function excluir(cod) {
 	$('#myModal').modal();
-	codServico = cod;
+	codpeca = cod;
 }
 
 // Evento Excluir Funcionário
@@ -122,7 +123,7 @@ $('#btnConfirmar').click(function() {
 	$('#btnConfirmar').attr('disabled', 'disabled');
 	$('#btnCancelar').attr('disabled', 'disabled');
 	$.ajax({
-		url : 'servicos/excluir/' + codServico,
+		url : 'pecas/excluir/' + codpeca,
 		type : 'POST',
 		contentType : "application/json"
 	}).done(function(data) {
@@ -207,14 +208,16 @@ function ordenarColuna(coluna) {
 // Pesquisar
 var dto = new Object();
 function pesquisar() {
-	dto.id = $('#id').val();
+/* 	dto.id = $('#id').val();
 	dto.descricao = $('#descricao').val();
-	dto.valor = $('#valor').val();
+	dto.valor = $('#valor').val(); */
 	carregarDataTables();
 }
 
 // Construção das linhas da grid
 function carregarDataTables(pagina, colunaParaOrdenar) {
+	
+
 	// Definindo tamanho esperado pelo Front
 	var offset = 10;
 
@@ -231,7 +234,7 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 	// Chamadando Ajax
 	$
 			.ajax({
-				url : '/e-SIGOM/home/servicos/pagination/' + pagina,
+				url : '/e-SIGOM/home/pecas/pagination/' + pagina,
 				type : 'POST',
 				data : JSON.stringify(dto),
 				dataType : "json",
@@ -256,11 +259,15 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 																		+ valor.descricao
 																		+ '</div>',
 																'<div class="text-center">'
-																	+ valor.valorFormatado
+																	+ valor.valorVenda
+																	+ '</div>',
+																	
+																'<div class="text-center">'
+																	+ valor.estoque
 																	+ '</div>',
 
 																'<div class="text-center">'
-																		+ '<a rel="tooltip" href="/e-SIGOM/home/servicos/'
+																		+ '<a rel="tooltip" href="/e-SIGOM/home/pecas/'
 																		+valor.id
 																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
 																		+ 'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-settings-tool-66"></i>'
