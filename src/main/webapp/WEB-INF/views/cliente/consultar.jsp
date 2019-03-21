@@ -171,14 +171,14 @@
 </body>
 <script>
 
+
+
+
 $(document).ready(function() {
 	var $seuCampoCpf = $("#cpf");
 	$seuCampoCpf.mask('000.000.000-00', {
 		reverse : true
 	});
-
-	// Carregar DataTables
-	carregarDataTables();
 });
 
 // Abrir Modal "Excluir Funcionário"
@@ -299,6 +299,22 @@ $('#exportToPdf')
 					$('#exportToPdf').removeAttr("disabled");
 				});
 
+
+// Ordenar
+var pagineAtual = "";
+var colunaParaOrdenarAsc = "";
+var colunaParaOrdenarDesc = "";
+function ordenarColuna(coluna) {
+
+	if (colunaParaOrdenarAsc != coluna) {
+		colunaParaOrdenarAsc = coluna;
+	} else {
+		colunaParaOrdenarAsc = colunaParaOrdenarDesc;
+	}
+	carregarDataTables(pagineAtual, colunaParaOrdenarAsc);
+}
+
+
 // Preparar Datatable
 function dataTable() {
 	return $('#example').DataTable({
@@ -350,19 +366,6 @@ function dataTable() {
 	});
 };
 
-// Ordenar
-var pagineAtual = "";
-var colunaParaOrdenarAsc = "";
-var colunaParaOrdenarDesc = "";
-function ordenarColuna(coluna) {
-
-	if (colunaParaOrdenarAsc != coluna) {
-		colunaParaOrdenarAsc = coluna;
-	} else {
-		colunaParaOrdenarAsc = colunaParaOrdenarDesc;
-	}
-	carregarDataTables(pagineAtual, colunaParaOrdenarAsc);
-}
 
 // Pesquisar
 var dto = new Object();
@@ -377,6 +380,7 @@ function pesquisar() {
 
 	carregarDataTables();
 }
+
 
 // Construção das linhas da grid
 function carregarDataTables(pagina, colunaParaOrdenar) {
@@ -605,6 +609,8 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 						}
 					});
 }
+
+carregarDataTables();
 
 </script>
 </body>

@@ -14,9 +14,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.entities.UserProfile;
-import com.entities.Usuario;
-import com.servicesapi.UserService;
+import com.model.UserProfile;
+import com.model.Usuario;
+import com.services.UserService;
 
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {

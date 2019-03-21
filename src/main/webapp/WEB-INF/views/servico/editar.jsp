@@ -52,9 +52,9 @@
 										<i class="nc-icon nc-send"></i> Salvar
 									</button>
 
-									<a href='/e-SIGOM/home/servicos/cadastrar'
+									<a href='/e-SIGOM/home/servicos/${obj.id}'
 										class="btn btn-info btn-fill"> <i
-										class="nc-icon nc-refresh-02"></i> Limpar
+										class="nc-icon nc-refresh-02"></i> Atualizar
 									</a>
 								</div>
 								<div class="col-md-7"></div>

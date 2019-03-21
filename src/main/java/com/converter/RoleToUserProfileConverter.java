@@ -7,8 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import com.entities.UserProfile;
-import com.servicesapi.UserProfileService;
+import com.model.UserProfile;
+import com.services.UserProfileService;
 
 /**
  * A converter class used in views to map id's to actual userProfile objects.

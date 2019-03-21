@@ -66,8 +66,8 @@
 									<tr>
 										<th class="text-center" onclick="ordenarColuna('id')">ID</th>
 										<th onclick="ordenarColuna('descricao')" class="text-center">DESCRIÇÃO</th>
-										<th onclick="ordenarColuna('valor')" class="text-center">VALOR</th>
-										<th onclick="ordenarColuna('valor')" class="text-center">ESTOQUE</th>
+										<th onclick="ordenarColuna('valorVenda')" class="text-center">VALOR</th>
+										<th onclick="ordenarColuna('estoque')" class="text-center">ESTOQUE</th>
 										<th class="text-center">AÇÕES</th>
 									</tr>
 								</thead>

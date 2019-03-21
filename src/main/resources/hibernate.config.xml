@@ -7,15 +7,15 @@
 	<session-factory>
 
 		<!-- Funcionalidades -->
-		<mapping class="com.entities.Cliente" />
-		<mapping class="com.entities.Servico" />
-		<mapping class="com.entities.Peca" />
+		<mapping class="com.model.Cliente" />
+		<mapping class="com.model.Servico" />
+		<mapping class="com.model.Peca" />
 
 		<!-- Spring Security -->
-		<mapping class="com.entities.PersistentLogin" />
-		<mapping class="com.entities.Usuario" />
-		<mapping class="com.entities.UserProfile" />
-		<mapping class="com.entities.UserProfileType" />
+		<mapping class="com.model.PersistentLogin" />
+		<mapping class="com.model.Usuario" />
+		<mapping class="com.model.UserProfile" />
+		<mapping class="com.model.UserProfileType" />
 
 	</session-factory>
 </hibernate-configuration>
