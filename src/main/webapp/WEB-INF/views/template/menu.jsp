@@ -12,10 +12,16 @@
 							<p>Dashboard</p>
 					</a></li>
 
+
 					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGOM/home/servicos"> <i
-							class="nc-icon nc-bullet-list-67"></i>
-							<p>Tabela de Serviços</p>
+						href="/e-SIGOM/home/os/cadastrar"> <i
+							class="nc-icon nc-notes"></i>
+							<p>Lista de Orçamentos</p>
+					</a></li>
+
+					<li class="nav-item"><a class="nav-link"
+						href="/e-SIGOM/home/clientes"> <i class="nc-icon nc-single-02"></i>
+							<p>Cadastro de Clientes</p>
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
@@ -25,14 +31,9 @@
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGOM/home/cardapio/montar"> <i
-							class="nc-icon nc-notes"></i>
-							<p>Orçamento e Venda</p>
-					</a></li>
-
-					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGOM/home/clientes"> <i class="nc-icon nc-single-02"></i>
-							<p>Cadastro de Clientes</p>
+						href="/e-SIGOM/home/servicos"> <i
+							class="nc-icon nc-bullet-list-67"></i>
+							<p>Tabela dos Serviços</p>
 					</a></li>
 
 					<li><a class="nav-link"
@@ -46,7 +47,6 @@
 							class="nc-icon nc-money-coins"></i>
 							<p>Extrato Pagseguro</p>
 					</a></li>
-
 					<li class="nav-item <%--active --%>"><a class="nav-link"
 						href="#"> <i class="nc-icon nc-chart-bar-32"></i>
 							<p>Relatórios</p>

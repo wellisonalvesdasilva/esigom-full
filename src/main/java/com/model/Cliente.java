@@ -1,12 +1,15 @@
 package com.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -44,6 +47,17 @@ public class Cliente {
 	private String bairro;
 	private String rua;
 	private String numero;
+
+	@OneToOne(mappedBy = "cliente", fetch = FetchType.LAZY, orphanRemoval = false)
+	private OrdemServico ordem;
+
+	public OrdemServico getOrdem() {
+		return ordem;
+	}
+
+	public void setOrdem(OrdemServico ordem) {
+		this.ordem = ordem;
+	}
 
 	public Date getDth_cadastro() {
 		return dth_cadastro;

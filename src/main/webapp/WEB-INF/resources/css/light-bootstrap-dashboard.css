@@ -4591,7 +4591,7 @@ to {
 
 .card .table tbody td:last-child, .card .table thead th:last-child {
 	padding-right: 15px;
-	display: inline-flex;
+	/* display: inline-flex; */
 }
 
 .card .alert {
