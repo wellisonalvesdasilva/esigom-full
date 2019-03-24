@@ -1,18 +1,15 @@
-package com.dao;
+/*package com.dao;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 
 import com.dto.DtoPecaPesquisa;
 import com.dto.DtoRetornoPaginado;
 import com.model.Peca;
+import com.model.Servico;
 
-public interface PecaDao {
+public interface OrdemServicoDao {
 
-	public DtoRetornoPaginado<Peca> listAll(Integer pagina, DtoPecaPesquisa dto)
-			throws IllegalAccessException, InvocationTargetException;
-
-	List<Peca> lista(String nome);
+	public DtoRetornoPaginado<Peca> listAll(Integer pagina, DtoPecaPesquisa dto) throws IllegalAccessException, InvocationTargetException;
 
 	void persist(Peca peca);
 
@@ -22,4 +19,4 @@ public interface PecaDao {
 
 	void merge(Peca peca);
 
-}
+}*/

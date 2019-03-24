@@ -23,8 +23,8 @@ public class PecaDaoImpl implements PecaDao {
 	SessionFactory session;
 
 	@SuppressWarnings("unchecked")
-	public List<Peca> lista() {
-		return session.getCurrentSession().createQuery("from Peca").list();
+	public List<Peca> lista(String nome) {
+		return session.getCurrentSession().createQuery("from Peca as p where p.descricao like '%" + nome + "%'").list();
 	}
 
 	@SuppressWarnings({ "unchecked", "unused" })

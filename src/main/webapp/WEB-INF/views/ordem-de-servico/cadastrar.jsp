@@ -164,8 +164,6 @@
 									</div>
 								</div>
 							</div>
-
-
 							<div class="row">
 								<div class="col-md-12">
 									<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -183,14 +181,7 @@
 										<div class="tab-pane fade show active" id="home"
 											role="tabpanel" aria-labelledby="home-tab">
 											<div class="row">
-												<div class="col-md-2 text-center">
-													<a name="btnSubmit" rel="tooltip"
-														data-original-title="Adicionar Novo Item" id="btnSubmit"
-														href="/e-SIGOM/home/clientes/cadastrar" type="submit"
-														class="btn btn-success btn-fill btn-pesquisa"> <i
-														class="nc-icon nc-simple-add"></i> Adicionar
-													</a>
-												</div>
+
 												<div class="col-md-10">
 													<table class="table table-bordered table-striped">
 														<thead>
@@ -203,60 +194,29 @@
 																<th>Ação</th>
 															</tr>
 														</thead>
-														<tbody>
-															<tr>
-																<td>120</td>
-																<td>ANEL DO CANO DE DESCARGA</td>
-																<td>2</td>
-																<td>180.00</td>
-																<td>360.00</td>
-																<td><a rel="tooltip" href="/e-SIGOM/home/pecas/3"
-																	data-original-title="Editar" name="btnSubmit"
-																	id="btnSubmit" type="button"
-																	class="btn btn-default btn-fill"> <i
-																		class="nc-icon nc-settings-tool-66"></i></a>
-																	<button rel="tooltip" name="btnSubmit"
-																		data-original-title="Excluir" id="btnSubmit"
-																		onclick="excluir(3)" type="button"
-																		class="btn btn-danger btn-fill">
-																		<i class="nc-icon nc-simple-remove"></i>
-																	</button></td>
-															</tr>
-															<tr>
-																<td>120</td>
-																<td>ANEL DO CANO DE DESCARGA</td>
-																<td>2</td>
-																<td>180.00</td>
-																<td>360.00</td>
-																<td><a rel="tooltip" href="/e-SIGOM/home/pecas/3"
-																	data-original-title="Editar" name="btnSubmit"
-																	id="btnSubmit" type="button"
-																	class="btn btn-default btn-fill"> <i
-																		class="nc-icon nc-settings-tool-66"></i></a>
-																	<button rel="tooltip" name="btnSubmit"
-																		data-original-title="Excluir" id="btnSubmit"
-																		onclick="excluir(3)" type="button"
-																		class="btn btn-danger btn-fill">
-																		<i class="nc-icon nc-simple-remove"></i>
-																	</button></td>
+														<tbody id="tabelaIndexPeca">
+															<tr class="odd" id="nenhumEncontrado">
+																<td valign="top" colspan="7"
+																	class="dataTables_empty text-center">Nenhum item
+																	foi adicionado até o momento.</td>
 															</tr>
 														</tbody>
 													</table>
+												</div>
+												<div class="col-md-2 text-center">
+													<button name="btnSubmit" rel="tooltip"
+														data-original-title="Adicionar Novo Item"
+														onclick="adicionarNaTabela()" type="button"
+														class="btn btn-default btn-fill btn-pesquisa">
+														<i class="nc-icon nc-simple-add"></i> Adicionar
+													</button>
 												</div>
 											</div>
 										</div>
 										<div class="tab-pane fade" id="perfil" role="tabpanel"
 											aria-labelledby="profile-tab">
 											<div class="row">
-												<div class="col-md-2 text-center">
-													<a name="btnSubmit" rel="tooltip"
-														data-original-title="Cadastrar Novo Usuário"
-														id="btnSubmit" href="/e-SIGOM/home/clientes/cadastrar"
-														type="submit"
-														class="btn btn-success btn-fill btn-pesquisa"> <i
-														class="nc-icon nc-simple-add"></i> Adicionar
-													</a>
-												</div>
+
 												<div class="col-md-10">
 													<table class="table table-bordered table-striped">
 														<thead>
@@ -277,50 +237,324 @@
 														</tbody>
 													</table>
 												</div>
+
+												<div class="col-md-2 text-center">
+													<a name="btnSubmit" rel="tooltip"
+														data-original-title="Cadastrar Novo Usuário"
+														id="btnSubmit" href="/e-SIGOM/home/clientes/cadastrar"
+														type="submit"
+														class="btn btn-default btn-fill btn-pesquisa"> <i
+														class="nc-icon nc-simple-add"></i> Adicionar
+													</a>
+												</div>
+
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-12 text-right">Total: R$ 3.209,11</div>
+								<div class="col-md-12 text-right">Total Geral: R$ 00,00</div>
 							</div>
+						</form:form>
+						<div class="row">
+							<div class="col-md-5">
+								<a href='/e-SIGOM/home/clientes' type="button"
+									class="btn btn-warning btn-fill"> <i
+									class="nc-icon nc-stre-left"></i> Consulta
+								</a>
 
-							<div class="row">
-								<div class="col-md-5">
-									<a href='/e-SIGOM/home/clientes' type="button"
-										class="btn btn-warning btn-fill"> <i
-										class="nc-icon nc-stre-left"></i> Consulta
-									</a>
+								<button type="submit" type="button"
+									class="btn btn-success btn-fill">
+									<i class="nc-icon nc-send"></i> Salvar
+								</button>
 
-									<button type="submit" type="button"
-										class="btn btn-success btn-fill">
-										<i class="nc-icon nc-send"></i> Salvar
-									</button>
-
-									<a href='/e-SIGOM/home/clientes/cadastrar'
-										class="btn btn-info btn-fill"> <i
-										class="nc-icon nc-refresh-02"></i> Limpar
-									</a>
-								</div>
-								<div class="col-md-7"></div>
+								<a href='/e-SIGOM/home/clientes/cadastrar'
+									class="btn btn-info btn-fill"> <i
+									class="nc-icon nc-refresh-02"></i> Limpar
+								</a>
 							</div>
+							<div class="col-md-7"></div>
+						</div>
 					</div>
 				</div>
+				<form:form id="inserirPecas" class="modal fade" role="dialog">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Adicionar Peça ao Orçamento</h4>
+								<button type="button" class="close" onclick="fecharModal()"
+									data-dismiss="modal">&times;</button>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-lg-12">
+										<div id="error" class="alert alert-danger"
+											style="display: none;">
+											<span id="errorMessage"></span>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-10">
+										<div class="form-group">
+											<input placeholder="Informe o nome da Peça"
+												name="inputNomeDaPeca" id="inputNomeDaPeca"
+												class="form-control">
+										</div>
+									</div>
+									<div class="col-lg-2">
+										<div class="form-group">
+											<button name="btnEncontrarPeca" id="encontrarPeca"
+												type="button" class="btn btn-primary btn-fill">
+												<i class="nc-icon nc-zoom-split"></i>&nbsp; Buscar
+											</button>
+										</div>
+									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-lg-12">
+										<table class="table table-bordered table-striped">
+											<thead>
+												<tr>
+													<th class="text-center">Código</th>
+													<th class="text-center">Descrição</th>
+													<th class="text-center">Valor Unitário</th>
+													<th class="text-center">Quantidade</th>
+													<th class="text-center">Ação</th>
+												</tr>
+											</thead>
+											<tbody id="tabelaPeca">
+												<tr class="odd" id="nenhumEncontrado">
+													<td valign="top" colspan="7"
+														class="dataTables_empty text-center">Nenhum registro
+														encontrado com os parâmetros informados.</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
 
+						</div>
+					</div>
 				</form:form>
 				<div class="clearfix"></div>
 			</div>
 		</div>
 	</div>
 </div>
-</div>
-</div>
 <jsp:include page="../template/rodape.jsp" />
 </body>
 <script>
-	$(document).ready(
+	function formataDinheiro(n) {
+		return "R$ "
+				+ n.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g,
+						"$1.");
+	}
 
+	/*
+	 - Gravar em variável as peças
+	 - Remover
+	 - Ajax para salvar nas tabelas
+	 */
+
+	function fecharModal() {
+		$('#inserirPecas').modal('hide');
+		$('#tabelaPeca').html("");
+		$('#inputNomeDaPeca').val("");
+		$('#tabelaPeca')
+				.append(
+						'<tr class="odd">'
+								+ '<td valign="top" colspan="7"'
+			+'class="dataTables_empty text-center">Nenhum registro encontrado com os parâmetros informados.</td>'
+								+ '</tr>');
+	}
+
+	function adicionarNaTabela() {
+		$('#inserirPecas').modal({
+			backdrop : 'static',
+			keyboard : false
+		});
+	}
+
+	function adicionarItemPeca(id, descricao, quantidade, valorUnitario) {
+
+		var stringInput = "#inputQtdPecas" + id;
+		var valorTotalQtde = $('' + stringInput + '').val();
+
+		var valorUnitarioFormatado = parseInt(valorUnitario.replace("R$", ''));
+		var subTotalFinalFormatado = formataDinheiro(valorTotalQtde
+				* valorUnitarioFormatado);
+
+		// Fechar Modal
+		$('#inserirPecas').modal('hide');
+
+		// Limpar modal
+		$('#tabelaPeca').html("");
+		$('#inputNomeDaPeca').val("");
+
+		$('#tabelaPeca')
+				.append(
+						'<tr class="odd">'
+								+ '<td valign="top" colspan="7"'
+					+'class="dataTables_empty text-center">Nenhum registro encontrado com os parâmetros informados.</td>'
+								+ '</tr>');
+
+		// Resetar Tabela
+		$('#nenhumEncontrado').html("");
+
+		// Adicionar Item Tabela
+		$('#tabelaIndexPeca').append(
+				'<tr>'
+				// ID
+				+ '<td class="text-center">' + id + '</td>'
+
+				// Descrição
+				+ '<td>' + descricao + '</td>'
+
+				// Quantidade
+				+ '<td class="text-center">' + valorTotalQtde + '</td>'
+
+				/* 			+ '<td class="text-center"><input type="text" maxlength="40" minlength="1" class="form-control" value="1" size="1" id="inputQtdPecas'
+								+id
+								+'"placeholder="Quantidade"></td>' */
+
+				// Valor Unitário
+				+ '<td class="text-center">' + valorUnitario + '</td>'
+
+				// SubTotal
+				+ '<td class="text-center">' + subTotalFinalFormatado + '</td>'
+
+				// Ação
+				+ '<td class="text-center">'
+						+ '<button rel="tooltip" name="btnSubmit"'
+						+ 'data-original-title="Excluir" id="btnSubmit"'
+						+ 'onclick="removerItemGrid(' + id + ')" type="button"'
+						+ 'class="btn btn-danger btn-fill">'
+						+ '<i class="nc-icon nc-simple-remove"></i>'
+						+ '</button>' + '</td>'
+
+						+ '</tr>');
+
+		// Msg de sucesso
+		showNotification('top', 'right',
+				'Peça adicionada ao orçamento com sucesso!');
+	}
+
+	// Evento 2: Botão Adicionar Unidade Gestora
+	$('#encontrarPeca')
+			.click(
+
+					function() {
+						// Armazena em variável valor do Input
+						var inputNomeDaPeca = $("#inputNomeDaPeca").val();
+
+						// Caso não esteja preenchido, formata erro
+						if (!inputNomeDaPeca) {
+							$('#tabelaPeca').html("");
+
+							$('#tabelaPeca')
+									.append(
+											'<tr class="odd">'
+													+ '<td valign="top" colspan="7"'
+					+'class="dataTables_empty text-center">Nenhum registro encontrado com os parâmetros informados.</td>'
+													+ '</tr>');
+
+							$('#errorMessage').html("");
+							$('#errorMessage')
+									.append(
+											'Erro!'
+													+ "&nbsp;"
+													+ 'Campo Nome da Peça não informado.'
+													+ "&nbsp;");
+
+							$("#error").show();
+
+							// Senão chama ajax
+						} else {
+							$('#errorMessage').html("");
+							$("#error").hide();
+							$
+									.ajax(
+											{
+												url : 'getPesquisaPeca/'
+														+ inputNomeDaPeca,
+												type : 'GET',
+												data : {
+													nome : inputNomeDaPeca
+												}
+											})
+									.done(
+											function(response) {
+												if (response) {
+													if (response.length > 0) {
+														$('#tabelaPeca').html(
+																"");
+														response
+																.forEach(function(
+																		valor) {
+
+																	var quantidade = 1;
+
+																	$(
+																			'#tabelaPeca')
+																			.append(
+																					'<tr><td class="text-center">'
+																							+ valor.id
+																							+ '</td>'
+																							+ '<td>'
+																							+ valor.descricao
+																							+ '</td>'
+																							+ '<td class="text-center">'
+																							+ valor.valorVenda
+																							+ '</td>'
+
+																							// Quantidade
+																							+ '<td class="text-center"><input type="text" maxlength="40" minlength="1" class="form-control" value="1" size="1" id="inputQtdPecas'
+																							+valor.id
+																							+'"placeholder="Quantidade"></td>'
+
+																							// Ação
+																							+ '<td class="text-center">'
+																							+ '<button rel="tooltip"'
+																							+ 'data-original-title="Adicionar Peça"'
+																							+ 'onclick="adicionarItemPeca('
+																							+ valor.id
+																							+ ','
+																							+ "'"
+																							+ valor.descricao
+																							+ "'"
+																							+ ','
+																							+ quantidade
+																							+ ','
+																							+ "'"
+																							+ valor.valorVenda
+																							+ "'"
+																							+ ')" type="button"'
+																							+ 'class="btn btn-warning btn-fill">'
+																							+ '<i class="nc-icon nc-simple-add"></i> Adicionar'
+																							+ '</button>'
+																							+ '</td></tr>');
+
+																});
+													} else {
+														$('#tabelaPeca').html(
+																"");
+														$('#tabelaPeca')
+																.append(
+																		'<tr class="odd">'
+																				+ '<td valign="top" colspan="7"'
+														+'class="dataTables_empty text-center">Nenhum registro encontrado com os parâmetros informados.</td>'
+																				+ '</tr>');
+													}
+												}
+											});
+						}
+					});
+
+	$(document).ready(
 			function() {
 
 				var mascara = $("#cpf");

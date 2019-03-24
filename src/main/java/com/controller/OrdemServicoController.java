@@ -1,14 +1,11 @@
 package com.controller;
 
-import java.lang.reflect.InvocationTargetException;
-import java.security.NoSuchAlgorithmException;
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -16,73 +13,35 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.dto.DtoRetornoPaginado;
-import com.dto.DtoServicoPesquisa;
+import com.model.Peca;
 import com.model.Servico;
-import com.services.ServicoService;
+import com.services.ClienteService;
+import com.services.OrdemServicoService;
 
 @Controller
 @RequestMapping("/home/os")
 @SessionAttributes("roles")
 
 public class OrdemServicoController {
-	
-	/*
+
 	@Autowired
-	ServicoService _servicoService;
+	OrdemServicoService _ordemServicoService;
 
-	@RequestMapping(method = { RequestMethod.GET })
-	public ModelAndView listarTodos() {
-		return new ModelAndView("ordem-de-servico/consultar");
-	}
-
-	@RequestMapping(value = "/pagination/{pagina}", method = { RequestMethod.POST })
-	public @ResponseBody DtoRetornoPaginado<Servico> paginated(@PathVariable("pagina") Integer pagina,
-			@RequestBody DtoServicoPesquisa dto) {
-		return _servicoService.listAll(pagina, dto);
-	}
-*/
 	@RequestMapping(value = "/cadastrar", method = { RequestMethod.GET })
 	public ModelAndView insert(ModelMap model) {
 		model.addAttribute("obj", new Servico());
 		return new ModelAndView("ordem-de-servico/cadastrar");
 	}
-	
-	/*
-	@RequestMapping(value = "/cadastrar", method = { RequestMethod.POST })
-	public String insert(@ModelAttribute("obj") Servico obj, RedirectAttributes ra, ModelMap model) throws Exception {
-		_servicoService.salvar(obj);
-		ra.addFlashAttribute("message", "Registro cadastrado com sucesso!");
-		return "redirect:/home/servicos";
-	}
 
-	@RequestMapping(value = "/{cod}", method = { RequestMethod.GET })
-	public ModelAndView editar(@PathVariable("cod") Integer cod, ModelMap model)
-			throws NoSuchAlgorithmException, IllegalAccessException, InvocationTargetException {
-		model.addAttribute("obj", _servicoService.getObj(cod));
-		return new ModelAndView("servico/editar");
-	}
+	@RequestMapping(value = "/getPesquisaPeca/{nome}", method = { RequestMethod.GET })
+	public @ResponseBody List<Peca> listarUgsPorAviso(@PathVariable("nome") String nome, RedirectAttributes r) {
 
-	@RequestMapping(value = "/{cod}", method = { RequestMethod.POST })
-	public String editar(@PathVariable("cod") Integer cod, @ModelAttribute("obj") Servico objMerge,
-			RedirectAttributes ra) throws Exception {
-		objMerge.setId(cod);
-		Boolean retorno = _servicoService.editar(objMerge);
+		List<Peca> retorno = _ordemServicoService.getPesquisaPeca(nome);
 
-		if (retorno) {
-			ra.addFlashAttribute("message", "Registro editado com sucesso!");
-			return "redirect:/home/servicos";
+		if (retorno != null) {
+			return retorno;
 		}
 		return null;
 	}
-
-	@RequestMapping(value = "/excluir/{cod}", method = { RequestMethod.POST })
-	public @ResponseBody void excluir(@PathVariable("cod") Integer cod) {
-		try {
-			_servicoService.deletar(cod);
-		} catch (Exception e) {
-			return;
-		}
-	}*/
 
 }
