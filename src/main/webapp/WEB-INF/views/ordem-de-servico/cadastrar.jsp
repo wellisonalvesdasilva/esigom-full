@@ -205,7 +205,7 @@
 												</div>
 												<div class="col-md-2 text-center">
 													<button name="btnSubmit" rel="tooltip"
-														data-original-title="Adicionar Novo Item"
+														data-original-title="Adicionar Nova Peça"
 														onclick="adicionarNaTabela()" type="button"
 														class="btn btn-default btn-fill btn-pesquisa">
 														<i class="nc-icon nc-simple-add"></i> Adicionar
@@ -254,7 +254,7 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-12 text-right">Total Geral: R$ 00,00</div>
+								<div class="col-md-12 text-right" id="totalGeralFormatado"></div>
 							</div>
 						</form:form>
 						<div class="row">
@@ -348,17 +348,50 @@
 <jsp:include page="../template/rodape.jsp" />
 </body>
 <script>
+// Remover, subtrair
+	// Total Geral
+	var totalGeral = 0;
+	var totalGeralFormatado = "";
+	
+	if(!totalGeralFormatado){
+		$('#totalGeralFormatado').html("Valor Total: R$00,00");
+	}
+	
+	// Array com as Peças
+	var listPecas = [];
+
+
+	// Remover Item
+	function removerItemGrid(id) {
+ 		var idTr = id;
+		var parent = document.getElementById("tabelaIndexPeca");
+		var child = document.getElementById(idTr);
+		parent.removeChild(child);
+		
+		// Remover do Array
+		var index = listPecas.map(x => {
+			  return x.id;
+			}).indexOf(id);
+
+		listPecas.splice(index, 1);
+		showNotification('top', 'right', 'A peça foi removida do orçamento!');
+
+		
+		if(listPecas.length == 0){
+			$('#nenhumEncontrado')
+			.append(
+					'<td valign="top" colspan="7"'
+		+'class="dataTables_empty text-center">Nenhum item foi adicionado até o momento.</td>'
+							);
+		}
+	
+	}
+
 	function formataDinheiro(n) {
 		return "R$ "
 				+ n.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g,
 						"$1.");
 	}
-
-	/*
-	 - Gravar em variável as peças
-	 - Remover
-	 - Ajax para salvar nas tabelas
-	 */
 
 	function fecharModal() {
 		$('#inserirPecas').modal('hide');
@@ -387,7 +420,9 @@
 		var valorUnitarioFormatado = parseInt(valorUnitario.replace("R$", ''));
 		var subTotalFinalFormatado = formataDinheiro(valorTotalQtde
 				* valorUnitarioFormatado);
-
+		
+		var subTotalInteger = parseInt(valorTotalQtde * valorUnitarioFormatado);
+		
 		// Fechar Modal
 		$('#inserirPecas').modal('hide');
 
@@ -407,7 +442,9 @@
 
 		// Adicionar Item Tabela
 		$('#tabelaIndexPeca').append(
-				'<tr>'
+				'<tr id="'
+				+id
+				+'">'
 				// ID
 				+ '<td class="text-center">' + id + '</td>'
 
@@ -439,8 +476,20 @@
 						+ '</tr>');
 
 		// Msg de sucesso
-		showNotification('top', 'right',
-				'Peça adicionada ao orçamento com sucesso!');
+		showNotification('top', 'right', 'A peça foi adicionada ao orçamento!');
+
+		// Adicionar a lista
+		var id = {
+			id : id,
+			quantidade : valorTotalQtde,
+			subTotal: subTotalInteger,
+		}
+		listPecas.push(id);
+		
+		// Formatar Total Geral
+		totalGeral = totalGeral + subTotalInteger;
+		totalGeralFormatado = formataDinheiro(totalGeral);
+		$('#totalGeralFormatado').html("Valor Total: "+totalGeralFormatado);
 	}
 
 	// Evento 2: Botão Adicionar Unidade Gestora
