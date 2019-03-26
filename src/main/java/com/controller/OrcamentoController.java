@@ -13,30 +13,55 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dto.DtoListaPeca;
+import com.model.Cliente;
 import com.model.Peca;
 import com.model.Servico;
 import com.services.ClienteService;
-import com.services.OrdemServicoService;
+import com.services.OrcamentoService;
 
 @Controller
-@RequestMapping("/home/os")
+@RequestMapping("/home/orcamentos")
 @SessionAttributes("roles")
 
-public class OrdemServicoController {
+public class OrcamentoController {
 
 	@Autowired
-	OrdemServicoService _ordemServicoService;
+	OrcamentoService _ordemServicoService;
 
 	@RequestMapping(value = "/cadastrar", method = { RequestMethod.GET })
 	public ModelAndView insert(ModelMap model) {
 		model.addAttribute("obj", new Servico());
-		return new ModelAndView("ordem-de-servico/cadastrar");
+		return new ModelAndView("orcamento/cadastrar");
 	}
 
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/getPesquisaPeca/{nome}", method = { RequestMethod.GET })
-	public @ResponseBody List<Peca> listarUgsPorAviso(@PathVariable("nome") String nome, RedirectAttributes r) {
+	public @ResponseBody DtoListaPeca getPecas(@PathVariable("nome") String nome, RedirectAttributes r) {
 
-		List<Peca> retorno = _ordemServicoService.getPesquisaPeca(nome);
+		DtoListaPeca retorno = _ordemServicoService.getPesquisaPeca(nome);
+
+		if (retorno != null) {
+			return retorno;
+		}
+		return null;
+	}
+
+	@RequestMapping(value = "/getPesquisaServico/{nome}", method = { RequestMethod.GET })
+	public @ResponseBody DtoListaPeca getServicos(@PathVariable("nome") String nome, RedirectAttributes r) {
+
+		DtoListaPeca retorno = _ordemServicoService.getPesquisaServico(nome);
+
+		if (retorno != null) {
+			return retorno;
+		}
+		return null;
+	}
+
+	@RequestMapping(value = "/getCliente/{cpf}", method = { RequestMethod.GET })
+	public @ResponseBody Cliente getCliente(@PathVariable("cpf") String cpf) {
+
+		Cliente retorno = _ordemServicoService.getCliente(cpf);
 
 		if (retorno != null) {
 			return retorno;

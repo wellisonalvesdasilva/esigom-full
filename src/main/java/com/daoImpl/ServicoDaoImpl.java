@@ -12,6 +12,7 @@ import org.hibernate.SessionFactory;
 import com.dao.ServicoDao;
 import com.dto.DtoRetornoPaginado;
 import com.dto.DtoServicoPesquisa;
+import com.model.Peca;
 import com.model.Servico;
 
 @Repository
@@ -20,6 +21,12 @@ public class ServicoDaoImpl implements ServicoDao {
 
 	@Autowired
 	SessionFactory session;
+
+	@SuppressWarnings("unchecked")
+	public List<Servico> lista(String nome) {
+		return session.getCurrentSession().createQuery("from Servico as s where s.descricao like '%" + nome + "%'")
+				.list();
+	}
 
 	@SuppressWarnings({ "unchecked", "unused" })
 	public DtoRetornoPaginado<Servico> listAll(Integer pagina, DtoServicoPesquisa dto) {

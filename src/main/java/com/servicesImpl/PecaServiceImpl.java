@@ -25,10 +25,10 @@ public class PecaServiceImpl implements PecaService {
 		DtoRetornoPaginado<Peca> retorno = _pecaDao.listAll(pagina, dto);
 
 		for (Peca item : retorno.getLista()) {
-			Double d = Double.parseDouble(item.getValorVenda());
+			Double d = Double.parseDouble(item.getValor());
 			Locale ptBr = new Locale("pt", "BR");
 			String valorEmReal = NumberFormat.getCurrencyInstance(ptBr).format(d);
-			item.setValorVenda(valorEmReal);
+			item.setValor(valorEmReal);
 		}
 
 		return retorno;
@@ -49,8 +49,8 @@ public class PecaServiceImpl implements PecaService {
 
 		if (getPeca != null) {
 
-			String valor = peca.getValorVenda().replace("R$", "");
-			peca.setValorVenda(valor);
+			String valor = peca.getValor().replace("R$", "");
+			peca.setValor(valor);
 			peca.setDth_cadastro(getPeca.getDth_cadastro());
 
 			_pecaDao.merge(peca);
@@ -65,11 +65,11 @@ public class PecaServiceImpl implements PecaService {
 
 		if (objLocalizado != null) {
 
-			Double d = Double.parseDouble(objLocalizado.getValorVenda());
+			Double d = Double.parseDouble(objLocalizado.getValor());
 			Locale ptBr = new Locale("pt", "BR");
 			String valorEmReal = NumberFormat.getCurrencyInstance(ptBr).format(d);
 
-			objLocalizado.setValorVenda(valorEmReal.replace(",", "."));
+			objLocalizado.setValor(valorEmReal.replace(",", "."));
 
 			return objLocalizado;
 		}

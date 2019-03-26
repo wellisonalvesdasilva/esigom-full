@@ -53,8 +53,8 @@
 								<div class="col-md-2">
 									<div class="form-group">
 										<label>Valor (R$)</label> <input maxlength='10'
-											autocomplete="off" placeholder="Valor" id="valorVenda"
-											name="valorVenda" type="text" class="form-control"
+											autocomplete="off" placeholder="Valor" id="valor"
+											name="valor" type="text" class="form-control"
 											placeholder="Valor">
 									</div>
 								</div>
@@ -91,7 +91,7 @@
 <script>
 	$(document).ready(function() {
 		$(function() {
-			$("#valorVenda").maskMoney({
+			$("#valor").maskMoney({
 				symbol : 'R$ ',
 				showSymbol : true,
 				thousands : '.',

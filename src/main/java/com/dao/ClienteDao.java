@@ -14,6 +14,8 @@ public interface ClienteDao {
 
 	Cliente getObj(Integer id);
 
+	Cliente getPorCpf(String cpf);
+	
 	boolean deletar(Integer id);
 
 	void merge(Cliente users);

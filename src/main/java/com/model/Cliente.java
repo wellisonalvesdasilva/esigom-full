@@ -49,13 +49,13 @@ public class Cliente {
 	private String numero;
 
 	@OneToOne(mappedBy = "cliente", fetch = FetchType.LAZY, orphanRemoval = false)
-	private OrdemServico ordem;
+	private Orcamento ordem;
 
-	public OrdemServico getOrdem() {
+	public Orcamento getOrdem() {
 		return ordem;
 	}
 
-	public void setOrdem(OrdemServico ordem) {
+	public void setOrdem(Orcamento ordem) {
 		this.ordem = ordem;
 	}
 

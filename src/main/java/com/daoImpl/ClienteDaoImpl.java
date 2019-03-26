@@ -19,6 +19,17 @@ public class ClienteDaoImpl implements ClienteDao {
 	@Autowired
 	SessionFactory session;
 
+	public Cliente getPorCpf(String cpf) {
+		try {
+			Cliente objRetorno = (Cliente) session.getCurrentSession()
+					.createQuery("from Cliente as c where c.cpf like '%" + cpf + "%'").list().get(0);
+
+			return objRetorno;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<Cliente> lista() {
 		return session.getCurrentSession().createQuery("from Cliente").list();

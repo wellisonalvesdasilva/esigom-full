@@ -26,7 +26,7 @@ public class Peca {
 	private Integer categoriaId;
 
 	@Column(name = "valor_venda")
-	private String valorVenda;
+	private String valor;
 
 	@Column(name = "estoque")
 	private Integer estoque;
@@ -59,12 +59,12 @@ public class Peca {
 		this.categoriaId = categoriaId;
 	}
 
-	public String getValorVenda() {
-		return valorVenda;
+	public String getValor() {
+		return valor;
 	}
 
-	public void setValorVenda(String valorVenda) {
-		this.valorVenda = valorVenda;
+	public void setValor(String valor) {
+		this.valor = valor;
 	}
 
 	public Integer getEstoque() {

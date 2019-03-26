@@ -55,8 +55,8 @@
 								<div class="col-md-2">
 									<div class="form-group">
 										<label>Valor (R$)</label> <input maxlength='10'
-											autocomplete="off" placeholder="Valor" id="valorVenda"
-											value='${obj.valorVenda}' name="valorVenda" type="text"
+											autocomplete="off" placeholder="Valor" id="valor"
+											value='${obj.valor}' name="valor" type="text"
 											class="form-control" placeholder="Valor">
 									</div>
 								</div>
@@ -97,7 +97,7 @@
 			var categoriaId = ${obj.categoriaId};
 			categoriaId ? document.getElementById("categoriaId").value = categoriaId : document.getElementById("categoriaId").value = '';
 
-			$("#valorVenda").maskMoney({
+			$("#valor").maskMoney({
 				symbol : 'R$ ',
 				showSymbol : true,
 				thousands : '.',

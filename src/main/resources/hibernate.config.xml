@@ -10,7 +10,7 @@
 		<mapping class="com.model.Cliente" />
 		<mapping class="com.model.Servico" />
 		<mapping class="com.model.Peca" />
-		<mapping class="com.model.OrdemServico" />
+		<mapping class="com.model.Orcamento" />
 
 		<!-- Spring Security -->
 		<mapping class="com.model.PersistentLogin" />

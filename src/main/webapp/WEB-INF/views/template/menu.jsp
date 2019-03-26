@@ -12,50 +12,51 @@
 							<p>Dashboard</p>
 					</a></li>
 
+					<li><a class="nav-link"
+						href="#"> <i
+							class="nc-icon nc-money-coins"></i>
+							<p>Extrato Pagseguro</p>
+					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGOM/home/os/cadastrar"> <i
+						href="/e-SIGOM/home/orcamentos/cadastrar"> <i
 							class="nc-icon nc-notes"></i>
-							<p>Lista de Orçamentos</p>
+							<p>Listar Orçamentos</p>
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
 						href="/e-SIGOM/home/clientes"> <i class="nc-icon nc-single-02"></i>
-							<p>Cadastro de Clientes</p>
+							<p>Cadastrar Clientes</p>
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
 						href="/e-SIGOM/home/pecas"> <i
 							class="nc-icon nc-settings-tool-66"></i>
-							<p>Cadastro de Peças</p>
+							<p>Cadastrar Peças</p>
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
 						href="/e-SIGOM/home/servicos"> <i
 							class="nc-icon nc-bullet-list-67"></i>
-							<p>Tabela dos Serviços</p>
+							<p>Cadastrar Serviços</p>
 					</a></li>
 
 					<li><a class="nav-link"
 						href="/e-SIGOM/home/alimento/consultar"> <i
 							class="nc-icon nc-layers-3	"></i>
-							<p>Estoque e Compras</p>
+							<p>Gerenciar Estoque</p>
 					</a></li>
 
-					<li><a class="nav-link"
-						href="/e-SIGOM/home/cardapio/consultar"> <i
-							class="nc-icon nc-money-coins"></i>
-							<p>Extrato Pagseguro</p>
-					</a></li>
+
 					<li class="nav-item <%--active --%>"><a class="nav-link"
 						href="#"> <i class="nc-icon nc-chart-bar-32"></i>
-							<p>Relatórios</p>
+							<p>Visualizar Relatórios</p>
 					</a></li>
 
 					<li class="nav-item active active-pro"><a
 						class="nav-link active" href="#"> <i
 							class="nc-icon nc-circle-09"></i>
-							<p>Controle de Acesso</p>
+							<p>Controlar Acesso</p>
 					</a></li>
 				</ul>
 			</div>
