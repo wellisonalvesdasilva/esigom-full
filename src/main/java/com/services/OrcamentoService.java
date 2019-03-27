@@ -9,5 +9,7 @@ public interface OrcamentoService {
 
 	DtoListaPeca getPesquisaServico(String nome);
 
+	Boolean salvarOrcamento(Object dto);
+
 	Cliente getCliente(String cpf);
 }

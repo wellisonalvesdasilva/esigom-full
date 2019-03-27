@@ -38,8 +38,9 @@
 								</div>
 								<div class="col-md-2 pl-1">
 									<div class="form-group">
-										<label>Nome</label> <input id="nome" name="nome" type="text"
-											class="form-control" disabled="disabled" placeholder="Nome">
+										<input type="hidden" id="clienteId" name="clienteId" /> <label>Nome</label>
+										<input id="nome" name="nome" type="text" class="form-control"
+											disabled="disabled" placeholder="Nome">
 									</div>
 								</div>
 								<div class="col-md-2 pl-1">
@@ -216,7 +217,7 @@
 												</div>
 												<div class="col-md-2 text-center">
 													<button name="btnSubmit" rel="tooltip"
-														data-original-title="Adicionar Nova Peça"
+														data-original-title="Adicionar Novo Serviço"
 														onclick="adicionarNaTabela(2)" type="button"
 														class="btn btn-default btn-fill btn-pesquisa">
 														<i class="nc-icon nc-simple-add"></i> Adicionar
@@ -239,8 +240,8 @@
 									<i class="nc-icon nc-stre-left"></i> Consulta
 								</a>
 
-								<button type="submit" type="button"
-									class="btn btn-success btn-fill">
+								<button id="salvar" name="salvar" onclick="salvarCadastro()"
+									type="button" class="btn btn-success btn-fill">
 									<i class="nc-icon nc-send"></i> Salvar
 								</button>
 
@@ -361,18 +362,43 @@
 <jsp:include page="../template/rodape.jsp" />
 </body>
 <script>
-	
-	
-	// Ajax Salvar
-	function salvarCadastro(){
-	
-	}
-	
-	
+
+
 	// Arrays
 	var listPecas = [];
 	var listServicos = [];
 	
+	var dto = {};
+		// Ajax Salvar
+		function salvarCadastro(){
+			dto.listPecas = listPecas;
+			dto.listServicos = listServicos;
+	
+			// Campos Preenchidos
+			dto.clienteId = $('#clienteId').val();
+			dto.data = $('#data').val();
+			dto.veiculoPlaca = $('#veiculoPlaca').val();
+			dto.marca = $('#marca').val();
+			dto.modelo = $('#modelo').val();
+			dto.cor = $('#cor').val();
+			dto.ano = $('#ano').val();
+			dto.km = $('#km').val();
+			
+			// Ajax
+			$.ajax(
+					{
+						url : "save",
+						type : 'POST',
+						data : {
+							dto : JSON.stringify(dto)
+						}
+					})
+			.done(
+					function(response) {
+											
+											
+					});
+		};
 	
 	// Total Geral
 	var totalGeral = 0;
@@ -752,7 +778,7 @@
 												
 												
 												if(resultado){
-														$("#cliente_id").val(resultado.id);
+														$("#clienteId").val(resultado.id);
 														$("#nome").val(resultado.nome);
 														$("#email").val(resultado.email);
 														$("#telefone").val(resultado.telefone);

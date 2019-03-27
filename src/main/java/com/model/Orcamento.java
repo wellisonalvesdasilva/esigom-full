@@ -41,9 +41,20 @@ public class Orcamento {
 	@Column(name = "km")
 	private Integer km;
 
+	@Column(name = "cliente_id", insertable = false, updatable = false)
+	private Integer clienteId;
+
 	@OneToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
+
+	public Integer getClienteId() {
+		return clienteId;
+	}
+
+	public void setClienteId(Integer clienteId) {
+		this.clienteId = clienteId;
+	}
 
 	public Integer getId() {
 		return id;

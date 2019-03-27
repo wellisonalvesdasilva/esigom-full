@@ -28,6 +28,13 @@ public class OrcamentoServiceImpl implements OrcamentoService {
 	@Autowired
 	ClienteDao _clienteDao;
 
+	public Boolean salvarOrcamento(Object dto) {
+
+		// Converter objeto para classe serializável
+
+		return null;
+	}
+
 	public DtoListaPeca getPesquisaPeca(String nome) {
 
 		List<Peca> retorno = _pecaDao.lista(nome);
