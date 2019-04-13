@@ -6,22 +6,22 @@ import com.model.Orcamento;
 
 public class DtoSalvarOrcamento extends Orcamento {
 
-	private List<DtoArraySalvarOrcamento> listPecas;
-	private List<DtoArraySalvarOrcamento> listServicos;
+	public List<DtoItemOrcamento> listPecas;
+	public List<DtoItemOrcamento> listServicos;
 
-	public List<DtoArraySalvarOrcamento> getListPecas() {
+	public List<DtoItemOrcamento> getListPecas() {
 		return listPecas;
 	}
 
-	public void setListPecas(List<DtoArraySalvarOrcamento> listPecas) {
+	public void setListPecas(List<DtoItemOrcamento> listPecas) {
 		this.listPecas = listPecas;
 	}
 
-	public List<DtoArraySalvarOrcamento> getListServicos() {
+	public List<DtoItemOrcamento> getListServicos() {
 		return listServicos;
 	}
 
-	public void setListServicos(List<DtoArraySalvarOrcamento> listServicos) {
+	public void setListServicos(List<DtoItemOrcamento> listServicos) {
 		this.listServicos = listServicos;
 	}
 

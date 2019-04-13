@@ -1,7 +1,10 @@
 package com.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "orcamento")
@@ -41,12 +46,29 @@ public class Orcamento {
 	@Column(name = "km")
 	private Integer km;
 
-	@Column(name = "cliente_id", insertable = false, updatable = false)
+	@Column(name = "cliente_id")
 	private Integer clienteId;
 
-	@OneToOne
-	@JoinColumn(name = "cliente_id")
-	private Cliente cliente;
+/*	@OneToOne
+	@JoinColumn(name = "cliente_id", insertable = false, updatable = false)
+	private Cliente cliente;*/
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "orcamento", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<OrcamentoItem> orcamentoItens = new ArrayList<OrcamentoItem>();
+
+	public void AdicionarFilhos(OrcamentoItem filho) {
+		orcamentoItens.add(filho);
+		filho.setOrcamento(this);
+	}
+
+	public List<OrcamentoItem> getOrcamentoItens() {
+		return orcamentoItens;
+	}
+
+	public void setOrcamentoItens(List<OrcamentoItem> orcamentoItens) {
+		this.orcamentoItens = orcamentoItens;
+	}
 
 	public Integer getClienteId() {
 		return clienteId;
@@ -120,12 +142,12 @@ public class Orcamento {
 		this.km = km;
 	}
 
-	public Cliente getCliente() {
+	/*public Cliente getCliente() {
 		return cliente;
 	}
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
-	}
+	}*/
 
 }

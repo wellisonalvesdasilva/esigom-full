@@ -13,7 +13,7 @@ import com.dao.ClienteDao;
 import com.dto.DtoClientePesquisa;
 import com.dto.DtoEditarCliente;
 import com.dto.DtoRetornoPaginado;
-import com.dtoRel.ClienteREL;
+import com.dtoReports.ClienteREL;
 import com.model.Cliente;
 import com.services.ClienteService;
 

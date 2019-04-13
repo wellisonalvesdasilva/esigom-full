@@ -1,4 +1,4 @@
-package com.dtoRel;
+package com.dtoReports;
 
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;

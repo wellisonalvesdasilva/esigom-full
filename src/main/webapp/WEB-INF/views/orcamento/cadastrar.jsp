@@ -23,27 +23,27 @@
 						<form:form method="POST" modelAttribute="obj"
 							cssClass='form-horizontal'>
 							<div class="row">
-								<div class="col-md-2">
+								<!-- <div class="col-md-2">
 									<div class="form-group">
 										<label>Data do Orçamento</label> <input autocomplete="off"
 											placeholder="DD/MM/AAAA" id="data" name="data" type="text"
 											class="form-control dataMask" placeholder="Data">
 									</div>
-								</div>
+								</div> -->
 								<div class="col-md-2">
 									<div class="form-group">
 										<label>CPF do Cliente</label> <input type="text" id="cpf"
 											name="cpf" class="form-control" placeholder="CPF do Cliente">
 									</div>
 								</div>
-								<div class="col-md-2 pl-1">
+								<div class="col-md-3 pl-1">
 									<div class="form-group">
 										<input type="hidden" id="clienteId" name="clienteId" /> <label>Nome</label>
 										<input id="nome" name="nome" type="text" class="form-control"
 											disabled="disabled" placeholder="Nome">
 									</div>
 								</div>
-								<div class="col-md-2 pl-1">
+								<div class="col-md-3 pl-1">
 									<div class="form-group">
 										<label>Email</label> <input id="email" name="email"
 											type="text" disabled="disabled" class="form-control"
@@ -376,7 +376,7 @@
 	
 			// Campos Preenchidos
 			dto.clienteId = $('#clienteId').val();
-			dto.data = $('#data').val();
+			/* dto.data = $('#data').val(); */
 			dto.veiculoPlaca = $('#veiculoPlaca').val();
 			dto.marca = $('#marca').val();
 			dto.modelo = $('#modelo').val();

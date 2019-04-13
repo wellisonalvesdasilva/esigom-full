@@ -1,5 +1,7 @@
 package com.services;
 
+import java.io.Serializable;
+
 import com.dto.DtoListaPeca;
 import com.model.Cliente;
 import net.sf.jasperreports.engine.JRException;

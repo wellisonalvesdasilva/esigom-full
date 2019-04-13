@@ -47,17 +47,9 @@ public class Cliente {
 	private String bairro;
 	private String rua;
 	private String numero;
-
-	@OneToOne(mappedBy = "cliente", fetch = FetchType.LAZY, orphanRemoval = false)
-	private Orcamento ordem;
-
-	public Orcamento getOrdem() {
-		return ordem;
-	}
-
-	public void setOrdem(Orcamento ordem) {
-		this.ordem = ordem;
-	}
+	/*
+	 * @OneToOne(mappedBy = "cliente") private Orcamento ordem;
+	 */
 
 	public Date getDth_cadastro() {
 		return dth_cadastro;

@@ -1,11 +1,11 @@
 package com.dto;
 
-public class DtoArraySalvarOrcamento {
+public class DtoItemOrcamento {
 
-	private Integer id;
-	private String quantidade;
-	private Double subTotal;
-	private Integer tipoItem;
+	public Integer id;
+	public Integer quantidade;
+	private String subTotal;
+	public Integer tipoItem;
 
 	public Integer getId() {
 		return id;
@@ -15,19 +15,19 @@ public class DtoArraySalvarOrcamento {
 		this.id = id;
 	}
 
-	public String getQuantidade() {
+	public Integer getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(String quantidade) {
+	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
 
-	public Double getSubTotal() {
+	public String getSubTotal() {
 		return subTotal;
 	}
 
-	public void setSubTotal(Double subTotal) {
+	public void setSubTotal(String subTotal) {
 		this.subTotal = subTotal;
 	}
 

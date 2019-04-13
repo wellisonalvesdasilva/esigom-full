@@ -1,30 +1,24 @@
 package com.daoImpl;
-/*package com.daoImpl;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.hibernate.SessionFactory;
 
-import com.model.Cliente;
-import com.dao.ClienteDao;
-import com.dto.DtoClientePesquisa;
-import com.dto.DtoRetornoPaginado;
+import java.io.Serializable;
+
+import org.hibernate.SessionFactory;
+import com.model.Orcamento;
+import com.dao.OrcamentoDao;
 
 @Repository
 @Transactional
-public class OrdemServicoDaoImpl implements ClienteDao {
+public class OrcamentoDaoImpl implements OrcamentoDao {
 
 	@Autowired
 	SessionFactory session;
 
-	@SuppressWarnings("unchecked")
-	public List<OrdemServico> lista() {
-		return session.getCurrentSession().createQuery("from Cliente").list();
+	public void persist(Orcamento orcamento) {
+		session.getCurrentSession().save(orcamento);
 	}
 
-
 }
-*/
