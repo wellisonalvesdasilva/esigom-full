@@ -18,7 +18,7 @@
 			<div class="col-md-12">
 				<div class="card strpied-tabled-with-hover">
 					<div class="card-header ">
-						<h4 class="card-title">Tabela de Serviços</h4>
+						<h4 class="card-title">Consultar Orçamentos</h4>
 					</div>
 					<div class="card-body">
 						<form>
@@ -49,10 +49,10 @@
 										<i class="nc-icon nc-refresh-02"></i> Limpar
 									</button>
 									<a name="btnSubmit" rel="tooltip"
-										data-original-title="Cadastrar Novo Usuário" id="btnSubmit"
-										href='/e-SIGOM/home/servicos/cadastrar' type="submit"
+										data-original-title="Cadastrar Novo Orçamento" id="btnSubmit"
+										href='/e-SIGOM/home/orcamentos/cadastrar' type="submit"
 										class="btn btn-success btn-fill btn-pesquisa"> <i
-										class="nc-icon nc-simple-add"></i> Novo Cadastro
+										class="nc-icon nc-simple-add"></i> Gerar Orçamento
 									</a>
 								</div>
 							</div>
@@ -65,8 +65,12 @@
 								<thead>
 									<tr>
 										<th class="text-center" onclick="ordenarColuna('id')">ID</th>
-										<th onclick="ordenarColuna('descricao')" class="text-center">DESCRIÇÃO</th>
-										<th onclick="ordenarColuna('valor')" class="text-center">VALOR</th>
+										<th onclick="ordenarColuna('valor')" class="text-center">DATA
+											CADASTRO</th>
+										<th onclick="ordenarColuna('descricao')" class="text-center">
+											NOME DO CLIENTE</th>
+										<th onclick="ordenarColuna('valor')" class="text-center">SITUAÇÃO</th>
+										<th onclick="ordenarColuna('valor')" class="text-center">SUBTOTAL</th>
 										<th class="text-center">AÇÕES</th>
 									</tr>
 								</thead>
@@ -122,7 +126,7 @@ $('#btnConfirmar').click(function() {
 	$('#btnConfirmar').attr('disabled', 'disabled');
 	$('#btnCancelar').attr('disabled', 'disabled');
 	$.ajax({
-		url : 'servicos/excluir/' + codServico,
+		url : 'orcamentos/excluir/' + codServico,
 		type : 'POST',
 		contentType : "application/json"
 	}).done(function(data) {
@@ -215,16 +219,14 @@ function pesquisar() {
 
 // Construção das linhas da grid
 function carregarDataTables(pagina, colunaParaOrdenar) {
-	
-	// Carregando
 	$('#example').append(
 			'<tbody id="carregando">'
-						+'<tr class="odd" id="nenhumEncontrado">'
+						+'<tr class="odd">'
 							+'<td valign="top" colspan="7"'
 							+'class="dataTables_empty text-center">Carregando...</td>'
 						+'</tr>'
 			+'</tbody>'
-	);
+	)								
 	
 	// Definindo tamanho esperado pelo Front
 	var offset = 10;
@@ -242,7 +244,7 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 	// Chamadando Ajax
 	$
 			.ajax({
-				url : '/e-SIGOM/home/servicos/pagination/' + pagina,
+				url : '/e-SIGOM/home/orcamentos/pagination/' + pagina,
 				type : 'POST',
 				data : JSON.stringify(dto),
 				dataType : "json",
@@ -256,28 +258,65 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 						if (data.lista.length > 0) {
 							data.lista
 									.forEach(function(valor) {
-										
-										// Carregando o datatables
+									// Carregando o datatables
 										t.row
 												.add(
 														[
 																'<div class="text-center">'
 																		+ valor.id
 																		+ '</div>',
-																'<div class="text-left">'
-																		+ valor.descricao
-																		+ '</div>',
 																'<div class="text-center">'
-																	+ valor.valorFormatado
+																		+ dataAtualFormatada(valor.dataCadastro)
+																		+ '</div>',
+														
+																'<div class="text-center">'
+																	+ valor.cliente.nome
 																	+ '</div>',
 
+																	'<div class="text-center">'
+																	+'<span class="label ellipsis_150 ng-isolate-scope ng-binding label-default"'
+																	+'style="display: block; margin: 0; padding: 11.5px;">Gerado</span>'
+																+'</div>',
+																
+																	'<div class="text-center">'
+																	+ valor.id
+																	+ '</div>',
+																	
+														
+																		
+															
+																	
 																'<div class="text-center">'
-																		+ '<a rel="tooltip" href="/e-SIGOM/home/servicos/'
+																	
+																		// Editar Dados
+																		+ '<a rel="tooltip" href="/e-SIGOM/home/orcamentos/'
 																		+valor.id
 																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
 																		+ 'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-settings-tool-66"></i>'
 																		+ '</a> '
-
+																		
+																		// Transformar em OS
+																		+ '<a rel="tooltip" href="/e-SIGOM/home/orcamentos/'
+																		+valor.id
+																		+ '"data-original-title="Transformar em Ordem de Serviços" name="btnSubmit" id="btnSubmit"'
+																		+ 'type="button" class="btn btn-warning btn-fill"> <i class="nc-icon nc-refresh-02"></i>'
+																		+ '</a> '
+																																				
+																		// Imprimir
+																		+ '<a rel="tooltip" href="/e-SIGOM/home/orcamentos/'
+																		+valor.id
+																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
+																		+ 'type="button" class="btn btn-info btn-fill"> <i class="nc-icon nc-tap-01"></i>'
+																		+ '</a> '
+																		
+																		// Enviar por e-mail
+																		+ '<a rel="tooltip" href="/e-SIGOM/home/orcamentos/'
+																		+valor.id
+																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
+																		+ 'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-email-83"></i>'
+																		+ '</a> '
+																		
+																		// Excluir
 																		+ '<button rel="tooltip" name="btnSubmit"'
 																		+ 'data-original-title="Excluir" id="btnSubmit"'
 																		+ 'onclick="excluir('
@@ -286,7 +325,9 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 																		+ 'class="btn btn-danger btn-fill">'
 																		+ '<i class="nc-icon nc-simple-remove"></i>'
 																		+ '</button> '
-																		+ '</div>' ])
+																		+ '</div>'
+																		
+																		])
 												.draw(false);
 									});
 
@@ -428,6 +469,34 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 						}
 					});
 }
+
+
+function dataAtualFormatada(miliseconds){
+    var data = new Date(miliseconds);
+    var dia = data.getDate();
+    if (dia.toString().length == 1)
+      dia = "0"+dia;
+    var mes = data.getMonth()+1;
+    if (mes.toString().length == 1)
+      mes = "0"+mes;
+    
+    var hora = data.getHours();
+    if (hora.toString().length == 1)
+    	hora = "0"+hora;
+    
+    var minutos = data.getMinutes();
+    if (minutos.toString().length == 1)
+    	minutos = "0"+minutos;
+    
+    var segundos = data.getSeconds();
+    if (segundos.toString().length == 1)
+    	segundos = "0"+segundos;
+    
+    
+    var ano = data.getFullYear();  
+    return dia+"/"+mes+"/"+ano+" "+hora+":"+minutos+":"+segundos;   
+}
+
 
 </script>
 </body>

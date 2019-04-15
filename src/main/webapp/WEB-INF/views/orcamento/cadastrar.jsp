@@ -174,8 +174,8 @@
 														<tbody id="tabelaIndexPeca">
 															<tr class="odd" id="nenhumEncontrado">
 																<td valign="top" colspan="7"
-																	class="dataTables_empty text-center">Nenhum item
-																	foi adicionado até o momento.</td>
+																	class="dataTables_empty text-center">Nenhuma peça
+																	adicionada até o momento.</td>
 															</tr>
 														</tbody>
 													</table>
@@ -209,8 +209,8 @@
 														<tbody id="tabelaIndexServico">
 															<tr class="odd" id="nenhumServicoEncontrado">
 																<td valign="top" colspan="7"
-																	class="dataTables_empty text-center">Nenhum item
-																	foi adicionado até o momento.</td>
+																	class="dataTables_empty text-center">Nenhum serviço
+																	adicionado até o momento.</td>
 															</tr>
 														</tbody>
 													</table>
@@ -236,7 +236,7 @@
 						</form:form>
 						<div class="row">
 							<div class="col-md-5">
-								<a href='#' type="button" class="btn btn-warning btn-fill">
+								<a href='/e-SIGOM/home/orcamentos' type="button" class="btn btn-warning btn-fill">
 									<i class="nc-icon nc-stre-left"></i> Consulta
 								</a>
 
@@ -245,7 +245,7 @@
 									<i class="nc-icon nc-send"></i> Salvar
 								</button>
 
-								<a href='/e-SIGOM/home/orcamento/cadastrar'
+								<a href='/e-SIGOM/home/orcamentos/cadastrar'
 									class="btn btn-info btn-fill"> <i
 									class="nc-icon nc-refresh-02"></i> Limpar
 								</a>
@@ -353,6 +353,41 @@
 						</div>
 					</div>
 				</form:form>
+				<form:form id="retornoCadastro" class="modal fade" role="dialog">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="msgRetornoCadastro"></h4>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="form-group">
+											<p>Selecione abaixo a ação que deseja realizar.</p>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-12 text-right">
+										<br> <a href="/e-SIGOM/home/orcamentos/cadastrar" type="button"
+											class="btn btn-primary btn-fill"> <i
+											class="nc-icon nc-simple-add"></i> Novo Cadastro
+										</a> <a href="#" type="button" class="btn btn-success btn-fill">
+											<i class="nc-icon nc-tap-01"></i> Imprimir
+										</a> <a href="#" type="button" class="btn btn-default btn-fill">
+											<i class="nc-icon nc-email-83"></i> Enviar por e-mail
+										</a> <a href="#" type="button" class="btn btn-danger btn-fill">
+											<i class="nc-icon nc-simple-delete"></i> Excluir
+										</a> <a href="/e-SIGOM/home/orcamentos" type="button" class="btn btn-warning btn-fill">
+											<i class="nc-icon nc-stre-left"></i> Voltar á Consulta
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form:form>
+
 
 				<div class="clearfix"></div>
 			</div>
@@ -370,13 +405,14 @@
 	
 	var dto = {};
 		// Ajax Salvar
+		
+		
 		function salvarCadastro(){
 			dto.listPecas = listPecas;
 			dto.listServicos = listServicos;
 	
 			// Campos Preenchidos
 			dto.clienteId = $('#clienteId').val();
-			/* dto.data = $('#data').val(); */
 			dto.veiculoPlaca = $('#veiculoPlaca').val();
 			dto.marca = $('#marca').val();
 			dto.modelo = $('#modelo').val();
@@ -394,9 +430,17 @@
 						}
 					})
 			.done(
-					function(response) {
+					function(retorno) {
 											
-											
+				// Se sucesso
+						if(retorno){
+							$('#msgRetornoCadastro').html("Orçamento nº "+retorno+" gerado com sucesso!");
+							
+							$('#retornoCadastro').modal({
+								backdrop : 'static',
+								keyboard : false
+							});
+						}
 					});
 		};
 	
@@ -468,7 +512,7 @@
 				$('#nenhumEncontrado')
 				.append(
 						'<td valign="top" colspan="7"'
-			+'class="dataTables_empty text-center">Nenhum item foi adicionado até o momento.</td>'
+			+'class="dataTables_empty text-center">Nenhuma peça adicionada até o momento.</td>'
 								);
 			}
 
@@ -484,7 +528,7 @@
 				$('#nenhumServicoEncontrado')
 				.append(
 						'<td valign="top" colspan="7"'
-			+'class="dataTables_empty text-center">Nenhum item foi adicionado até o momento.</td>'
+			+'class="dataTables_empty text-center">Nenhum serviço adicionado até o momento.</td>'
 								);
 			}
 			

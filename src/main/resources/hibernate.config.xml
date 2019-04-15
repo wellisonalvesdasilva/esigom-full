@@ -5,19 +5,18 @@
 
 <hibernate-configuration>
 	<session-factory>
-
 		<!-- Funcionalidades -->
-		<mapping class="com.model.Cliente" />
-		<mapping class="com.model.Servico" />
-		<mapping class="com.model.Peca" />
-		<mapping class="com.model.Orcamento" />
-		<mapping class="com.model.OrcamentoItem" />
+		<mapping class="model.Cliente" />
+		<mapping class="model.Servico" />
+		<mapping class="model.Peca" />
+		<mapping class="model.Orcamento" />
+		<mapping class="model.OrcamentoItem" />
 
 		<!-- Spring Security -->
-		<mapping class="com.model.PersistentLogin" />
-		<mapping class="com.model.Usuario" />
-		<mapping class="com.model.UserProfile" />
-		<mapping class="com.model.UserProfileType" />
+		<mapping class="model.PersistentLogin" />
+		<mapping class="model.Usuario" />
+		<mapping class="model.UserProfile" />
+		<mapping class="model.UserProfileType" />
 
 	</session-factory>
 </hibernate-configuration>

@@ -11,38 +11,33 @@
 							class="nc-icon nc-chart-pie-35"></i>
 							<p>Dashboard</p>
 					</a></li>
-
-					<li><a class="nav-link"
-						href="#"> <i
-							class="nc-icon nc-money-coins"></i>
-							<p>Extrato Pagseguro</p>
+					<li class="nav-item"><a class="nav-link"
+						href="/e-SIGOM/home/orcamentos"> <i class="nc-icon nc-notes"></i>
+							<p>Orçamentos</p>
 					</a></li>
 
-					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGOM/home/orcamentos/cadastrar"> <i
-							class="nc-icon nc-notes"></i>
-							<p>Listar Orçamentos</p>
+					<li><a class="nav-link" href="#"> <i
+							class="nc-icon nc-money-coins"></i>
+							<p>Ordens de Serviços</p>
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
 						href="/e-SIGOM/home/clientes"> <i class="nc-icon nc-single-02"></i>
-							<p>Cadastrar Clientes</p>
+							<p>Gerenciar Clientes</p>
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
 						href="/e-SIGOM/home/pecas"> <i
 							class="nc-icon nc-settings-tool-66"></i>
-							<p>Cadastrar Peças</p>
+							<p>Gerenciar Peças</p>
 					</a></li>
 
-					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGOM/home/servicos"> <i
+					<li class="nav-item"><a class="nav-link" href="#"> <i
 							class="nc-icon nc-bullet-list-67"></i>
 							<p>Cadastrar Serviços</p>
 					</a></li>
 
-					<li><a class="nav-link"
-						href="/e-SIGOM/home/alimento/consultar"> <i
+					<li><a class="nav-link" href="#"> <i
 							class="nc-icon nc-layers-3	"></i>
 							<p>Gerenciar Estoque</p>
 					</a></li>
@@ -56,7 +51,7 @@
 					<li class="nav-item active active-pro"><a
 						class="nav-link active" href="#"> <i
 							class="nc-icon nc-circle-09"></i>
-							<p>Controlar Acesso</p>
+							<p>Controle de Acesso</p>
 					</a></li>
 				</ul>
 			</div>

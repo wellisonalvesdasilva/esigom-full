@@ -216,7 +216,15 @@ function pesquisar() {
 
 // Construção das linhas da grid
 function carregarDataTables(pagina, colunaParaOrdenar) {
-	
+	// Carregando
+	$('#example').append(
+			'<tbody id="carregando">'
+						+'<tr class="odd" id="nenhumEncontrado">'
+							+'<td valign="top" colspan="7"'
+							+'class="dataTables_empty text-center">Carregando...</td>'
+						+'</tr>'
+			+'</tbody>'
+	);
 
 	// Definindo tamanho esperado pelo Front
 	var offset = 10;
@@ -242,6 +250,7 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 			})
 			.done(
 					function(data) {
+						$( "#carregando" ).remove();
 						var t = dataTable();
 						t.clear();
 						if (data.lista.length > 0) {
