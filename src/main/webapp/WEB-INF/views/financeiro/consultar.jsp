@@ -18,7 +18,7 @@
 			<div class="col-md-12">
 				<div class="card strpied-tabled-with-hover">
 					<div class="card-header ">
-						<h4 class="card-title">Consultar Orçamentos</h4>
+						<h4 class="card-title">Consultar Detalhes Financeiros</h4>
 					</div>
 					<div class="card-body">
 						<form>
@@ -50,9 +50,9 @@
 									</button>
 									<a name="btnSubmit" rel="tooltip"
 										data-original-title="Cadastrar Novo Orçamento" id="btnSubmit"
-										href='/e-SIGOM/home/orcamentos/cadastrar' type="submit"
+										href='/e-SIGOM/home/ordem-servicos/cadastrar' type="submit"
 										class="btn btn-success btn-fill btn-pesquisa"> <i
-										class="nc-icon nc-simple-add"></i> Gerar Orçamento
+										class="nc-icon nc-simple-add"></i> Novo Cadastro
 									</a>
 								</div>
 							</div>
@@ -66,12 +66,11 @@
 									<tr>
 										<th class="text-center" onclick="ordenarColuna('id')">ID</th>
 										<th onclick="ordenarColuna('valor')" class="text-center">DATA
-											DO CADASTRO</th>
+											CADASTRO</th>
 										<th onclick="ordenarColuna('descricao')" class="text-center">
 											NOME DO CLIENTE</th>
 										<th onclick="ordenarColuna('valor')" class="text-center">STATUS</th>
 										<th onclick="ordenarColuna('valor')" class="text-center">SUBTOTAL</th>
-										
 										<th class="text-center">AÇÕES</th>
 									</tr>
 								</thead>
@@ -95,39 +94,6 @@
 								</div>
 							</div>
 						</form:form>
-						<form:form id="alterarStatus" class="modal fade" role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h4 class="modal-title">Alterar Status do Orçamento</h4>
-									</div>
-									<div class="modal-body">
-										<div class="row">
-											<div class="col-md-12">
-												<div class="form-group">
-													<select name="tp_pessoa" required="" id="tp_pessoa"
-														class="form-control">
-														<option value="">Selecione uma opção desejada</option>
-														<option value="1">Em Gerenciamento de Venda</option>
-														<option value="2">Em Ordem de Serviço</option>
-														<option value="3">Orçamento Aprovado e Executado</option>
-														<option value="4">Orçamento Cancelado</option>
-														<option value="5">Aguardando Aprovação do Cliente</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" name="btnCancelar" id="btnCancelar"
-											class="btn btn-default" data-dismiss="modal">Cancelar</button>
-										<button name="btnConfirmar" id="btnConfirmar" type="button"
-											class="btn btn-primary">Confirmar</button>
-									</div>
-								</div>
-							</div>
-						</form:form>
-
 					</div>
 				</div>
 			</div>
@@ -137,11 +103,6 @@
 <jsp:include page="../template/rodape.jsp" />
 </body>
 <script>
-
-function alterarStatus(){
-	$('#alterarStatus').modal();
-};
-
 
 $(document).ready(function() {
 	var $seuCampoCpf = $("#cpf");
@@ -165,7 +126,7 @@ $('#btnConfirmar').click(function() {
 	$('#btnConfirmar').attr('disabled', 'disabled');
 	$('#btnCancelar').attr('disabled', 'disabled');
 	$.ajax({
-		url : 'orcamentos/excluir/' + codServico,
+		url : 'ordem-servicos/excluir/' + codServico,
 		type : 'POST',
 		contentType : "application/json"
 	}).done(function(data) {
@@ -283,7 +244,7 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 	// Chamadando Ajax
 	$
 			.ajax({
-				url : '/e-SIGOM/home/orcamentos/pagination/' + pagina,
+				url : '/e-SIGOM/home/ordem-servicos/pagination/' + pagina,
 				type : 'POST',
 				data : JSON.stringify(dto),
 				dataType : "json",
@@ -314,7 +275,7 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 
 																	'<div class="text-center">'
 																	+'<span class="label ellipsis_150 ng-isolate-scope ng-binding label-default"'
-																	+'style="display: block; margin: 0; padding: 11.5px;">Aguardando Aprovação do Cliente</span>'
+																	+'style="display: block; margin: 0; padding: 11.5px;">GERADO</span>'
 																+'</div>',
 																
 																	'<div class="text-center">'
@@ -325,25 +286,32 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 																	
 																'<div class="text-center">'
 																	
-																		// Transformar em OS
-																		+ '<button rel="tooltip" href="/e-SIGOM/home/orcamentos/'
-																		+valor.id
-																		+ '"data-original-title="Transformar em Ordem de Serviços"  onclick="alterarStatus()" name="btnSubmit" id="btnSubmit"'
-																		+ 'type="button" class="btn btn-warning btn-fill"> <i class="nc-icon nc-refresh-02"></i>'
-																		+ '</button> '
-																																								
-																		// Gerar PDF
-																		+ '<a rel="tooltip" href="/e-SIGOM/home/orcamentos/'
-																		+valor.id
-																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
-																		+ 'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-tap-01"></i>'
-																		+ '</a> '
-																																	
 																		// Editar Dados
-																		+ '<a rel="tooltip" href="/e-SIGOM/home/orcamentos/'
+																		+ '<a rel="tooltip" href="/e-SIGOM/home/ordem-servicos/'
 																		+valor.id
 																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
 																		+ 'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-settings-tool-66"></i>'
+																		+ '</a> '
+																		
+																		// Transformar em OS
+																		+ '<a rel="tooltip" href="/e-SIGOM/home/ordem-servicos/'
+																		+valor.id
+																		+ '"data-original-title="Transformar em Ordem de Serviços" name="btnSubmit" id="btnSubmit"'
+																		+ 'type="button" class="btn btn-warning btn-fill"> <i class="nc-icon nc-refresh-02"></i>'
+																		+ '</a> '
+																																				
+																		// Imprimir
+																		+ '<a rel="tooltip" href="/e-SIGOM/home/ordem-servicos/'
+																		+valor.id
+																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
+																		+ 'type="button" class="btn btn-info btn-fill"> <i class="nc-icon nc-tap-01"></i>'
+																		+ '</a> '
+																		
+																		// Enviar por e-mail
+																		+ '<a rel="tooltip" href="/e-SIGOM/home/ordem-servicos/'
+																		+valor.id
+																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
+																		+ 'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-email-83"></i>'
 																		+ '</a> '
 																		
 																		// Excluir

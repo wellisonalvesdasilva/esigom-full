@@ -381,7 +381,7 @@ a:focus, a:active, button::-moz-focus-inner, input::-moz-focus-inner,
 	{
 	margin: 0;
 	line-height: 31px;
-	font-size: 12px;
+	font-size: 12.3px;
 	font-weight: 600;
 	text-transform: uppercase;
 	display: inline-flex;

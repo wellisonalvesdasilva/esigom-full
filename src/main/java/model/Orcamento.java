@@ -56,6 +56,9 @@ public class Orcamento {
 	@Column(name = "cliente_id", insertable = false, updatable = false)
 	private Integer clienteId;
 
+	@Column(name = "cod_status")
+	private Integer codStatus;
+
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
@@ -67,6 +70,14 @@ public class Orcamento {
 	public void AdicionarFilhos(OrcamentoItem filho) {
 		orcamentoItens.add(filho);
 		filho.setOrcamento(this);
+	}
+
+	public Integer getCodStatus() {
+		return codStatus;
+	}
+
+	public void setCodStatus(Integer codStatus) {
+		this.codStatus = codStatus;
 	}
 
 	public Integer getId() {

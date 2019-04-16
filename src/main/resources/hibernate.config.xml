@@ -11,6 +11,7 @@
 		<mapping class="model.Peca" />
 		<mapping class="model.Orcamento" />
 		<mapping class="model.OrcamentoItem" />
+		<mapping class="model.OrdemServico" />
 
 		<!-- Spring Security -->
 		<mapping class="model.PersistentLogin" />

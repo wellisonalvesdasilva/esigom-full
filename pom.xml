@@ -228,6 +228,17 @@
 	</repositories>
 
 
+	<developers>
+		<developer>
+			<name>Wellison Alves da Silva</name>
+			<email>wellis_on@hotmail.com</email>
+			<organization>WAS Desenvolvimento</organization>
+			<roles>
+				<role>Analista Desenvolvedor</role>
+			</roles>
+		</developer>
+	</developers>
+
 	<build>
 		<finalName>e-SIGOM</finalName>
 	</build>
