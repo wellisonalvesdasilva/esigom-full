@@ -71,7 +71,7 @@
 											NOME DO CLIENTE</th>
 										<th onclick="ordenarColuna('valor')" class="text-center">STATUS</th>
 										<th onclick="ordenarColuna('valor')" class="text-center">SUBTOTAL</th>
-										
+
 										<th class="text-center">AÇÕES</th>
 									</tr>
 								</thead>
@@ -108,11 +108,8 @@
 													<select name="tp_pessoa" required="" id="tp_pessoa"
 														class="form-control">
 														<option value="">Selecione uma opção desejada</option>
-														<option value="1">Em Gerenciamento de Venda</option>
-														<option value="2">Em Ordem de Serviço</option>
-														<option value="3">Orçamento Aprovado e Executado</option>
-														<option value="4">Orçamento Cancelado</option>
-														<option value="5">Aguardando Aprovação do Cliente</option>
+														<option value="1">Em Ordem de Serviço</option>
+														<option value="2">Em Gerenciamento de Venda</option>
 													</select>
 												</div>
 											</div>
@@ -324,20 +321,6 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 															
 																	
 																'<div class="text-center">'
-																	
-																		// Transformar em OS
-																		+ '<button rel="tooltip" href="/e-SIGOM/home/orcamentos/'
-																		+valor.id
-																		+ '"data-original-title="Transformar em Ordem de Serviços"  onclick="alterarStatus()" name="btnSubmit" id="btnSubmit"'
-																		+ 'type="button" class="btn btn-warning btn-fill"> <i class="nc-icon nc-refresh-02"></i>'
-																		+ '</button> '
-																																								
-																		// Gerar PDF
-																		+ '<a rel="tooltip" href="/e-SIGOM/home/orcamentos/'
-																		+valor.id
-																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
-																		+ 'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-tap-01"></i>'
-																		+ '</a> '
 																																	
 																		// Editar Dados
 																		+ '<a rel="tooltip" href="/e-SIGOM/home/orcamentos/'
@@ -345,7 +328,22 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
 																		+ 'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-settings-tool-66"></i>'
 																		+ '</a> '
+																																				
+																		// Gerar PDF
+																		+ '<button rel="tooltip" href="/e-SIGOM/home/orcamentos/'
+																		+valor.id
+																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
+																		+ 'type="button" class="btn btn-info btn-fill"> <i class="nc-icon nc-zoom-split"></i>'
+																		+ '</button> '
 																		
+																		// Transformar em OS
+																		+ '<button rel="tooltip" href="/e-SIGOM/home/orcamentos/'
+																		+valor.id
+																		+ '"data-original-title="Transformar em Ordem de Serviços"  onclick="alterarStatus()" name="btnSubmit" id="btnSubmit"'
+																		+ 'type="button" class="btn btn-warning btn-fill"> <i class="nc-icon nc-refresh-02"></i>'
+																		+ '</button> '
+																
+																	
 																		// Excluir
 																		+ '<button rel="tooltip" name="btnSubmit"'
 																		+ 'data-original-title="Excluir" id="btnSubmit"'

@@ -23,6 +23,19 @@
 						<form:form method="POST" modelAttribute="obj"
 							cssClass='form-horizontal'>
 							<div class="row">
+							<div class="col-md-2">
+									<div class="form-group">
+										<label>Tipo</label> <select name="tipoId" required id="tipoId"
+											class="form-control">
+											<option value="">Selecione</option>
+											<option value="1">Peça</option>
+											<option value="2">Óleo</option>
+											<option value="3">Acessório</option>
+											<option value="4">Outros</option>
+										</select>
+									</div>
+								</div>
+								
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Descrição</label> <input type="text" maxlength='50'
@@ -31,14 +44,7 @@
 											class="form-control" placeholder="Descrição">
 									</div>
 								</div>
-								<div class="col-md-2">
-									<div class="form-group">
-										<label>Estoque</label> <input type="text" maxlength='50'
-											minlength='1' id="estoque" name="estoque"
-											value='${obj.estoque}' class="form-control"
-											placeholder="Total em Estoque">
-									</div>
-								</div>
+								
 								<div class="col-md-2">
 									<div class="form-group">
 										<label>Categoria</label> <select name="categoriaId" required
@@ -97,6 +103,11 @@
 			var categoriaId = ${obj.categoriaId};
 			categoriaId ? document.getElementById("categoriaId").value = categoriaId : document.getElementById("categoriaId").value = '';
 
+			
+			var tipoId = ${obj.tipoId};
+			tipoId ? document.getElementById("tipoId").value = tipoId : document.getElementById("tipoId").value = '';
+
+			
 			$("#valor").maskMoney({
 				symbol : 'R$ ',
 				showSymbol : true,

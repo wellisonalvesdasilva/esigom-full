@@ -17,31 +17,26 @@
 							<i class="nc-icon nc-paper-2"></i>
 							<p>Ordens de Serviços</p>
 					</a></li>
-
 					<li><a class="nav-link" href="/e-SIGOM/home/vendas"> <i
 							class="nc-icon nc-cart-simple"></i>
 							<p>Gerenciar Vendas</p>
 					</a></li>
-					<li class="nav-item <%--active --%>"><a class="nav-link"
-						href="/e-SIGOM/home/assuntos-financeiros"> <i class="nc-icon nc-money-coins"></i>
-							<p>Controle Financeiro</p>
-					</a></li>
 
 					<li><a class="nav-link" href="/e-SIGOM/home/estoques"> <i
 							class="nc-icon nc-layers-3	"></i>
-							<p>Controle de Estoque</p>
-					</a></li>
-
-					<li class="nav-item"><a class="nav-link"
-						href="/e-SIGOM/home/pecas"> <i
-							class="nc-icon nc-settings-tool-66"></i>
-							<p>Lista de Peças</p>
+							<p>Gerenciar Estoque</p>
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
 						href="/e-SIGOM/home/servicos"> <i
 							class="nc-icon nc-single-copy-04"></i>
-							<p>Lista de Serviços</p>
+							<p>Tabela Serviços</p>
+					</a></li>
+
+					<li class="nav-item"><a class="nav-link"
+						href="/e-SIGOM/home/pecas"> <i
+							class="nc-icon nc-settings-tool-66"></i>
+							<p>Tabela de Produtos</p>
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link"
@@ -49,9 +44,13 @@
 							<p>Cadastro de Clientes</p>
 					</a></li>
 
+					<li class="nav-item"><a class="nav-link" href="#"> <i
+							class="nc-icon nc-chart-bar-32"></i>
+							<p>Visualizar Relatórios</p>
+					</a></li>
+
 					<li class="nav-item active active-pro"><a
-						class="nav-link active" href="#"> <i
-							class="pe-7s-users"></i>
+						class="nav-link active" href="#"> <i class="pe-7s-users"></i>
 							<p>Controle de Acesso</p>
 					</a></li>
 				</ul>

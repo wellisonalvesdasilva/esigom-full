@@ -28,12 +28,23 @@ public class Peca {
 	@Column(name = "valor_venda")
 	private String valor;
 
+	@Column(name = "tipo_id")
+	private Integer tipoId;
+
 	@Column(name = "estoque")
-	private Integer estoque;
+	private Integer estoque = 0;
 
 	@Column(name = "dth_cadastro")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dth_cadastro;
+
+	public Integer getTipoId() {
+		return tipoId;
+	}
+
+	public void setTipoId(Integer tipoId) {
+		this.tipoId = tipoId;
+	}
 
 	public Integer getId() {
 		return id;

@@ -28,11 +28,11 @@ import services.OrdemServicoService;
 public class OrdemServicoServiceImpl implements OrdemServicoService {
 
 	@Autowired
-	OrdemServicoService _ordemServicoService;
+	OrdemServicoDao _ordemServicoDao;
 
 	public DtoRetornoPaginado<DtoOrdemServicoPesquisa> listAll(Integer pagina, DtoOrdemServicoPesquisa dto)
 			throws IllegalAccessException {
-		return _ordemServicoService.listAll(pagina, dto);
+		return _ordemServicoDao.listAll(pagina, dto);
 	}
 
 	/*

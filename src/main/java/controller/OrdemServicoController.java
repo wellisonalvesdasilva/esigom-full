@@ -27,15 +27,15 @@ public class OrdemServicoController {
 
 	@RequestMapping(method = { RequestMethod.GET })
 	public ModelAndView lista(ModelMap model) {
-		return new ModelAndView("ordem-servico/consultar");
+		return new ModelAndView("ordem-servico/index");
 	}
-
+	
 	@RequestMapping(value = "/pagination/{pagina}", method = { RequestMethod.POST })
 	public @ResponseBody DtoRetornoPaginado<DtoOrdemServicoPesquisa> paginated(@PathVariable("pagina") Integer pagina,
 			@RequestBody DtoOrdemServicoPesquisa dto) throws IllegalAccessException {
 		return _ordemServicoService.listAll(pagina, dto);
 	}
-/*
+	/*
 	@RequestMapping(value = "/cadastrar", method = { RequestMethod.GET })
 	public ModelAndView insert(ModelMap model) {
 		model.addAttribute("obj", new Servico());

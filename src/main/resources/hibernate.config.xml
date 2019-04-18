@@ -12,7 +12,9 @@
 		<mapping class="model.Orcamento" />
 		<mapping class="model.OrcamentoItem" />
 		<mapping class="model.OrdemServico" />
-
+		<mapping class="model.Venda" />
+		<mapping class="model.VendaItem" />
+		
 		<!-- Spring Security -->
 		<mapping class="model.PersistentLogin" />
 		<mapping class="model.Usuario" />

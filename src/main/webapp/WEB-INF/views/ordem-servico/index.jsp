@@ -18,7 +18,7 @@
 			<div class="col-md-12">
 				<div class="card strpied-tabled-with-hover">
 					<div class="card-header ">
-						<h4 class="card-title">Consultar Vendas</h4>
+						<h4 class="card-title">Consultar Ordens de Serviços</h4>
 					</div>
 					<div class="card-body">
 						<form>
@@ -48,12 +48,6 @@
 										type="button" class="btn btn-default btn-fill btn-pesquisa">
 										<i class="nc-icon nc-refresh-02"></i> Limpar
 									</button>
-									<a name="btnSubmit" rel="tooltip"
-										data-original-title="Cadastrar Novo Orçamento" id="btnSubmit"
-										href='/e-SIGOM/home/ordem-servicos/cadastrar' type="submit"
-										class="btn btn-success btn-fill btn-pesquisa"> <i
-										class="nc-icon nc-simple-add"></i> Novo Cadastro
-									</a>
 								</div>
 							</div>
 							<div class="clearfix"></div>
@@ -68,32 +62,16 @@
 										<th onclick="ordenarColuna('valor')" class="text-center">DATA
 											CADASTRO</th>
 										<th onclick="ordenarColuna('descricao')" class="text-center">
-											NOME DO CLIENTE</th>
-										<th onclick="ordenarColuna('valor')" class="text-center">STATUS</th>
-										<th onclick="ordenarColuna('valor')" class="text-center">SUBTOTAL</th>
+											CLIENTE</th>
+										<th onclick="ordenarColuna('valor')" class="text-center">
+											ORÇAMENTO</th>
+										<th onclick="ordenarColuna('valor')" class="text-center">DATA
+											ENTREGA</th>
 										<th class="text-center">AÇÕES</th>
 									</tr>
 								</thead>
 							</table>
 						</div>
-						<form:form id="myModal" class="modal fade" role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h4 class="modal-title">Atenção</h4>
-									</div>
-									<div class="modal-body">
-										<p>Deseja realmente excluir este Serviço?</p>
-									</div>
-									<div class="modal-footer">
-										<button type="button" name="btnCancelar" id="btnCancelar"
-											class="btn btn-default" data-dismiss="modal">Cancelar</button>
-										<button name="btnConfirmar" id="btnConfirmar" type="button"
-											class="btn btn-primary">Confirmar</button>
-									</div>
-								</div>
-							</div>
-						</form:form>
 					</div>
 				</div>
 			</div>
@@ -251,67 +229,58 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 				contentType : "application/json; charset=utf-8"
 			})
 			.done(
-					function(data) {
+					function(valor) {
+						console.log(valor);
 						$( "#carregando" ).remove();
 						var t = dataTable();
 						t.clear();
-						if (data.lista.length > 0) {
-							data.lista
-									.forEach(function(valor) {
+						if (valor.lista.length > 0) {
+							valor.lista.forEach(function(valor) {
 									// Carregando o datatables
 										t.row
 												.add(
 														[
 																'<div class="text-center">'
-																		+ valor.id
+																		+valor.id
 																		+ '</div>',
+																		
 																'<div class="text-center">'
-																		+ dataAtualFormatada(valor.dataCadastro)
+																		+ dataAtualFormatada(valor.dataGeracao)
 																		+ '</div>',
-														
+																		
 																'<div class="text-center">'
-																	+ valor.cliente.nome
-																	+ '</div>',
+																		+  valor.orcamento.cliente.nome
+																		+ '</div>',
+																		
+												/* 				'<div class="text-center">Nº. '
+																	+ valor.orcamento.id
+																	+ '</div>', */
 
+																	
 																	'<div class="text-center">'
 																	+'<span class="label ellipsis_150 ng-isolate-scope ng-binding label-default"'
-																	+'style="display: block; margin: 0; padding: 11.5px;">GERADO</span>'
+																	+'style="display: block; margin: 0; padding: 11.5px;">Aguardando Execução</span>'
 																+'</div>',
 																
 																	'<div class="text-center">'
-																	+ valor.id
+																	+ dataAtualFormatada(valor.dataEntrega)
 																	+ '</div>',
-																	
-															
-																	
+														
+													
 																'<div class="text-center">'
 																	
-																		// Editar Dados
+																		// Configurar Ordem de Serviço
 																		+ '<a rel="tooltip" href="/e-SIGOM/home/ordem-servicos/'
 																		+valor.id
 																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
-																		+ 'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-settings-tool-66"></i>'
-																		+ '</a> '
-																		
-																		// Transformar em OS
-																		+ '<a rel="tooltip" href="/e-SIGOM/home/ordem-servicos/'
-																		+valor.id
-																		+ '"data-original-title="Transformar em Ordem de Serviços" name="btnSubmit" id="btnSubmit"'
 																		+ 'type="button" class="btn btn-warning btn-fill"> <i class="nc-icon nc-refresh-02"></i>'
 																		+ '</a> '
 																																				
 																		// Imprimir
-																		+ '<a rel="tooltip" href="/e-SIGOM/home/ordem-servicos/'
+																		+ '<a rel="tooltip" href="#'
 																		+valor.id
 																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
-																		+ 'type="button" class="btn btn-info btn-fill"> <i class="nc-icon nc-tap-01"></i>'
-																		+ '</a> '
-																		
-																		// Enviar por e-mail
-																		+ '<a rel="tooltip" href="/e-SIGOM/home/ordem-servicos/'
-																		+valor.id
-																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
-																		+ 'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-email-83"></i>'
+																		+ 'type="button" class="btn btn-info btn-fill"> <i class="nc-icon nc-zoom-split"></i>'
 																		+ '</a> '
 																		
 																		// Excluir

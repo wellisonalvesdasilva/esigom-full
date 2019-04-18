@@ -59,6 +59,9 @@ public class Orcamento {
 	@Column(name = "cod_status")
 	private Integer codStatus;
 
+	@Column(name = "forma_pagamento")
+	private Integer formaPagamento;
+
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
@@ -66,6 +69,14 @@ public class Orcamento {
 	@JsonIgnore
 	@OneToMany(mappedBy = "orcamento", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<OrcamentoItem> orcamentoItens = new ArrayList<OrcamentoItem>();
+
+	public Integer getFormaPagamento() {
+		return formaPagamento;
+	}
+
+	public void setFormaPagamento(Integer formaPagamento) {
+		this.formaPagamento = formaPagamento;
+	}
 
 	public void AdicionarFilhos(OrcamentoItem filho) {
 		orcamentoItens.add(filho);

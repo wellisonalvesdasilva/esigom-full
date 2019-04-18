@@ -23,6 +23,19 @@
 						<form:form method="POST" modelAttribute="obj"
 							cssClass='form-horizontal'>
 							<div class="row">
+								<div class="col-md-2">
+									<div class="form-group">
+										<label>Forma de Pagamento</label> <select name="tp_pessoa"
+											required id="tp_pessoa" class="form-control">
+											<option value="">Selecione</option>
+											<option value="1">Dinheiro</option>
+											<option value="2">Cartão Débito</option>
+											<option value="3">Cartão Crédito</option>
+											<!-- 											<option value="2">Jurídica</option> -->
+										</select>
+									</div>
+								</div>
+
 								<!-- <div class="col-md-2">
 									<div class="form-group">
 										<label>Data do Orçamento</label> <input autocomplete="off"
@@ -57,6 +70,9 @@
 											name="telefone" class="form-control" placeholder="Telefone">
 									</div>
 								</div>
+
+							</div>
+							<div class="row">
 								<div class="col-md-2">
 									<div class="form-group">
 										<label>Celular</label> <input type="text" id="celular"
@@ -64,8 +80,6 @@
 											placeholder="Celular">
 									</div>
 								</div>
-							</div>
-							<div class="row">
 								<div class="col-md-1">
 									<div class="form-group">
 										<label>Estado</label> <input type="text" disabled="disabled"
@@ -86,7 +100,7 @@
 											disabled="disabled" class="form-control" placeholder="Bairro">
 									</div>
 								</div>
-								<div class="col-md-5">
+								<div class="col-md-3">
 									<div class="form-group">
 										<label>Rua</label> <input type="text" id="rua" name="rua"
 											disabled="disabled" class="form-control" placeholder="Rua">
@@ -147,7 +161,7 @@
 										<li class="nav-item"><a class="nav-link active"
 											id="home-tab" data-toggle="tab" onclick="alteraTipoItem(1)"
 											href="#home" role="tab" aria-controls="home"
-											aria-selected="true">Peças</a></li>
+											aria-selected="true">Peças e Produtos</a></li>
 										<li class="nav-item"><a class="nav-link" id="profile-tab"
 											data-toggle="tab" onclick="alteraTipoItem(2)" href="#perfil"
 											role="tab" aria-controls="profile" aria-selected="false">Serviços</a></li>
@@ -174,7 +188,7 @@
 														<tbody id="tabelaIndexPeca">
 															<tr class="odd" id="nenhumEncontrado">
 																<td valign="top" colspan="7"
-																	class="dataTables_empty text-center">Nenhuma peça
+																	class="dataTables_empty text-center">Nenhuma peça/produto
 																	adicionada até o momento.</td>
 															</tr>
 														</tbody>
@@ -209,8 +223,8 @@
 														<tbody id="tabelaIndexServico">
 															<tr class="odd" id="nenhumServicoEncontrado">
 																<td valign="top" colspan="7"
-																	class="dataTables_empty text-center">Nenhum serviço
-																	adicionado até o momento.</td>
+																	class="dataTables_empty text-center">Nenhum
+																	serviço adicionado até o momento.</td>
 															</tr>
 														</tbody>
 													</table>
@@ -236,8 +250,9 @@
 						</form:form>
 						<div class="row">
 							<div class="col-md-5">
-								<a href='/e-SIGOM/home/orcamentos' type="button" class="btn btn-warning btn-fill">
-									<i class="nc-icon nc-stre-left"></i> Consulta
+								<a href='/e-SIGOM/home/orcamentos' type="button"
+									class="btn btn-warning btn-fill"> <i
+									class="nc-icon nc-stre-left"></i> Consulta
 								</a>
 
 								<button id="salvar" name="salvar" onclick="salvarCadastro()"
@@ -369,8 +384,8 @@
 								</div>
 								<div class="row">
 									<div class="col-lg-12 text-right">
-										<br> <a href="/e-SIGOM/home/orcamentos/cadastrar" type="button"
-											class="btn btn-primary btn-fill"> <i
+										<br> <a href="/e-SIGOM/home/orcamentos/cadastrar"
+											type="button" class="btn btn-primary btn-fill"> <i
 											class="nc-icon nc-simple-add"></i> Novo Cadastro
 										</a> <a href="#" type="button" class="btn btn-success btn-fill">
 											<i class="nc-icon nc-tap-01"></i> Imprimir
@@ -378,8 +393,9 @@
 											<i class="nc-icon nc-email-83"></i> Enviar por e-mail
 										</a> <a href="#" type="button" class="btn btn-danger btn-fill">
 											<i class="nc-icon nc-simple-delete"></i> Excluir
-										</a> <a href="/e-SIGOM/home/orcamentos" type="button" class="btn btn-warning btn-fill">
-											<i class="nc-icon nc-stre-left"></i> Voltar á Consulta
+										</a> <a href="/e-SIGOM/home/orcamentos" type="button"
+											class="btn btn-warning btn-fill"> <i
+											class="nc-icon nc-stre-left"></i> Voltar á Consulta
 										</a>
 									</div>
 								</div>
@@ -512,7 +528,7 @@
 				$('#nenhumEncontrado')
 				.append(
 						'<td valign="top" colspan="7"'
-			+'class="dataTables_empty text-center">Nenhuma peça adicionada até o momento.</td>'
+			+'class="dataTables_empty text-center">Nenhuma peça/produto adicionada até o momento.</td>'
 								);
 			}
 

@@ -18,7 +18,7 @@
 			<div class="col-md-12">
 				<div class="card strpied-tabled-with-hover">
 					<div class="card-header ">
-						<h4 class="card-title">Consulta de Peças</h4>
+						<h4 class="card-title">Tabela de Produtos</h4>
 					</div>
 					<div class="card-body">
 						<form>
@@ -30,11 +30,24 @@
 											placeholder="Código">
 									</div>
 								</div>
-								<div class="col-md-5">
+								<div class="col-md-3">
 									<div class="form-group">
 										<label>Descrição</label> <input type="text" maxlength="40"
 											minlength="1" id="descricao" name="descricao"
 											class="form-control filtro" placeholder="Descrição">
+									</div>
+								</div>
+
+								<div class="col-md-2">
+									<div class="form-group">
+										<label>Tipo</label> <select name="tipoId" required id="tipoId"
+											class="form-control">
+											<option value="">Selecione</option>
+											<option value="1">Peça</option>
+											<option value="2">Óleo</option>
+											<option value="3">Acessório</option>
+											<option value="4">Outros</option>
+										</select>
 									</div>
 								</div>
 								<div class="col-md-5 text-right">
@@ -65,6 +78,7 @@
 								<thead>
 									<tr>
 										<th class="text-center" onclick="ordenarColuna('id')">ID</th>
+										<th onclick="ordenarColuna('tipo')" class="text-center">TIPO</th>
 										<th onclick="ordenarColuna('descricao')" class="text-center">DESCRIÇÃO</th>
 										<th onclick="ordenarColuna('valor')" class="text-center">VALOR</th>
 										<th onclick="ordenarColuna('estoque')" class="text-center">ESTOQUE</th>
@@ -264,6 +278,11 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 																'<div class="text-center">'
 																		+ valor.id
 																		+ '</div>',
+
+																		'<div class="text-center">'
+																		+ valor.tipo
+																		+ '</div>',
+																		
 																'<div class="text-left">'
 																		+ valor.descricao
 																		+ '</div>',

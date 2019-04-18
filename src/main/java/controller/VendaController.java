@@ -1,6 +1,5 @@
 package controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -8,18 +7,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import dto.DtoOrdemServicoPesquisa;
 import dto.DtoRetornoPaginado;
-import model.Cliente;
-import model.OrdemServico;
-import model.Servico;
-import services.OrdemServicoService;
+import dto.DtoVendaPesquisa;
+import model.Venda;
+import services.VendaService;
 
 @Controller
 @RequestMapping("/home/vendas")
@@ -27,20 +21,19 @@ import services.OrdemServicoService;
 
 public class VendaController {
 
-	//@Autowired
-	//OrdemServicoService _ordemServicoService;
+	@Autowired
+	VendaService _vendaService;
 
 	@RequestMapping(method = { RequestMethod.GET })
 	public ModelAndView lista(ModelMap model) {
-		return new ModelAndView("venda/consultar");
+		return new ModelAndView("venda/index");
 	}
-	/*
-	/*
+
 	@RequestMapping(value = "/pagination/{pagina}", method = { RequestMethod.POST })
-	public @ResponseBody DtoRetornoPaginado<DtoOrdemServicoPesquisa> paginated(@PathVariable("pagina") Integer pagina,
-			@RequestBody DtoOrdemServicoPesquisa dto) throws IllegalAccessException {
-		return _ordemServicoService.listAll(pagina, dto);
-	}*/
+	public @ResponseBody DtoRetornoPaginado<Venda> paginated(@PathVariable("pagina") Integer pagina,
+			@RequestBody DtoVendaPesquisa dto) throws IllegalAccessException {
+		return _vendaService.listAll(pagina, dto);
+	}
 /*
 	@RequestMapping(value = "/cadastrar", method = { RequestMethod.GET })
 	public ModelAndView insert(ModelMap model) {
