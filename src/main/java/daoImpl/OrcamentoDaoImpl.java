@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import dao.OrcamentoDao;
+import dto.DtoListaItensOrcamentoREL;
 import dto.DtoOrcamentoPesquisa;
 import dto.DtoRetornoPaginado;
 import model.Cliente;
@@ -14,6 +15,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.hibernate.SessionFactory;
 
 @Repository
@@ -22,6 +25,11 @@ public class OrcamentoDaoImpl implements OrcamentoDao {
 
 	@Autowired
 	SessionFactory session;
+
+	public DtoListaItensOrcamentoREL getAll(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	public Serializable persist(Orcamento orcamento) {
 		return session.getCurrentSession().save(orcamento);

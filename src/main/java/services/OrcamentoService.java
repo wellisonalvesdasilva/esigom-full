@@ -1,13 +1,12 @@
 package services;
-
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
-
-import dto.DtoClientePesquisa;
+import javax.servlet.http.HttpServletRequest;
 import dto.DtoListaPeca;
 import dto.DtoOrcamentoPesquisa;
 import dto.DtoRetornoPaginado;
 import model.Cliente;
-import model.Orcamento;
 import net.sf.jasperreports.engine.JRException;
 
 public interface OrcamentoService {
@@ -20,4 +19,7 @@ public interface OrcamentoService {
 	Cliente getCliente(String cpf);
 
 	DtoRetornoPaginado<DtoOrcamentoPesquisa> listAll(Integer pagina, DtoOrcamentoPesquisa dto) throws IllegalAccessException;
+	
+	public byte[] exportPdfFile(HttpServletRequest request) throws JRException, FileNotFoundException, IOException;
+
 }

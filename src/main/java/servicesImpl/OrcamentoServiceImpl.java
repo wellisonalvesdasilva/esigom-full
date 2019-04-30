@@ -1,15 +1,20 @@
 package servicesImpl;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import dao.ClienteDao;
 import dao.OrcamentoDao;
 import dao.PecaDao;
@@ -25,6 +30,8 @@ import model.Orcamento;
 import model.OrcamentoItem;
 import model.Peca;
 import model.Servico;
+import net.sf.jasperreports.engine.JRException;
+import reports.GenerateRelatorio;
 import services.OrcamentoService;
 
 @Service
@@ -41,6 +48,20 @@ public class OrcamentoServiceImpl implements OrcamentoService {
 
 	@Autowired
 	ClienteDao _clienteDao;
+
+	@SuppressWarnings("unchecked")
+	public byte[] exportPdfFile(HttpServletRequest request) throws JRException, IOException {
+		GenerateRelatorio instRelatorio = new GenerateRelatorio();
+
+		// Consulta virá do banco - apenas teste
+		List<Orcamento> lista = new ArrayList();
+		Orcamento inst = new Orcamento();
+		inst.setAno(2015);
+		lista.add(inst);
+
+		byte[] result = instRelatorio.gerarRelatorio(lista, request, "teste");
+		return result;
+	}
 
 	public DtoRetornoPaginado<DtoOrcamentoPesquisa> listAll(Integer pagina, DtoOrcamentoPesquisa dto)
 			throws IllegalAccessException {
@@ -101,6 +122,9 @@ public class OrcamentoServiceImpl implements OrcamentoService {
 		instOrcamento.setAno(objectToPersist.getAno());
 		instOrcamento.setKm(objectToPersist.getKm());
 		instOrcamento.setGerouOs(false);
+		instOrcamento.setCodStatus(1);
+		instOrcamento.setFormaPagamento(objectToPersist.getFormaPagamento());
+		instOrcamento.setObs(objectToPersist.getObs());
 
 		// Tabela Intermediate to item "Peça"
 		if (objectToPersist.getListPecas().size() > 0) {

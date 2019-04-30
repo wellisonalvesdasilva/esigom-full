@@ -48,12 +48,7 @@
 										type="button" class="btn btn-default btn-fill btn-pesquisa">
 										<i class="nc-icon nc-refresh-02"></i> Limpar
 									</button>
-									<a name="btnSubmit" rel="tooltip"
-										data-original-title="Cadastrar Novo Orçamento" id="btnSubmit"
-										href='/e-SIGOM/home/ordem-servicos/cadastrar' type="submit"
-										class="btn btn-success btn-fill btn-pesquisa"> <i
-										class="nc-icon nc-simple-add"></i> Novo Cadastro
-									</a>
+									
 								</div>
 							</div>
 							<div class="clearfix"></div>
@@ -126,7 +121,7 @@ $('#btnConfirmar').click(function() {
 	$('#btnConfirmar').attr('disabled', 'disabled');
 	$('#btnCancelar').attr('disabled', 'disabled');
 	$.ajax({
-		url : 'ordem-servicos/excluir/' + codServico,
+		url : 'estoques/excluir/' + codServico,
 		type : 'POST',
 		contentType : "application/json"
 	}).done(function(data) {
@@ -244,7 +239,7 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 	// Chamadando Ajax
 	$
 			.ajax({
-				url : '/e-SIGOM/home/ordem-servicos/pagination/' + pagina,
+				url : '/e-SIGOM/home/estoques/pagination/' + pagina,
 				type : 'POST',
 				data : JSON.stringify(dto),
 				dataType : "json",
@@ -266,11 +261,12 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 																		+ valor.id
 																		+ '</div>',
 																'<div class="text-center">'
-																		+ dataAtualFormatada(valor.dataCadastro)
+																		+ valor.id
+																		//+ dataAtualFormatada(valor.dataCadastro)
 																		+ '</div>',
 														
 																'<div class="text-center">'
-																	+ valor.cliente.nome
+																	+ valor.id
 																	+ '</div>',
 
 																	'<div class="text-center">'
@@ -287,28 +283,28 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 																'<div class="text-center">'
 																	
 																		// Editar Dados
-																		+ '<a rel="tooltip" href="/e-SIGOM/home/ordem-servicos/'
+																		+ '<a rel="tooltip" href="/e-SIGOM/home/estoques/'
 																		+valor.id
 																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
 																		+ 'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-settings-tool-66"></i>'
 																		+ '</a> '
 																		
 																		// Transformar em OS
-																		+ '<a rel="tooltip" href="/e-SIGOM/home/ordem-servicos/'
+																		+ '<a rel="tooltip" href="/e-SIGOM/home/estoques/'
 																		+valor.id
 																		+ '"data-original-title="Transformar em Ordem de Serviços" name="btnSubmit" id="btnSubmit"'
 																		+ 'type="button" class="btn btn-warning btn-fill"> <i class="nc-icon nc-refresh-02"></i>'
 																		+ '</a> '
 																																				
 																		// Imprimir
-																		+ '<a rel="tooltip" href="/e-SIGOM/home/ordem-servicos/'
+																		+ '<a rel="tooltip" href="/e-SIGOM/home/estoques/'
 																		+valor.id
 																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
 																		+ 'type="button" class="btn btn-info btn-fill"> <i class="nc-icon nc-tap-01"></i>'
 																		+ '</a> '
 																		
 																		// Enviar por e-mail
-																		+ '<a rel="tooltip" href="/e-SIGOM/home/ordem-servicos/'
+																		+ '<a rel="tooltip" href="/e-SIGOM/home/estoques/'
 																		+valor.id
 																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
 																		+ 'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-email-83"></i>'

@@ -5,6 +5,7 @@
 
 <hibernate-configuration>
 	<session-factory>
+	
 		<!-- Funcionalidades -->
 		<mapping class="model.Cliente" />
 		<mapping class="model.Servico" />
@@ -14,7 +15,9 @@
 		<mapping class="model.OrdemServico" />
 		<mapping class="model.Venda" />
 		<mapping class="model.VendaItem" />
-		
+		<mapping class="model.Estoque" />
+		<mapping class="model.EstoqueMovimentacao" />
+
 		<!-- Spring Security -->
 		<mapping class="model.PersistentLogin" />
 		<mapping class="model.Usuario" />

@@ -25,8 +25,9 @@
 							<div class="row">
 								<div class="col-md-2">
 									<div class="form-group">
-										<label>Forma de Pagamento</label> <select name="tp_pessoa"
-											required id="tp_pessoa" class="form-control">
+										<label>Forma de Pagamento</label> <select
+											name="formaPagamento" required id="formaPagamento"
+											class="form-control">
 											<option value="">Selecione</option>
 											<option value="1">Dinheiro</option>
 											<option value="2">Cartão Débito</option>
@@ -157,6 +158,14 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12">
+									<div class="form-group">
+										<label>Observações</label>
+										<textarea class="form-control" rows="5" name="obs" id="obs"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
 									<ul class="nav nav-tabs" id="myTab" role="tablist">
 										<li class="nav-item"><a class="nav-link active"
 											id="home-tab" data-toggle="tab" onclick="alteraTipoItem(1)"
@@ -188,8 +197,8 @@
 														<tbody id="tabelaIndexPeca">
 															<tr class="odd" id="nenhumEncontrado">
 																<td valign="top" colspan="7"
-																	class="dataTables_empty text-center">Nenhuma peça/produto
-																	adicionada até o momento.</td>
+																	class="dataTables_empty text-center">Nenhuma
+																	peça/produto adicionada até o momento.</td>
 															</tr>
 														</tbody>
 													</table>
@@ -435,7 +444,9 @@
 			dto.cor = $('#cor').val();
 			dto.ano = $('#ano').val();
 			dto.km = $('#km').val();
-			
+			dto.obs = $('#obs').val();
+			dto.formaPagamento = $('#formaPagamento').val();
+				
 			// Ajax
 			$.ajax(
 					{

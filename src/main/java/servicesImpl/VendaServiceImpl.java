@@ -15,9 +15,9 @@ import dto.DtoClientePesquisa;
 import dto.DtoEditarCliente;
 import dto.DtoRetornoPaginado;
 import dto.DtoVendaPesquisa;
-import dtoReports.ClienteREL;
 import model.Cliente;
 import model.Venda;
+import reports.ClienteREL;
 import services.ClienteService;
 import services.VendaService;
 

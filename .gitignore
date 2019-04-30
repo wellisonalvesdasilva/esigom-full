@@ -1,1 +1,3 @@
-/target/
+/tomcat8/
+*/META-INF/*
+target

@@ -35,6 +35,9 @@ public class Orcamento {
 	@Column(name = "veiculo_placa")
 	private String veiculoPlaca;
 
+	@Column(name = "obs")
+	private String obs;
+
 	@Column(name = "marca")
 	private String marca;
 
@@ -69,6 +72,14 @@ public class Orcamento {
 	@JsonIgnore
 	@OneToMany(mappedBy = "orcamento", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<OrcamentoItem> orcamentoItens = new ArrayList<OrcamentoItem>();
+
+	public String getObs() {
+		return obs;
+	}
+
+	public void setObs(String obs) {
+		this.obs = obs;
+	}
 
 	public Integer getFormaPagamento() {
 		return formaPagamento;

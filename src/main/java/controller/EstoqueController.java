@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import dto.DtoPecaPesquisa;
+import dto.DtoEstoquePesquisa;
 import dto.DtoRetornoPaginado;
-import model.Peca;
-import services.PecaService;
+import model.Estoque;
+import services.ClienteService;
+import services.EstoqueService;
+import services.EstoqueService;
 
 @Controller
 @RequestMapping("/home/estoques")
@@ -26,47 +28,49 @@ import services.PecaService;
 
 public class EstoqueController {
 
+	@Autowired
+	EstoqueService _estoqueService;
 	
 	@RequestMapping(method = { RequestMethod.GET })
 	public ModelAndView listarTodos() {
-		return new ModelAndView("estoque/consultar");
+		return new ModelAndView("estoque/index");
+	}
+	
+	@RequestMapping(value = "/pagination/{pagina}", method = { RequestMethod.POST })
+	public @ResponseBody DtoRetornoPaginado<Estoque> paginated(@PathVariable("pagina") Integer pagina,
+			@RequestBody DtoEstoquePesquisa dto) throws IllegalAccessException, InvocationTargetException {
+		return _estoqueService.listAll(pagina, dto);
 	}
 	/*
-	@RequestMapping(value = "/pagination/{pagina}", method = { RequestMethod.POST })
-	public @ResponseBody DtoRetornoPaginado<Peca> paginated(@PathVariable("pagina") Integer pagina,
-			@RequestBody DtoPecaPesquisa dto) throws IllegalAccessException, InvocationTargetException {
-		return _pecaService.listAll(pagina, dto);
-	}
-
 	@RequestMapping(value = "/cadastrar", method = { RequestMethod.GET })
 	public ModelAndView insert(ModelMap model) {
-		model.addAttribute("obj", new Peca());
-		return new ModelAndView("peca/cadastrar");
+		model.addAttribute("obj", new Estoque());
+		return new ModelAndView("Estoque/cadastrar");
 	}
 
 	@RequestMapping(value = "/cadastrar", method = { RequestMethod.POST })
-	public String insert(@ModelAttribute("obj") Peca obj, RedirectAttributes ra, ModelMap model) throws Exception {
-		_pecaService.salvar(obj);
+	public String insert(@ModelAttribute("obj") Estoque obj, RedirectAttributes ra, ModelMap model) throws Exception {
+		_EstoqueService.salvar(obj);
 		ra.addFlashAttribute("message", "Registro cadastrado com sucesso!");
-		return "redirect:/home/pecas";
+		return "redirect:/home/Estoques";
 	}
 
 	@RequestMapping(value = "/{cod}", method = { RequestMethod.GET })
 	public ModelAndView editar(@PathVariable("cod") Integer cod, ModelMap model)
 			throws NoSuchAlgorithmException, IllegalAccessException, InvocationTargetException {
-		model.addAttribute("obj", _pecaService.getObj(cod));
-		return new ModelAndView("peca/editar");
+		model.addAttribute("obj", _EstoqueService.getObj(cod));
+		return new ModelAndView("Estoque/editar");
 	}
 
 	@RequestMapping(value = "/{cod}", method = { RequestMethod.POST })
-	public String editar(@PathVariable("cod") Integer cod, @ModelAttribute("obj") Peca objMerge, RedirectAttributes ra)
+	public String editar(@PathVariable("cod") Integer cod, @ModelAttribute("obj") Estoque objMerge, RedirectAttributes ra)
 			throws Exception {
 		objMerge.setId(cod);
-		Boolean retorno = _pecaService.editar(objMerge);
+		Boolean retorno = _EstoqueService.editar(objMerge);
 
 		if (retorno) {
 			ra.addFlashAttribute("message", "Registro editado com sucesso!");
-			return "redirect:/home/pecas";
+			return "redirect:/home/Estoques";
 		}
 		return null;
 	}
@@ -74,7 +78,7 @@ public class EstoqueController {
 	@RequestMapping(value = "/excluir/{cod}", method = { RequestMethod.POST })
 	public @ResponseBody void excluir(@PathVariable("cod") Integer cod) {
 		try {
-			_pecaService.deletar(cod);
+			_EstoqueService.deletar(cod);
 		} catch (Exception e) {
 			return;
 		}

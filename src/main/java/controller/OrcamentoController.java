@@ -2,6 +2,8 @@ package controller;
 
 import java.io.Serializable;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,19 +33,18 @@ import services.OrcamentoService;
 public class OrcamentoController {
 
 	@Autowired
-	OrcamentoService _ordemServicoService;
+	OrcamentoService _orcamentoService;
 
 	@RequestMapping(method = { RequestMethod.GET })
 	public ModelAndView lista(ModelMap model) {
 		return new ModelAndView("orcamento/consultar");
 	}
-	
+
 	@RequestMapping(value = "/pagination/{pagina}", method = { RequestMethod.POST })
 	public @ResponseBody DtoRetornoPaginado<DtoOrcamentoPesquisa> paginated(@PathVariable("pagina") Integer pagina,
 			@RequestBody DtoOrcamentoPesquisa dto) throws IllegalAccessException {
-		return _ordemServicoService.listAll(pagina, dto);
+		return _orcamentoService.listAll(pagina, dto);
 	}
-
 
 	@RequestMapping(value = "/cadastrar", method = { RequestMethod.GET })
 	public ModelAndView insert(ModelMap model) {
@@ -55,7 +56,7 @@ public class OrcamentoController {
 	@RequestMapping(value = "/getPesquisaPeca/{nome}", method = { RequestMethod.GET })
 	public @ResponseBody DtoListaPeca getPecas(@PathVariable("nome") String nome, RedirectAttributes r) {
 
-		DtoListaPeca retorno = _ordemServicoService.getPesquisaPeca(nome);
+		DtoListaPeca retorno = _orcamentoService.getPesquisaPeca(nome);
 
 		if (retorno != null) {
 			return retorno;
@@ -66,7 +67,7 @@ public class OrcamentoController {
 	@RequestMapping(value = "/getPesquisaServico/{nome}", method = { RequestMethod.GET })
 	public @ResponseBody DtoListaPeca getServicos(@PathVariable("nome") String nome, RedirectAttributes r) {
 
-		DtoListaPeca retorno = _ordemServicoService.getPesquisaServico(nome);
+		DtoListaPeca retorno = _orcamentoService.getPesquisaServico(nome);
 
 		if (retorno != null) {
 			return retorno;
@@ -77,7 +78,7 @@ public class OrcamentoController {
 	@RequestMapping(value = "/getCliente/{cpf}", method = { RequestMethod.GET })
 	public @ResponseBody Cliente getCliente(@PathVariable("cpf") String cpf) {
 
-		Cliente retorno = _ordemServicoService.getCliente(cpf);
+		Cliente retorno = _orcamentoService.getCliente(cpf);
 
 		if (retorno != null) {
 			return retorno;
@@ -88,7 +89,15 @@ public class OrcamentoController {
 	@RequestMapping(value = "/save", method = { RequestMethod.POST })
 	public @ResponseBody Serializable saveOrcamento(@RequestParam Object dto) {
 
-		return _ordemServicoService.salvarOrcamento(dto);
+		return _orcamentoService.salvarOrcamento(dto);
+
+	}
+
+	@RequestMapping(value = "/exportPdf", method = RequestMethod.POST)
+	@ResponseBody
+	public byte[] generateReport(HttpServletRequest request) throws Exception {
+
+		return _orcamentoService.exportPdfFile(request);
 
 	}
 

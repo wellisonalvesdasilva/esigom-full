@@ -330,10 +330,8 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 																		+ '</a> '
 																																				
 																		// Gerar PDF
-																		+ '<button rel="tooltip" href="/e-SIGOM/home/orcamentos/'
-																		+valor.id
-																		+ '"data-original-title="Editar" name="btnSubmit" id="btnSubmit"'
-																		+ 'type="button" class="btn btn-info btn-fill"> <i class="nc-icon nc-zoom-split"></i>'
+																		+ '<button rel="tooltip" data-original-title="Editar" name="exportToPdf" id="exportToPdf"'
+																		+ 'type="button" onclick="exportarParaPdf()" class="btn btn-info btn-fill"> <i class="nc-icon nc-cloud-download-93"></i>'
 																		+ '</button> '
 																		
 																		// Transformar em OS
@@ -525,6 +523,56 @@ function dataAtualFormatada(miliseconds){
     return dia+"/"+mes+"/"+ano+" "+hora+":"+minutos+":"+segundos;   
 }
 
+
+function retornaFiltros() {
+	var filtros = {};
+	filtros.id = $(
+			'#id').val();
+	
+
+	return filtros;
+}
+
+		function exportarParaPdf(){
+			$('#exportToPdf').prop(
+					"disabled",
+					"disabled");
+			
+			showNotification('top', 'right', 'Aguarde a geração do relatório em instantes...');
+			
+	
+
+			// Chamada Ajax
+			var req = new XMLHttpRequest();
+			req.open("POST",
+							"/e-SIGOM/home/orcamentos/exportPdf");
+			req.responseType = "blob";
+
+			req.setRequestHeader(
+							'Content-type',
+							'application/x-www-form-urlencoded ; charset=utf-8');
+			req.send("filtros="+ JSON.stringify(retornaFiltros())); 
+
+			// Callback
+			req.onload = function(event) {
+				var blob = req.response;
+				var link = document
+						.createElement('a');
+				link.href = window.URL
+						.createObjectURL(blob);
+				link.download = "[SIGOM] Orçamento_de_"
+						+ dataAtualFormatada(new Date())
+						+ ".pdf";
+				link.click();
+				
+				showNotification('top', 'right', 'Relatório gerado com sucesso!');
+				
+		
+				$("#exportToPdf")
+						.removeAttr(
+								"disabled");
+			};
+		}
 
 </script>
 </body>

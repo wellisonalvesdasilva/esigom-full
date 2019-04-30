@@ -13,8 +13,8 @@ import dao.ClienteDao;
 import dto.DtoClientePesquisa;
 import dto.DtoEditarCliente;
 import dto.DtoRetornoPaginado;
-import dtoReports.ClienteREL;
 import model.Cliente;
+import reports.ClienteREL;
 import services.ClienteService;
 
 @Service
