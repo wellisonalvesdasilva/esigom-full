@@ -24,6 +24,7 @@ import dto.DtoRetornoPaginado;
 import model.Cliente;
 import model.Orcamento;
 import model.Servico;
+import reports.GenerateRelatorio;
 import services.OrcamentoService;
 
 @Controller
@@ -48,6 +49,7 @@ public class OrcamentoController {
 
 	@RequestMapping(value = "/cadastrar", method = { RequestMethod.GET })
 	public ModelAndView insert(ModelMap model) {
+
 		model.addAttribute("obj", new Servico());
 		return new ModelAndView("orcamento/cadastrar");
 	}

@@ -7,7 +7,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +23,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import auxiliar.SendMail;
 import dao.ClienteDao;
 import dao.OrcamentoDao;
 import dao.PecaDao;
@@ -65,6 +74,11 @@ public class OrcamentoServiceImpl implements OrcamentoService {
 
 	public DtoRetornoPaginado<DtoOrcamentoPesquisa> listAll(Integer pagina, DtoOrcamentoPesquisa dto)
 			throws IllegalAccessException {
+
+		// Enviando email
+		SendMail sm = new SendMail("smtp.gmail.com", "465");
+		sm.sendMail("esigomsistema@gmail.com", "wellis_on@hotmail.com", "Enviando e-mail com java mail.",
+				"Teste Wellison");
 
 		// Retorno Banco
 		DtoRetornoPaginado<Orcamento> retorno = _orcamentoDao.listAll(pagina, dto);
