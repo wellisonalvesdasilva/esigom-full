@@ -109,4 +109,16 @@ public class OrcamentoDaoImpl implements OrcamentoDao {
 		return inst;
 	}
 
+	public Orcamento getObj(Integer id) {
+
+		Orcamento ObjLocalizado = null;
+		ObjLocalizado = (Orcamento) session.getCurrentSession()
+				.createQuery("from Orcamento as o inner join fetch o.cliente where o.id = " + id).list().get(0);
+
+		if (ObjLocalizado != null) {
+			return ObjLocalizado;
+		}
+
+		return null;
+	}
 }

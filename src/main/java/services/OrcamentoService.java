@@ -22,4 +22,6 @@ public interface OrcamentoService {
 	
 	public byte[] exportPdfFile(HttpServletRequest request) throws JRException, FileNotFoundException, IOException;
 
+	void enviarOrcamentoPorEmail(Integer id, HttpServletRequest request);
+
 }

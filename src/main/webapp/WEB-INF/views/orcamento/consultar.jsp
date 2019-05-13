@@ -124,7 +124,24 @@
 								</div>
 							</div>
 						</form:form>
-
+						<form:form id="modalEnvioEmail" class="modal fade" role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 class="modal-title">Atenção</h4>
+									</div>
+									<div class="modal-body">
+										<p>Confirma o envio do Orçamento para o e-mail do Cliente?</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" name="btnCancelar" id="btnCancelar"
+											class="btn btn-default" data-dismiss="modal">Cancelar</button>
+										<button name="confirmarEnvioEmail" id="confirmarEnvioEmail"
+											type="button" class="btn btn-primary">Sim</button>
+									</div>
+								</div>
+							</div>
+						</form:form>
 					</div>
 				</div>
 			</div>
@@ -155,7 +172,41 @@ var codServico = 0;
 function excluir(cod) {
 	$('#myModal').modal();
 	codServico = cod;
-}
+};
+
+
+var idOrcamentoEnvioEmail = 0;
+function enviarEmail(id) {
+	$('#modalEnvioEmail').modal();
+	idOrcamentoEnvioEmail = id;
+};
+
+
+// Evento enviar orçamento por e-mail
+$('#confirmarEnvioEmail').click(function() {
+	
+	showNotification('top', 'right', 'Aguarde instantes! Solicitação em andamento...');
+	$('#confirmarEnvioEmail').attr("disabled", "disabled");
+	$('#btnCancelar').removeAttr("disabled");
+	
+	$.ajax({
+		url : 'orcamentos/enviarOrcamentoEmail/' + idOrcamentoEnvioEmail,
+		type : 'POST',
+		contentType : "application/json"
+		
+	}).done(function(data) {
+		$('#modalEnvioEmail').modal('hide');
+		showNotification('top', 'right', 'Orçamento enviado por e-mail com sucesso!');
+		$('#confirmarEnvioEmail').removeAttr("disabled");
+			// Recarregar tabela
+		carregarDataTables(pagineAtual, colunaParaOrdenarAsc);
+
+	}).fail(function(data) {
+		showNotification('top', 'right', 'Erro ao enviar o orçamento!');
+		$('#confirmarEnvioEmail').removeAttr("disabled");
+	});
+});
+
 
 // Evento Excluir Funcionário
 $('#btnConfirmar').click(function() {
@@ -311,7 +362,7 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 
 																	'<div class="text-center">'
 																	+'<span class="label ellipsis_150 ng-isolate-scope ng-binding label-default"'
-																	+'style="display: block; margin: 0; padding: 11.5px;">Aguardando Aprovação do Cliente</span>'
+																	+'style="display: block; margin: 0; padding: 11.5px;">AGUARDANDO APROVAÇÃO</span>'
 																+'</div>',
 																
 																	'<div class="text-center">'
@@ -321,7 +372,14 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 															
 																	
 																'<div class="text-center">'
-																																	
+																					
+																		// Transformar em OS
+																		+ '<button rel="tooltip" href="/e-SIGOM/home/orcamentos/'
+																		+valor.id
+																		+ '"data-original-title="Transformar em Ordem de Serviços"  onclick="alterarStatus()" name="btnSubmit" id="btnSubmit"'
+																		+ 'type="button" class="btn btn-info btn-fill"> <i class="nc-icon nc-zoom-split"></i>'
+																		+ '</button> '
+																		
 																		// Editar Dados
 																		+ '<a rel="tooltip" href="/e-SIGOM/home/orcamentos/'
 																		+valor.id
@@ -329,9 +387,11 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 																		+ 'type="button" class="btn btn-default btn-fill"> <i class="nc-icon nc-settings-tool-66"></i>'
 																		+ '</a> '
 																																				
-																		// Gerar PDF
+																		// Enviar para o e-mail do Cliente
 																		+ '<button rel="tooltip" data-original-title="Editar" name="exportToPdf" id="exportToPdf"'
-																		+ 'type="button" onclick="exportarParaPdf()" class="btn btn-info btn-fill"> <i class="nc-icon nc-cloud-download-93"></i>'
+																		+ 'type="button" onclick="enviarEmail('
+																				+valor.id+
+																				')" class="btn btn-success btn-fill"> <i class="nc-icon nc-send"></i>'
 																		+ '</button> '
 																		
 																		// Transformar em OS
@@ -341,7 +401,6 @@ function carregarDataTables(pagina, colunaParaOrdenar) {
 																		+ 'type="button" class="btn btn-warning btn-fill"> <i class="nc-icon nc-refresh-02"></i>'
 																		+ '</button> '
 																
-																	
 																		// Excluir
 																		+ '<button rel="tooltip" name="btnSubmit"'
 																		+ 'data-original-title="Excluir" id="btnSubmit"'

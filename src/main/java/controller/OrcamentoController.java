@@ -103,4 +103,9 @@ public class OrcamentoController {
 
 	}
 
+	@RequestMapping(value = "/enviarOrcamentoEmail/{id}", method = { RequestMethod.POST })
+	public @ResponseBody void enviarOrcamentoEmail(@PathVariable("id") Integer id, HttpServletRequest request) {
+		_orcamentoService.enviarOrcamentoPorEmail(id, request);
+	}
+
 }

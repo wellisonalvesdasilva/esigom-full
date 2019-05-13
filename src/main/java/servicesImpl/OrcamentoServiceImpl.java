@@ -75,11 +75,6 @@ public class OrcamentoServiceImpl implements OrcamentoService {
 	public DtoRetornoPaginado<DtoOrcamentoPesquisa> listAll(Integer pagina, DtoOrcamentoPesquisa dto)
 			throws IllegalAccessException {
 
-		// Enviando email
-		SendMail sm = new SendMail("smtp.gmail.com", "465");
-		sm.sendMail("esigomsistema@gmail.com", "wellis_on@hotmail.com", "Enviando e-mail com java mail.",
-				"Teste Wellison");
-
 		// Retorno Banco
 		DtoRetornoPaginado<Orcamento> retorno = _orcamentoDao.listAll(pagina, dto);
 
@@ -207,4 +202,25 @@ public class OrcamentoServiceImpl implements OrcamentoService {
 		return _clienteDao.getPorCpf(cpf);
 	}
 
+	public void enviarOrcamentoPorEmail(Integer idOrcamento, HttpServletRequest request) {
+		Orcamento orcamento = _orcamentoDao.getObj(idOrcamento);
+
+		if (orcamento != null) {
+
+			// Gerar PDF
+			byte[] bytes = null;
+			try {
+				bytes = exportPdfFile(request);
+			} catch (JRException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			// Invocar Envio de Email
+			SendMail sm = new SendMail("smtp.gmail.com", "465");
+			sm.sendMail("esigomsistema@gmail.com", orcamento.getCliente().getEmail(), "Seu Orçamento Chegou!",
+					orcamento.getCliente().getNome() + ", seu orçamento chegou!", bytes);
+		}
+	}
 }

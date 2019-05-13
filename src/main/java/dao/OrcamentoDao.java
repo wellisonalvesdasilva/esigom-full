@@ -20,7 +20,7 @@ public interface OrcamentoDao {
 
 	// boolean deletar(Integer id);
 
-	// Peca getObj(Integer id);
+	Orcamento getObj(Integer id);
 
 	// void merge(Peca peca);
 

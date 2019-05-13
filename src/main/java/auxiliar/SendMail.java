@@ -1,17 +1,32 @@
 package auxiliar;
 
 import javax.mail.Message;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.InternetHeaders;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import dao.ServicoDao;
+import services.OrcamentoService;
 
 import java.util.Properties;
 
+import javax.activation.DataHandler;
 import javax.mail.Authenticator;
+import javax.mail.BodyPart;
 import javax.mail.PasswordAuthentication;
 
 public class SendMail {
+
+	@Autowired
+	OrcamentoService _orcamentoService;
 
 	private String mailSMTPServer;
 	private String mailSMTPServerPort;
@@ -38,7 +53,7 @@ public class SendMail {
 		this.mailSMTPServerPort = mailSMTPServerPort;
 	}
 
-	public void sendMail(String from, String to, String subject, String message) {
+	public void sendMail(String from, String to, String subject, String message, byte[] bytes) {
 
 		Properties props = new Properties();
 
@@ -93,8 +108,30 @@ public class SendMail {
 			msg.setFrom(new InternetAddress(from));
 			// Setando o assunto
 			msg.setSubject(subject);
-			// Setando o conteúdo/corpo do email
-			msg.setContent(message, "text/plain");
+
+			if (bytes != null) {
+
+				// String html = "<h1>" + message + "</h1>";
+				String html = message;
+
+				BodyPart messageBodyPart = new MimeBodyPart();
+				messageBodyPart.setContent(html, "text/html; charset=utf-8");
+
+				Multipart corpo = new MimeMultipart();
+				corpo.addBodyPart(messageBodyPart);
+
+				MimeBodyPart partPhoto = new MimeBodyPart();
+				InternetHeaders headers = new InternetHeaders();
+				headers.addHeader("Content-Type", "text/plain");
+				partPhoto.setDataHandler(new DataHandler(new ByteArrayDataSource(bytes, "aplication/pdf")));
+				partPhoto.setFileName("Orçamento.pdf");
+				corpo.addBodyPart(partPhoto);
+
+				msg.setContent(corpo);
+
+			} else {
+				msg.setContent(message, "text/plain");
+			}
 
 		} catch (Exception e) {
 			System.out.println(">> Erro: Completar Mensagem");
