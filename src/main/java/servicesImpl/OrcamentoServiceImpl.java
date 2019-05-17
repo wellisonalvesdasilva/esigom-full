@@ -29,11 +29,13 @@ import dao.OrcamentoDao;
 import dao.PecaDao;
 import dao.ServicoDao;
 import dto.DtoClientePesquisa;
+import dto.DtoImprimirOrcamento;
 import dto.DtoItemOrcamento;
 import dto.DtoListaPeca;
 import dto.DtoOrcamentoPesquisa;
 import dto.DtoRetornoPaginado;
 import dto.DtoSalvarOrcamento;
+import dtoIReport.DtoImpressaoOrcamento;
 import model.Cliente;
 import model.Orcamento;
 import model.OrcamentoItem;
@@ -63,12 +65,32 @@ public class OrcamentoServiceImpl implements OrcamentoService {
 		GenerateRelatorio instRelatorio = new GenerateRelatorio();
 
 		// Consulta virá do banco - apenas teste
-		List<Orcamento> lista = new ArrayList();
-		Orcamento inst = new Orcamento();
-		inst.setAno(2015);
+		List<DtoImpressaoOrcamento> lista = new ArrayList();
+
+		DtoImpressaoOrcamento inst = new DtoImpressaoOrcamento();
+		inst.setNome("wellison");
+		inst.setCpf("05137402109");
+		inst.setEmail("wellis_on@hotmail.com");
+		inst.setDadosVeiculo("FORD FIESTA SEDAN 2013");
+		inst.setTelefone("6733881774");
+		inst.setEndereco("Francisco Galvão Pain, 1051");
+		inst.setCidade("Campo Grande/MS");
+		inst.setItem("Troca de óleo e filtro");
+		inst.setQtde("1");
+		inst.setVlrUnit("250,00");
+		inst.setVlrTotal("1850,00");
+		inst.setSubtotal("59595,00");
+		inst.setDesconto("59595,00");
+		inst.setAcrescimo("1550,00");
+		inst.setVlrTotal("8500,00");
+		inst.setObservacoes("850,00");
+		inst.setDataAtualFormatada("26/12/1994");
+		inst.setNumeroOrcamento("201859");
+		inst.setCelular("67991952882");
+
 		lista.add(inst);
 
-		byte[] result = instRelatorio.gerarRelatorio(lista, request, "teste");
+		byte[] result = instRelatorio.gerarRelatorio(lista, request, "fichaOrcamento");
 		return result;
 	}
 
